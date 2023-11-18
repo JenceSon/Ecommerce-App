@@ -115,56 +115,56 @@ VALUES
 INSERT INTO Product (product_id, current_price, productname_id)
 VALUES
 -- Existing rows
-('PID000001', 49.99, 'PNI000001'),
-('PID000002', 29.95, 'PNI000002'),
-('PID000003', 99.99, 'PNI000003'),
-('PID000004', 14.99, 'PNI000004'),
-('PID000005', 79.99, 'PNI000005'),
+('PID000001', 49000.99, 'PNI000001'),
+('PID000002', 29000.95, 'PNI000002'),
+('PID000003', 99000.99, 'PNI000003'),
+('PID000004', 14000.99, 'PNI000004'),
+('PID000005', 79000.99, 'PNI000005'),
 -- Additional rows for Belong_to
-('PID000006', 39.99, 'PNI000006'),
-('PID000007', 59.95, 'PNI000007'),
-('PID000008', 19.99, 'PNI000008'),
-('PID000009', 44.99, 'PNI000009'),
-('PID000010', 69.99, 'PNI000010'),
-('PID000011', 34.99, 'PNI000011'),
-('PID000012', 24.95, 'PNI000012'),
-('PID000013', 89.99, 'PNI000013'),
-('PID000014', 54.99, 'PNI000014'),
-('PID000015', 49.99, 'PNI000015'),
-('PID000016', 69.99, 'PNI000001'), -- Adjusted price for 'Premium' version
-('PID000017', 29.95, 'PNI000002'), -- Adjusted price for 'Classic Fit' version
-('PID000018', 49.95, 'PNI000002'), -- Adjusted price for 'Slim Fit' version
-('PID000019', 89.99, 'PNI000003'), -- Adjusted price for '32GB' version
-('PID000020', 119.99, 'PNI000003'), -- Adjusted price for '64GB' version
-('PID000021', 14.99, 'PNI000004'), -- Adjusted price for 'Copper' version
-('PID000022', 24.99, 'PNI000004'), -- Adjusted price for 'Silver' version
-('PID000023', 49.99, 'PNI000005'), -- Adjusted price for 'Basic Kit' version
-('PID000024', 99.99, 'PNI000005'), -- Adjusted price for 'Deluxe Kit' version
-('PID000025', 34.99, 'PNI000006'), -- Adjusted price for 'Statement Piece' version
-('PID000026', 74.99, 'PNI000006'), -- Adjusted price for 'Classic Elegance' version
-('PID000027', 24.95, 'PNI000007'), -- Adjusted price for 'Bifold' version
-('PID000028', 59.95, 'PNI000007'), -- Adjusted price for 'Trifold' version
-('PID000029', 19.99, 'PNI000008'), -- Adjusted price for 'Basic Model' version
-('PID000030', 1449.99, 'PNI000008'); -- Adjusted price for 'Pro Model' version
+('PID000006', 39000.99, 'PNI000006'),
+('PID000007', 59000.95, 'PNI000007'),
+('PID000008', 19000.99, 'PNI000008'),
+('PID000009', 44000.99, 'PNI000009'),
+('PID000010', 69000.99, 'PNI000010'),
+('PID000011', 34000.99, 'PNI000011'),
+('PID000012', 24000.95, 'PNI000012'),
+('PID000013', 89000.99, 'PNI000013'),
+('PID000014', 54000.99, 'PNI000014'),
+('PID000015', 49000.99, 'PNI000015'),
+('PID000016', 69000.99, 'PNI000001'), -- Adjusted price for 'Premium' version
+('PID000017', 29000.95, 'PNI000002'), -- Adjusted price for 'Classic Fit' version
+('PID000018', 49000.95, 'PNI000002'), -- Adjusted price for 'Slim Fit' version
+('PID000019', 89000.99, 'PNI000003'), -- Adjusted price for '32GB' version
+('PID000020', 119000.99, 'PNI000003'), -- Adjusted price for '64GB' version
+('PID000021', 14000.99, 'PNI000004'), -- Adjusted price for 'Copper' version
+('PID000022', 24000.99, 'PNI000004'), -- Adjusted price for 'Silver' version
+('PID000023', 49000.99, 'PNI000005'), -- Adjusted price for 'Basic Kit' version
+('PID000024', 99000.99, 'PNI000005'), -- Adjusted price for 'Deluxe Kit' version
+('PID000025', 34000.99, 'PNI000006'), -- Adjusted price for 'Statement Piece' version
+('PID000026', 74000.99, 'PNI000006'), -- Adjusted price for 'Classic Elegance' version
+('PID000027', 24000.95, 'PNI000007'), -- Adjusted price for 'Bifold' version
+('PID000028', 59000.95, 'PNI000007'), -- Adjusted price for 'Trifold' version
+('PID000029', 19000.99, 'PNI000008'), -- Adjusted price for 'Basic Model' version
+('PID000030', 1449000.99, 'PNI000008'); -- Adjusted price for 'Pro Model' version
 
 --Add product name
 INSERT INTO Product_name (productname_id, description, name, total_remaining, no_sales, minimum_price, maximum_price, category_id, shop_id)
 VALUES
-('PNI000001', 'Stylish and comfortable.', 'Comfort Shoes', 100, 50, 29.99, 69.99, 'CAT000001', 'SID000001'),
-('PNI000002', 'A classic addition to your wardrobe.', 'Casual Shirt', 80, 30, 19.95, 49.95, 'CAT000002', 'SID000002'),
-('PNI000003', 'High-performance electronics.', 'Smartphone', 150, 100, 89.99, 199.99, 'CAT000003', 'SID000003'),
-('PNI000004', 'Perfect for cozy evenings.', 'Candle Holder', 50, 20, 9.99, 24.99, 'CAT000004', 'SID000004'),
-('PNI000005', 'Outdoor adventure essentials.', 'Camping Gear', 120, 70, 49.99, 99.99, 'CAT000005', 'SID000005'),
-('PNI000006', 'Unique and stylish design.', 'Necklace', 60, 40, 34.99, 74.99, 'CAT000006', 'SID000001'),
-('PNI000007', 'A modern twist on a classic.', 'Leather Wallet', 90, 60, 24.95, 59.95, 'CAT000002', 'SID000002'),
-('PNI000008', 'Efficient and reliable.', 'Laptop', 110, 80, 19.99, 1449.99, 'CAT000003', 'SID000003'),
-('PNI000009', 'Elegant and functional.', 'Table Lamp', 40, 15, 44.99, 89.99, 'CAT000004', 'SID000004'),
-('PNI000010', 'Stay hydrated on the go.', 'Water Bottle', 70, 25, 9.99, 29.99, 'CAT000005', 'SID000005'),
-('PNI000011', 'Perfect for everyday wear.', 'Sneakers', 90, 60, 39.99, 79.99, 'CAT000001', 'SID000001'),
-('PNI000012', 'A versatile addition to any outfit.', 'Denim Jeans', 120, 80, 29.95, 69.95, 'CAT000002', 'SID000002'),
-('PNI000013', 'Capture every moment.', 'Digital Camera', 30, 15, 149.99, 499.99, 'CAT000003', 'SID000003'),
-('PNI000014', 'Create a cozy atmosphere.', 'Throw Blanket', 65, 35, 14.99, 34.99, 'CAT000004', 'SID000004'),
-('PNI000015', 'Gear up for your next adventure.', 'Hiking Boots', 100, 50, 59.99, 119.99, 'CAT000005', 'SID000005');
+('PNI000001', 'Stylish and comfortable.', 'Comfort Shoes', 100, 50, 29000.99, 69000.99, 'CAT000001', 'SID000001'),
+('PNI000002', 'A classic addition to your wardrobe.', 'Casual Shirt', 80, 30, 19000.95, 49000.95, 'CAT000002', 'SID000002'),
+('PNI000003', 'High-performance electronics.', 'Smartphone', 150, 100, 89000.99, 199000.99, 'CAT000003', 'SID000003'),
+('PNI000004', 'Perfect for cozy evenings.', 'Candle Holder', 50, 20, 9000.99, 24000.99, 'CAT000004', 'SID000004'),
+('PNI000005', 'Outdoor adventure essentials.', 'Camping Gear', 120, 70, 49000.99, 99000.99, 'CAT000005', 'SID000005'),
+('PNI000006', 'Unique and stylish design.', 'Necklace', 60, 40, 34000.99, 74000.99, 'CAT000006', 'SID000001'),
+('PNI000007', 'A modern twist on a classic.', 'Leather Wallet', 90, 60, 24000.95, 59000.95, 'CAT000002', 'SID000002'),
+('PNI000008', 'Efficient and reliable.', 'Laptop', 110, 80, 19000.99, 1449000.99, 'CAT000003', 'SID000003'),
+('PNI000009', 'Elegant and functional.', 'Table Lamp', 40, 15, 44000.99, 89000.99, 'CAT000004', 'SID000004'),
+('PNI000010', 'Stay hydrated on the go.', 'Water Bottle', 70, 25, 9000.99, 29000.99, 'CAT000005', 'SID000005'),
+('PNI000011', 'Perfect for everyday wear.', 'Sneakers', 90, 60, 39000.99, 79000.99, 'CAT000001', 'SID000001'),
+('PNI000012', 'A versatile addition to any outfit.', 'Denim Jeans', 120, 80, 29000.95, 69000.95, 'CAT000002', 'SID000002'),
+('PNI000013', 'Capture every moment.', 'Digital Camera', 30, 15, 149000.99, 499000.99, 'CAT000003', 'SID000003'),
+('PNI000014', 'Create a cozy atmosphere.', 'Throw Blanket', 65, 35, 14000.99, 34000.99, 'CAT000004', 'SID000004'),
+('PNI000015', 'Gear up for your next adventure.', 'Hiking Boots', 100, 50, 59000.99, 119000.99, 'CAT000005', 'SID000005');
 
 --Insert category
 INSERT INTO Category (category_id, category_name)
@@ -179,36 +179,36 @@ VALUES
 --insert version
 INSERT INTO Version (productname_id, version_name, price, remaining_amount, details)
 VALUES
-('PNI000001', 'Standard', 49.99, 50, 'Standard version of Comfort Shoes.'),
-('PNI000001', 'Premium', 69.99, 30, 'Premium version with extra comfort features.'),
-('PNI000002', 'Classic Fit', 29.95, 40, 'Classic fit Casual Shirt for everyday wear.'),
-('PNI000002', 'Slim Fit', 49.95, 20, 'Slim fit Casual Shirt for a modern look.'),
-('PNI000003', '32GB', 89.99, 100, '32GB version of Smartphone with advanced features.'),
-('PNI000003', '64GB', 119.99, 50, '64GB version with extended storage capacity.'),
-('PNI000004', 'Copper', 14.99, 30, 'Copper Candle Holder for a rustic touch.'),
-('PNI000004', 'Silver', 24.99, 20, 'Silver Candle Holder for a sleek look.'),
-('PNI000005', 'Basic Kit', 49.99, 80, 'Basic Camping Gear for outdoor enthusiasts.'),
-('PNI000005', 'Deluxe Kit', 99.99, 40, 'Deluxe Camping Gear with additional features.'),
-('PNI000006', 'Statement Piece', 34.99, 25, 'Statement Necklace with unique design.'),
-('PNI000006', 'Classic', 74.99, 15, 'Classic Elegance Necklace for formal occasions.'),
-('PNI000007', 'Bifold', 24.95, 50, 'Bifold Leather Wallet for everyday use.'),
-('PNI000007', 'Trifold', 59.95, 30, 'Trifold Leather Wallet with multiple compartments.'),
-('PNI000008', 'Basic Model', 19.99, 70, 'Basic Laptop for everyday tasks.'),
-('PNI000008', 'Pro Model', 1449.99, 20, 'Pro Laptop with advanced specifications.'),
-('PNI000009', 'Modern Design', 44.99, 15, 'Modern Table Lamp for contemporary spaces.'),
-('PNI000009', 'Vintage Style', 89.99, 25, 'Vintage Style Lamp for a touch of nostalgia.'),
-('PNI000010', 'Classic Blue', 9.99, 45, 'Classic Blue Water Bottle for on-the-go hydration.'),
-('PNI000010', 'Stainless Steel', 29.99, 25, 'Stainless Steel Water Bottle for durability.'),
-('PNI000011', 'Athletic Style', 39.99, 30, 'Athletic Style Sneakers for active lifestyles.'),
-('PNI000011', 'Casual Comfort', 79.99, 20, 'Casual Comfort Sneakers for everyday wear.'),
-('PNI000012', 'Relaxed Fit', 29.95, 35, 'Relaxed Fit Denim Jeans for comfortable style.'),
-('PNI000012', 'Skinny Fit', 69.95, 15, 'Skinny Fit Denim Jeans for a modern look.'),
-('PNI000013', 'Pro Camera', 149.99, 10, 'Pro Digital Camera for professional photography.'),
-('PNI000013', 'Compact Camera', 499.99, 20, 'Compact Digital Camera for on-the-go shooting.'),
-('PNI000014', 'Cozy Plaid', 14.99, 15, 'Cozy Plaid Throw Blanket for chilly evenings.'),
-('PNI000014', 'Luxury Velvet', 34.99, 10, 'Luxury Velvet Throw Blanket for added comfort.'),
-('PNI000015', 'Trailblazer', 59.99, 25, 'Trailblazer Hiking Boots for outdoor adventures.'),
-('PNI000015', 'Explorer', 119.99, 15, 'Explorer Hiking Boots for the adventurous spirit.');
+('PNI000001', 'Standard', 49000.99, 50, 'Standard version of Comfort Shoes.'),
+('PNI000001', 'Premium', 69000.99, 30, 'Premium version with extra comfort features.'),
+('PNI000002', 'Classic Fit', 29000.95, 40, 'Classic fit Casual Shirt for everyday wear.'),
+('PNI000002', 'Slim Fit', 49000.95, 20, 'Slim fit Casual Shirt for a modern look.'),
+('PNI000003', '32GB', 89000.99, 100, '32GB version of Smartphone with advanced features.'),
+('PNI000003', '64GB', 119000.99, 50, '64GB version with extended storage capacity.'),
+('PNI000004', 'Copper', 14000.99, 30, 'Copper Candle Holder for a rustic touch.'),
+('PNI000004', 'Silver', 24000.99, 20, 'Silver Candle Holder for a sleek look.'),
+('PNI000005', 'Basic Kit', 49000.99, 80, 'Basic Camping Gear for outdoor enthusiasts.'),
+('PNI000005', 'Deluxe Kit', 99000.99, 40, 'Deluxe Camping Gear with additional features.'),
+('PNI000006', 'Statement Piece', 34000.99, 25, 'Statement Necklace with unique design.'),
+('PNI000006', 'Classic', 74000.99, 15, 'Classic Elegance Necklace for formal occasions.'),
+('PNI000007', 'Bifold', 24000.95, 50, 'Bifold Leather Wallet for everyday use.'),
+('PNI000007', 'Trifold', 59000.95, 30, 'Trifold Leather Wallet with multiple compartments.'),
+('PNI000008', 'Basic Model', 19000.99, 70, 'Basic Laptop for everyday tasks.'),
+('PNI000008', 'Pro Model', 1449000.99, 20, 'Pro Laptop with advanced specifications.'),
+('PNI000009', 'Modern Design', 44000.99, 15, 'Modern Table Lamp for contemporary spaces.'),
+('PNI000009', 'Vintage Style', 89000.99, 25, 'Vintage Style Lamp for a touch of nostalgia.'),
+('PNI000010', 'Classic Blue', 9000.99, 45, 'Classic Blue Water Bottle for on-the-go hydration.'),
+('PNI000010', 'Stainless Steel', 29000.99, 25, 'Stainless Steel Water Bottle for durability.'),
+('PNI000011', 'Athletic Style', 39000.99, 30, 'Athletic Style Sneakers for active lifestyles.'),
+('PNI000011', 'Casual Comfort', 79000.99, 20, 'Casual Comfort Sneakers for everyday wear.'),
+('PNI000012', 'Relaxed Fit', 29000.95, 35, 'Relaxed Fit Denim Jeans for comfortable style.'),
+('PNI000012', 'Skinny Fit', 69000.95, 15, 'Skinny Fit Denim Jeans for a modern look.'),
+('PNI000013', 'Pro Camera', 149000.99, 10, 'Pro Digital Camera for professional photography.'),
+('PNI000013', 'Compact Camera', 499000.99, 20, 'Compact Digital Camera for on-the-go shooting.'),
+('PNI000014', 'Cozy Plaid', 14000.99, 15, 'Cozy Plaid Throw Blanket for chilly evenings.'),
+('PNI000014', 'Luxury Velvet', 34000.99, 10, 'Luxury Velvet Throw Blanket for added comfort.'),
+('PNI000015', 'Trailblazer', 59000.99, 25, 'Trailblazer Hiking Boots for outdoor adventures.'),
+('PNI000015', 'Explorer', 119000.99, 15, 'Explorer Hiking Boots for the adventurous spirit.');
 
 --add belongs to
 INSERT INTO Belong_to (product_id, productname_id, version_name)
@@ -291,47 +291,47 @@ VALUES
 --Add e-wallet
 INSERT INTO E_wallet (ID_payment, wallet_number)
 VALUES
-('PAYID0001', 1234567890123456),
-('PAYID0002', 2345678901234567),
-('PAYID0003', 3456789012345678),
-('PAYID0004', 4567890123456789),
-('PAYID0005', 5678901234567890),
-('PAYID0006', 6789012345678901),
-('PAYID0007', 7890123456789012),
-('PAYID0008', 8901234567890123),
-('PAYID0009', 9012345678901234),
-('PAYID0010', 1234901234567890),
-('PAYID0011', 2345012345678901);
+('PAYID0001', ''1234567890123456''),
+('PAYID0002', ''2345678901234567''),
+('PAYID0003', ''3456789012345678''),
+('PAYID0004', ''4567890123456789''),
+('PAYID0005', ''5678901234567890''),
+('PAYID0006', ''6789012345678901''),
+('PAYID0007', ''7890123456789012''),
+('PAYID0008', ''8901234567890123''),
+('PAYID0009', ''9012345678901234''),
+('PAYID0010', ''1234901234567890''),
+('PAYID0011', ''2345012345678901'');
 
 --Add Card-payment
 INSERT INTO Card_payment (ID_payment, card_number, [type])
 VALUES
-('PAYID0001', 1234567890123456, 'Debit'),
-('PAYID0002', 2345678901234567, 'Credit'),
-('PAYID0003', 3456789012345678, 'Napas'),
-('PAYID0004', 4567890123456789, 'Debit'),
-('PAYID0005', 5678901234567890, 'Credit'),
-('PAYID0006', 6789012345678901, 'Napas'),
-('PAYID0007', 7890123456789012, 'Debit'),
-('PAYID0008', 8901234567890123, 'Credit'),
-('PAYID0009', 9012345678901234, 'Napas'),
-('PAYID0010', 1234901234567890, 'Debit'),
-('PAYID0011', 2345012345678901, 'Credit');
+('PAYID0001', '1234567890123456', 'Debit'),
+('PAYID0002', '2345678901234567', 'Credit'),
+('PAYID0003', '3456789012345678', 'Napas'),
+('PAYID0004', '4567890123456789', 'Debit'),
+('PAYID0005', '5678901234567890', 'Credit'),
+('PAYID0006', '6789012345678901', 'Napas'),
+('PAYID0007', '7890123456789012', 'Debit'),
+('PAYID0008', '8901234567890123', 'Credit'),
+('PAYID0009', '9012345678901234', 'Napas'),
+('PAYID0010', '1234901234567890', 'Debit'),
+('PAYID0011', '2345012345678901', 'Credit');
 
 --Add internet-banking
 INSERT INTO Internet_banking (ID_payment, account_number)
 VALUES
-('PAYID0001', 1234567890123456),
-('PAYID0002', 2345678901234567),
-('PAYID0003', 3456789012345678),
-('PAYID0004', 4567890123456789),
-('PAYID0005', 5678901234567890),
-('PAYID0006', 6789012345678901),
-('PAYID0007', 7890123456789012),
-('PAYID0008', 8901234567890123),
-('PAYID0009', 9012345678901234),
-('PAYID0010', 1234901234567890),
-('PAYID0011', 2345012345678901);
+('PAYID0001', '1234567890123456'),
+('PAYID0002', '2345678901234567'),
+('PAYID0003', '3456789012345678'),
+('PAYID0004', '4567890123456789'),
+('PAYID0005', '5678901234567890'),
+('PAYID0006', '6789012345678901'),
+('PAYID0007', '7890123456789012'),
+('PAYID0008', '8901234567890123'),
+('PAYID0009', '9012345678901234'),
+('PAYID0010', '1234901234567890'),
+('PAYID0011', '2345012345678901');
 
 --Add COD
 INSERT INTO COD (ID_payment)
@@ -351,16 +351,16 @@ VALUES
 --Add voucher
 INSERT INTO Voucher (voucher_id, quantity, discount, lowest_applied_price, start_time, end_time, [type], maximum_cash_discount, [percent])
 VALUES
-('VCHID0001', 50, NULL, 10.0, '2023-01-01 00:00:00', '2023-02-01 00:00:00', 'For delivery', 10.0, 0.05),
-('VCHID0002', 100, 20.0, 50.0, '2023-02-15 00:00:00', '2023-03-15 00:00:00', 'For products', 12.5, 0.1),
-('VCHID0003', 30, NULL, 15.0, '2023-03-01 00:00:00', '2023-04-01 00:00:00', 'For products', 5.0, 0.3),
-('VCHID0004', 80, 25.0, 100.0, '2023-04-15 00:00:00', '2023-05-15 00:00:00', 'For delivery', 4.0, 0.4),
-('VCHID0005', 20, NULL, 30.0, '2023-05-01 00:00:00', '2023-06-01 00:00:00', 'For delivery', 8.0, 0.6),
-('VCHID0006', 40, NULL, 25.0, '2023-06-15 00:00:00', '2023-07-15 00:00:00', 'For products', 10.0, 0.2),
-('VCHID0007', 60, 15.0, 70.0, '2023-07-01 00:00:00', '2023-08-01 00:00:00', 'For delivery', 13.0, 0.08),
-('VCHID0008', 25, NULL, 20.0, '2023-08-15 00:00:00', '2023-09-15 00:00:00', 'For products', 5.0, 0.5),
-('VCHID0009', 70, 30.0, 120.0, '2023-09-01 00:00:00', '2023-10-01 00:00:00', 'For delivery', 12.3, 0.5),
-('VCHID0010', 15, NULL, 40.0, '2023-10-15 00:00:00', '2023-11-15 00:00:00', 'For products', 12.0, 0.19);
+('VCHID0001', 50, NULL, 10000.0, '2023-01-01 00:00:00', '2023-02-01 00:00:00', 'For delivery', 10000.0, 0.05),
+('VCHID0002', 100, 20.0, 50000.0, '2023-02-15 00:00:00', '2023-03-15 00:00:00', 'For products', 12000.5, 0.1),
+('VCHID0003', 30, NULL, 15000.0, '2023-03-01 00:00:00', '2023-04-01 00:00:00', 'For products', 5000.0, 0.3),
+('VCHID0004', 80, 25.0, 100000.0, '2023-04-15 00:00:00', '2023-05-15 00:00:00', 'For delivery', 4000.0, 0.4),
+('VCHID0005', 20, NULL, 30000.0, '2023-05-01 00:00:00', '2023-06-01 00:00:00', 'For delivery', 8000.0, 0.6),
+('VCHID0006', 40, NULL, 25000.0, '2023-06-15 00:00:00', '2023-07-15 00:00:00', 'For products', 10000.0, 0.2),
+('VCHID0007', 60, 15.0, 70000.0, '2023-07-01 00:00:00', '2023-08-01 00:00:00', 'For delivery', 13000.0, 0.08),
+('VCHID0008', 25, NULL, 20000.0, '2023-08-15 00:00:00', '2023-09-15 00:00:00', 'For products', 5000.0, 0.5),
+('VCHID0009', 70, 30.0, 120000.0, '2023-09-01 00:00:00', '2023-10-01 00:00:00', 'For delivery', 12000.3, 0.5),
+('VCHID0010', 15, NULL, 40000.0, '2023-10-15 00:00:00', '2023-11-15 00:00:00', 'For products', 12000.0, 0.19);
 
 --add can apply
 INSERT INTO Can_apply (category_id, voucher_id, shop_id)
@@ -392,11 +392,11 @@ VALUES
 --add deli service
 INSERT INTO Delivery_service (delivery_id, name, price, estimated_time)
 VALUES
-('DELID0001', 'Standard Deli', 5.0, 3),
-('DELID0002', 'Express Deli', 10.0, 2),
-('DELID0003', 'Next-Day Deli', 15.0, 1),
+('DELID0001', 'Standard Deli', 5000.0, 3),
+('DELID0002', 'Express Deli', 10000.0, 2),
+('DELID0003', 'Next-Day Deli', 15000.0, 1),
 ('DELID0004', 'Free Pickup', 0.0, 0),
-('DELID0005', 'Two-Day Ship', 8.0, 2);
+('DELID0005', 'Two-Day Ship', 8000.0, 2);
 
 --add order
 INSERT INTO [Order] (order_id, status, no_productname, ID_payment, delivery_id)
