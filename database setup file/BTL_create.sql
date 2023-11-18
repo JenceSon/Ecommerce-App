@@ -364,9 +364,9 @@ drop table Card_payment
 
 create table Internet_banking (
 	ID_payment	varchar(9)	primary key,
-	account_number	char(16) not null,
+	account_number	varchar(16) not null,
 	constraint account_format
-		check(isnumeric(account_number) = 1 and len(account_number) = 16)
+		check(isnumeric(account_number) = 1)
 )
 drop table Internet_banking
 
