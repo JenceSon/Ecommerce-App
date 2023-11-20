@@ -147,9 +147,9 @@ create table Shop (
 	bio			varchar(1000) not null default 'No description',
 	no_following	int		not null default 0,
 	no_follower		int		not null default 0,
-	url_link	varchar(100)	not null,
+	url_link	varchar(100)	not null check(url_link like 'https://%.%'),
 	rating		decimal(2,1)	not null default 0,
-	name		varchar(15)	not null,
+	name		varchar(30)	not null,
 	date_joined	date	not null default convert(date,getdate()),
 	no_productname	int	not null default 0 , --trigger here
 	constraint rating_domain
@@ -161,10 +161,51 @@ create table Shop (
 	constraint shop_id_format
 		check(shop_id like 'SID%' and len(shop_id) = 9),
 	constraint no_productname_domain
-		check(no_productname >= 0)
+		check(no_productname >= 0),
+	constraint UQ_url
+		unique(url_link),
 )
-drop table Shop
+--drop table Shop
+go
+drop trigger update_no_productname
+create trigger update_no_productname 
+on Product_name
+after insert, delete
+as
+begin
+	set nocount on;
+	
+	----------------
+	declare @exceed int;
+	--declare @change_table table (shop_id varchar(9));
+	declare @shop_id varchar(9);
+	
 
+	if exists (select 0 from inserted) --insert
+	begin
+		declare cur Cursor for select shop_id from inserted;
+		set @exceed = 1
+	end
+	else
+	begin
+		declare cur Cursor for select shop_id from deleted;
+		set @exceed = -1
+	end
+	open cur;
+	fetch next from cur into @shop_id;
+	----------------
+	while @@FETCH_STATUS = 0
+	begin
+		update Shop
+		set no_productname = no_productname + @exceed
+		where shop_id = @shop_id
+		fetch next from cur into @shop_id
+	end
+
+	close cur;
+	deallocate cur;
+end;
+go
 create table Review (
 	review_id	varchar(9),
 	no_stars	int		not null default 0,
@@ -215,15 +256,15 @@ create table Version (
 	constraint price_ver_domain
 		check(price >= 0)
 )
-drop table Version
+--drop table Version
 
 create table Product_name (
 	productname_id	varchar(9),
 	description		varchar(1000) not null default 'No description',
-	name	varchar(15) not null,
+	name	varchar(50) not null,
 	total_remaining	int not null default 0 check(total_remaining >= 0),
 	no_sales	int not null default 0 check (no_sales >= 0),
-	minimum_price	decimal(10,1) not null,
+	minimum_price	decimal(10,1) not null, --trigger here
 	maximum_price	decimal(10,1) not null,
 	category_id		varchar(9),
 	shop_id		varchar(9)	not null,
@@ -232,8 +273,71 @@ create table Product_name (
 	constraint CheckMinMax
 		check(minimum_price <= maximum_price),
 	constraint productname_id_format
-		check(productname_id like 'PNI%' and len(productname_id) = 9)
+		check(productname_id like 'PNI%' and len(productname_id) = 9),
+	constraint min_domain
+		check(minimum_price >= 0),
 )
+--alter table Product_name alter column name varchar(50) not null
+go
+create trigger update_min_max_totalremain
+on Version
+after insert, delete,update
+as
+begin
+	set nocount on;
+
+	--------------------
+	if exists (select 0 from inserted) --insert or update
+	begin
+		declare cur Cursor for select distinct productname_id from inserted
+	end
+	else
+	begin
+		declare cur Cursor for select distinct productname_id from deleted
+	end
+
+	declare @productname_id varchar(9);
+	declare @min decimal(10,1);
+	declare @max decimal(10,1);
+	declare @totalremain int;
+	open cur
+	fetch from cur into @productname_id
+	--------------------
+	while @@FETCH_STATUS = 0
+	begin
+		set @min = (
+			select min(price) 
+			from version 
+			where productname_id = @productname_id)
+		set @max = (
+			select max(price)
+			from Version
+			where productname_id = @productname_id)
+		set @totalremain = (
+			select sum(remaining_amount)
+			from Version
+			where productname_id = @productname_id)
+
+
+		if @min is null set @min = 0
+		if @max is null set @max = 0
+		if @totalremain is null set @totalremain = 0
+		
+		
+		update Product_name
+		set minimum_price = @min ,
+			maximum_price = @max,
+			total_remaining = @totalremain
+		where productname_id = @productname_id
+		fetch from cur into @productname_id
+	end
+	close cur
+	deallocate cur
+	--------------------
+end
+go
+
+--alter table Product_name add constraint min_domain check(minimum_price >= 0)
 drop table Product_name
 
 create table Category(
@@ -348,7 +452,7 @@ create table E_wallet (
 	ID_payment	varchar(9)	primary key,
 	wallet_number char(16) not null,
 	constraint wallet_format
-		check(isnumeric(wallet_number) = 1 and len(wallet_number) = 16)
+		check(isnumeric(wallet_number) = 1)
 
 )
 drop table E_wallet
@@ -364,7 +468,7 @@ drop table Card_payment
 
 create table Internet_banking (
 	ID_payment	varchar(9)	primary key,
-	account_number	varchar(16) not null,
+	account_number	char(16) not null,
 	constraint account_format
 		check(isnumeric(account_number) = 1)
 )
