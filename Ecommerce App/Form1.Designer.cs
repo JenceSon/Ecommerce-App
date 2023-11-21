@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             test = new DataGridView();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)test).BeginInit();
             SuspendLayout();
             // 
@@ -42,11 +43,22 @@
             test.Size = new Size(561, 290);
             test.TabIndex = 0;
             // 
+            // button1
+            // 
+            button1.Location = new Point(344, 397);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(test);
             Name = "Form1";
             Text = "Form1";
@@ -57,5 +69,6 @@
         #endregion
 
         private DataGridView test;
+        private Button button1;
     }
 }

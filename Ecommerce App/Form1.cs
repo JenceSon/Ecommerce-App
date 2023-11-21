@@ -16,9 +16,14 @@ namespace Ecommerce_App
         public void showdata()
         {
             SqlDataAdapter adpt = new SqlDataAdapter("select * from [User]", conn);
-            DataTable dt  = new DataTable();
+            DataTable dt = new DataTable();
             adpt.Fill(dt);
             test.DataSource = dt;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("adfad");
         }
     }
 }

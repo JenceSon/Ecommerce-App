@@ -1,4 +1,3 @@
-use BTL
 /*all id is varchar(9) except order_id varchar(14) (ref on Shopee)*/
 --Set id: set Char + set Number(length)
 --User: 'UID(6)'d, Contact_info: 'CID(6)'d, Shop: 'SID(6)'d, Category: 'CAT(6)'d, ProductName: 'PNI(6)'d
@@ -12,6 +11,7 @@ can_applied them default de xac dinh cho all shop hoac all category d
 them cot no_product lam triger d
 co nen xoa cot user_contact_id ?
 */
+
 use BTL
 create table [User] (
 	user_id		varchar(9)		,
@@ -37,7 +37,7 @@ create table [User] (
 	constraint user_id_format
 		check (user_id like 'UID%' and len(user_id) = 9),
 )
-drop table [User]
+--drop table [User]
 
 create table Contact_info (
 	user_id		varchar(9),
@@ -62,10 +62,9 @@ create table Contact_info (
 	constraint contact_id_format
 		check(contact_id like 'CID%' and len(contact_id) = 9)
 )
-drop table Contact_info
+--drop table Contact_info
 --alter table Contact_info add constraint Domain_phone_contact check(isnumeric(phone_number) = 1)
 --alter table Contact_info add constraint Domain_email_contact check(email like '%@%')
-
 
 create table Follow (
 	follower_id	varchar(9),
@@ -117,8 +116,7 @@ create table Shop_phone_number (
 	constraint Domain_shop_phone
 		check(isnumeric(phone_number) = 1 and len(phone_number) = 10)
 )
-drop table Shop_phone_number
-
+--drop table Shop_phone_number
 
 create table Shop_address (
 	shop_id		varchar(9),
@@ -166,45 +164,7 @@ create table Shop (
 		unique(url_link),
 )
 --drop table Shop
-go
-drop trigger update_no_productname
-create trigger update_no_productname 
-on Product_name
-after insert, delete
-as
-begin
-	set nocount on;
-	
-	----------------
-	declare @exceed int;
-	--declare @change_table table (shop_id varchar(9));
-	declare @shop_id varchar(9);
-	
 
-	if exists (select 0 from inserted) --insert
-	begin
-		declare cur Cursor for select shop_id from inserted;
-		set @exceed = 1
-	end
-	else
-	begin
-		declare cur Cursor for select shop_id from deleted;
-		set @exceed = -1
-	end
-	open cur;
-	fetch next from cur into @shop_id;
-	----------------
-	while @@FETCH_STATUS = 0
-	begin
-		update Shop
-		set no_productname = no_productname + @exceed
-		where shop_id = @shop_id
-		fetch next from cur into @shop_id
-	end
-
-	close cur;
-	deallocate cur;
-end;
 go
 create table Review (
 	review_id	varchar(9),
@@ -220,7 +180,7 @@ create table Review (
 	constraint review_id_format
 		check (review_id like 'RID%' and len(review_id) = 9)
 )
-drop table Review
+--drop table Review
 
 
 create table Product (
@@ -234,7 +194,7 @@ create table Product (
 	constraint cur_price_domain
 		check (current_price >= 0)
 )
-drop table Product
+--drop table Product
 
 
 create table Belong_to (
@@ -278,67 +238,9 @@ create table Product_name (
 		check(minimum_price >= 0),
 )
 --alter table Product_name alter column name varchar(50) not null
-go
-create trigger update_min_max_totalremain
-on Version
-after insert, delete,update
-as
-begin
-	set nocount on;
-
-	--------------------
-	if exists (select 0 from inserted) --insert or update
-	begin
-		declare cur Cursor for select distinct productname_id from inserted
-	end
-	else
-	begin
-		declare cur Cursor for select distinct productname_id from deleted
-	end
-
-	declare @productname_id varchar(9);
-	declare @min decimal(10,1);
-	declare @max decimal(10,1);
-	declare @totalremain int;
-	open cur
-	fetch from cur into @productname_id
-	--------------------
-	while @@FETCH_STATUS = 0
-	begin
-		set @min = (
-			select min(price) 
-			from version 
-			where productname_id = @productname_id)
-		set @max = (
-			select max(price)
-			from Version
-			where productname_id = @productname_id)
-		set @totalremain = (
-			select sum(remaining_amount)
-			from Version
-			where productname_id = @productname_id)
-
-
-		if @min is null set @min = 0
-		if @max is null set @max = 0
-		if @totalremain is null set @totalremain = 0
-		
-		
-		update Product_name
-		set minimum_price = @min ,
-			maximum_price = @max,
-			total_remaining = @totalremain
-		where productname_id = @productname_id
-		fetch from cur into @productname_id
-	end
-	close cur
-	deallocate cur
-	--------------------
-end
-go
 
 --alter table Product_name add constraint min_domain check(minimum_price >= 0)
-drop table Product_name
+--drop table Product_name
 
 create table Category(
 	category_id	varchar(9),
@@ -348,7 +250,7 @@ create table Category(
 	constraint cat_format
 		check(category_id like 'CAT%' and len(category_id) = 9)
 )
-drop table Category
+--drop table Category
 
 create table Applies (
 	order_id	varchar(14),
@@ -356,7 +258,7 @@ create table Applies (
 	constraint PK_applies
 		primary key (order_id, voucher_id),
 )
-drop table Applies
+--drop table Applies
 
 create table Can_apply (
 	category_id	varchar(9) default 'CATffffff', -- applies all category
@@ -365,7 +267,7 @@ create table Can_apply (
 	constraint PK_can_apply
 		primary key(category_id, voucher_id, shop_id)
 )
-drop table Can_apply
+--drop table Can_apply
 
 create table [Order] (
 	order_id	varchar(14),
@@ -388,7 +290,7 @@ create table [Order] (
 			status = 'Refund'
 		)
 )
-drop table [Order]
+--drop table [Order]
 
 create table Voucher (
 	voucher_id	varchar(9),
@@ -416,7 +318,7 @@ create table Voucher (
 	constraint start_end_time
 		check(end_time > start_time),
 )
-drop table Voucher
+--drop table Voucher
 
 create table Delivery_service(
 	delivery_id		varchar(9),
@@ -428,7 +330,7 @@ create table Delivery_service(
 	constraint del_format
 		check(delivery_id like 'DEL%' and len(delivery_id) = 9)
 )
-drop table Delivery_service
+--drop table Delivery_service
 
 create table Is_contained(
 	product_id		varchar(9),
@@ -446,7 +348,7 @@ create table Payment(
 	constraint pay_format
 		check(ID_payment like 'PAY%' and len(ID_payment) = 9)
 )
-drop table Payment
+--drop table Payment
 
 create table E_wallet (
 	ID_payment	varchar(9)	primary key,
@@ -455,7 +357,7 @@ create table E_wallet (
 		check(isnumeric(wallet_number) = 1)
 
 )
-drop table E_wallet
+--drop table E_wallet
 
 create table Card_payment (
 	ID_payment	varchar(9)	primary key,
@@ -464,7 +366,7 @@ create table Card_payment (
 	constraint card_format
 		check(isnumeric(card_number) = 1 and len(card_number) = 16)
 )
-drop table Card_payment
+--drop table Card_payment
 
 create table Internet_banking (
 	ID_payment	varchar(9)	primary key,
@@ -472,7 +374,7 @@ create table Internet_banking (
 	constraint account_format
 		check(isnumeric(account_number) = 1)
 )
-drop table Internet_banking
+--drop table Internet_banking
 
 create table COD(
 	ID_payment	varchar(9)	primary key,
