@@ -1,6 +1,6 @@
 use BTL
 go
--- create trigger
+--1/ create trigger
 create trigger update_no_productname 
 on Product_name
 after insert, delete
@@ -176,3 +176,18 @@ begin
 	deallocate cur
 
 end
+---2 insert, delete, update
+---3 procedure 
+---4
+/*select * from Shop
+select * from Product_name
+select * from Is_contained
+select * from Product
+select * from [Order]*/
+
+/*select sum(Prod.current_price)
+from Shop as Sh, Product_name as Prod_name, [Order] as Ord, Is_contained as Cont, Product as Prod
+where Sh.shop_id = Prod_name.shop_id
+	and Prod_name.productname_id = Prod.productname_id
+	and Prod.product_id = Cont.product_id
+	and Ord.order_id = Cont.order_id*/
