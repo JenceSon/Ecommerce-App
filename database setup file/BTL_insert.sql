@@ -369,6 +369,7 @@ VALUES
 
 --Insert Payment done
 -- seller 52 74 83 02->06
+
 INSERT INTO Payment VALUES ('PAY001013', 'Dong Hoang Son', 'UID100013'); --e wallet
 INSERT INTO Payment VALUES ('PAY001113', 'Dong Hoang Son', 'UID100013'); --card payment
 INSERT INTO Payment VALUES ('PAY001213', 'Dong Hoang Son', 'UID100013'); -- cod
@@ -383,6 +384,7 @@ INSERT INTO Payment VALUES ('PAY001083', 'Dinh Hong Son', 'UID100083'); -- cod
 INSERT INTO Payment VALUES ('PAY002083', 'Dinh Hong Son', 'UID100083'); -- e wallet
 
 --cod all done
+--delete Payment
 INSERT INTO Payment (ID_payment, owner_name, user_id)
 VALUES
 ('PAY000001', 'Nguyen Huan', 'UID000001'),
@@ -407,7 +409,7 @@ VALUES
 ('PAY001006', 'David Miller', 'UID000006');
 
 --Insert E_wallet done
-delete Internet_banking where ID_payment like 'PAYID%'
+--delete Internet_banking where ID_payment like 'PAYID%'
 INSERT INTO E_wallet VALUES ('PAY001013', '01231231232323');
 INSERT INTO E_wallet VALUES ('PAY001052', '01231231232324');
 INSERT INTO E_wallet VALUES ('PAY002083', '01231231232325'); -- e wallet
@@ -429,6 +431,7 @@ VALUES
 ('PAY001006', '89224583533');
 
 --Insert COD done
+--delete COD
 INSERT INTO COD VALUES ('PAY001213');
 INSERT INTO COD VALUES ('PAY001049');
 INSERT INTO COD VALUES ('PAY001083');
@@ -468,6 +471,7 @@ VALUES
 ('PID000014', 'UID000005', 5);
 
 --insert Review done
+--delete Review
 INSERT INTO Review VALUES ('RID399786', 4, 'Good. Sau khi phoi con co mui thom', CONVERT(datetime, '14-11-2023', 105), 'PNI144103', 'UID100013');
 INSERT INTO Review VALUES ('RID411285', 5, 'Binh luan mang tinh chat nhan xu', CONVERT(datetime, '14-11-2023', 105), 'PNI144103', 'UID100046');
 
@@ -484,20 +488,20 @@ VALUES
 ('RID000009', 2, 'Disappointed with the shipping time.', '2023-09-30 17:30:00', 'PNI000009', 'UID000009'),
 ('RID000010', 4, 'Good value for the money. Happy with the purchase.', '2023-10-05 09:55:00', 'PNI000010', 'UID000010'),
 ('RID000011', 1, 'Terrible experience. The product broke within a week.', '2023-11-11 14:20:00', 'PNI000011', 'UID000011'),
-('RID000012', 5, 'Exactly what I was looking for. Great product!', '2023-12-15 10:45:00', 'PNI000012', 'UID000012'),
-('RID000013', 3, 'Average product. Nothing special.', '2023-01-20 16:10:00', 'PNI000013', 'UID000013'),
-('RID000014', 5, 'Amazing customer service. Quick response to queries.', '2023-02-25 12:35:00', 'PNI000014', 'UID000014'),
-('RID000015', 2, 'Not as described. Misleading product information.', '2023-03-03 08:00:00', 'PNI000015', 'UID000015'),
-('RID000016', 4, 'Sturdy construction. Happy with the durability.', '2023-04-08 13:25:00', 'PNI000001', 'UID000016'),
-('RID000017', 1, 'Waste of money. Poor quality material.', '2023-05-15 17:50:00', 'PNI000002', 'UID000017'),
-('RID000018', 5, 'Excellent packaging. Product arrived in perfect condition.', '2023-06-20 11:15:00', 'PNI000003', 'UID000018'),
-('RID000019', 3, 'Satisfactory purchase. Could be better.', '2023-07-25 16:40:00', 'PNI000004', 'UID000019'),
-('RID000020', 4, 'Good product overall. Met my expectations.', '2023-08-30 12:05:00', 'PNI000005', 'UID000020'),
-('RID000021', 2, 'Unpleasant odor from the product. Disappointed.', '2023-09-05 08:30:00', 'PNI000006', 'UID000021'),
-('RID000022', 5, 'Outstanding performance. Worth every penny.', '2023-10-10 13:55:00', 'PNI000007', 'UID000022'),
-('RID000023', 3, 'Not user-friendly. Complicated to operate.', '2023-11-15 17:20:00', 'PNI000008', 'UID000023'),
-('RID000024', 5, 'Exceptional design. Adds elegance to my space.', '2023-12-20 11:45:00', 'PNI000009', 'UID000024'),
-('RID000025', 4, 'Reliable and efficient. Happy with the purchase.', '2023-01-25 16:10:00', 'PNI000010', 'UID000025');
+('RID000012', 5, 'Exactly what I was looking for. Great product!', '2023-12-15 10:45:00', 'PNI000012', 'UID100013'),
+('RID000013', 3, 'Average product. Nothing special.', '2023-01-20 16:10:00', 'PNI000013', 'UID100013'),
+('RID000014', 5, 'Amazing customer service. Quick response to queries.', '2023-02-25 12:35:00', 'PNI000014', 'UID000001'),
+('RID000015', 2, 'Not as described. Misleading product information.', '2023-03-03 08:00:00', 'PNI000015', 'UID000002'),
+('RID000016', 4, 'Sturdy construction. Happy with the durability.', '2023-04-08 13:25:00', 'PNI000001', 'UID000003'),
+('RID000017', 1, 'Waste of money. Poor quality material.', '2023-05-15 17:50:00', 'PNI000002', 'UID000004'),
+('RID000018', 5, 'Excellent packaging. Product arrived in perfect condition.', '2023-06-20 11:15:00', 'PNI000003', 'UID000005'),
+('RID000019', 3, 'Satisfactory purchase. Could be better.', '2023-07-25 16:40:00', 'PNI000004', 'UID000006'),
+('RID000020', 4, 'Good product overall. Met my expectations.', '2023-08-30 12:05:00', 'PNI000005', 'UID000007'),
+('RID000021', 2, 'Unpleasant odor from the product. Disappointed.', '2023-09-05 08:30:00', 'PNI000006', 'UID000011'),
+('RID000022', 5, 'Outstanding performance. Worth every penny.', '2023-10-10 13:55:00', 'PNI000007', 'UID100083'),
+('RID000023', 3, 'Not user-friendly. Complicated to operate.', '2023-11-15 17:20:00', 'PNI000008', 'UID000006'),
+('RID000024', 5, 'Exceptional design. Adds elegance to my space.', '2023-12-20 11:45:00', 'PNI000009', 'UID100049'),
+('RID000025', 4, 'Reliable and efficient. Happy with the purchase.', '2023-01-25 16:10:00', 'PNI000010', 'UID100074');
 
 
 
@@ -514,17 +518,17 @@ VALUES
 ('DEL000005', 'Two-Day Ship', 8000.0, 2);
 
 --insert Order done
-INSERT INTO [Order] VALUES ('ORD00000000031', 'Done', 1,  CONVERT(datetime, '14-11-2023', 105), 'PAYID1013', 'DELID0011');
-INSERT INTO [Order] VALUES ('ORD00000000032', 'Done', 1, CONVERT(datetime, '14-11-2023', 105), 'PAYID1074', 'DELID0011');
-INSERT INTO [Order] VALUES ('ORD00000000033', 'Confirming', 1, CONVERT(datetime, '14-11-2023', 105), 'PAYID1074', 'DELID0011');
+INSERT INTO [Order] VALUES ('ORD00000000031', 'Done', 1,  CONVERT(datetime, '14-11-2023', 105), 'PAY001013', 'DEL000011');
+INSERT INTO [Order] VALUES ('ORD00000000032', 'Done', 1, CONVERT(datetime, '14-11-2023', 105), 'PAY001074', 'DEL000011');
+INSERT INTO [Order] VALUES ('ORD00000000033', 'Confirming', 1, CONVERT(datetime, '14-11-2023', 105), 'PAY001074', 'DEL000011');
 
 INSERT INTO [Order] (order_id, status, no_productname, ID_payment, delivery_id)
 VALUES
-('ORD00000000001', 'Confirming', 3, 'PAYID0001', 'DELID0001'),
-('ORD00000000002', 'Waiting pickup', 2, 'PAYID0002', 'DELID0002'),
-('ORD00000000003', 'Delivering', 1, 'PAYID0003', 'DELID0003'),
-('ORD00000000004', 'Done', 4, 'PAYID0004', 'DELID0004'),
-('ORD00000000005', 'Cancelled', 2, 'PAYID0005', 'DELID0005');
+('ORD00000000001', 'Confirming', 3, 'PAY000001', 'DEL000001'),
+('ORD00000000002', 'Waiting pickup', 2, 'PAY000002', 'DEL000002'),
+('ORD00000000003', 'Delivering', 1, 'PAY000003', 'DEL000003'),
+('ORD00000000004', 'Done', 4, 'PAY000004', 'DEL000004'),
+('ORD00000000005', 'Cancelled', 2, 'PAY000005', 'DEL000005');
 
 --insert Is_contained done
 --delete Is_contained
@@ -549,9 +553,9 @@ VALUES
 ('PID000030', 'ORD00000000005');
 
 --insert Can_apply dione
-INSERT INTO Can_apply VALUES ('CAT000010', 'VCH000010', 'UID100052');
-INSERT INTO Can_apply VALUES ('CAT000011', 'VCH000010', 'UID100052');
-INSERT INTO Can_apply VALUES ('CAT000012', 'VCH000010', 'UID100052');
+INSERT INTO Can_apply VALUES ('CAT000010', 'VCH000010', 'SID100052');
+INSERT INTO Can_apply VALUES ('CAT000011', 'VCH000010', 'SID100052');
+INSERT INTO Can_apply VALUES ('CAT000012', 'VCH000010', 'SID100052');
 
 INSERT INTO Can_apply (category_id, voucher_id, shop_id)
 VALUES
@@ -563,7 +567,7 @@ VALUES
 
 
 --insert Applies done
-delete Applies
+--delete Applies
 INSERT INTO Applies VALUES ('ORD00000000031', 'VCH000010');
 INSERT INTO Applies VALUES ('ORD00000000032', 'VCH000010');
 
