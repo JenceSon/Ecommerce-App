@@ -1,3 +1,4 @@
+use BTL
 /*all id is varchar(9) except order_id varchar(14) (ref on Shopee)*/
 --Set id: set Char + set Number(length)
 --User: 'UID(6)'d, Contact_info: 'CID(6)'d, Shop: 'SID(6)'d, Category: 'CAT(6)'d, ProductName: 'PNI(6)'d
@@ -11,7 +12,6 @@ can_applied them default de xac dinh cho all shop hoac all category d
 them cot no_product lam triger d
 co nen xoa cot user_contact_id ?
 */
-
 use BTL
 create table [User] (
 	user_id		varchar(9)		,
@@ -66,6 +66,7 @@ create table Contact_info (
 --alter table Contact_info add constraint Domain_phone_contact check(isnumeric(phone_number) = 1)
 --alter table Contact_info add constraint Domain_email_contact check(email like '%@%')
 
+
 create table Follow (
 	follower_id	varchar(9),
 	following_id	varchar(9),
@@ -118,6 +119,7 @@ create table Shop_phone_number (
 )
 --drop table Shop_phone_number
 
+
 create table Shop_address (
 	shop_id		varchar(9),
 	number		int,
@@ -164,7 +166,8 @@ create table Shop (
 		unique(url_link),
 )
 --drop table Shop
-
+go
+--drop trigger update_no_productname
 go
 create table Review (
 	review_id	varchar(9),
@@ -379,4 +382,65 @@ create table Internet_banking (
 create table COD(
 	ID_payment	varchar(9)	primary key,
 )
+
+
+-- foreign key
+alter table [User] add constraint FK_UID_contact foreign key (user_id_contact, contact_id) references Contact_info(user_id,contact_id) 
+
+alter table Contact_info add constraint FK_user_owner foreign key (user_id) references [User](user_id)
+
+alter table Follow add constraint FK_followed_id foreign key (follower_id) references [User](user_id)
+alter table Follow add constraint FK_following_id foreign key (following_id) references [User](user_id)
+
+alter table Seller add constraint FK_seller_uid foreign key (user_id) references [User](user_id)
+alter table Seller add constraint FK_seller_sid foreign key (shop_id) references Shop(shop_id)
+
+alter table Buyer add constraint FK_buyer_uid foreign key (user_id) references [User](user_id)
+
+alter table Shopping_cart add constraint FK_cart_uid foreign key (user_id) references Buyer(user_id)
+
+alter table Places add constraint FK_places_uid foreign key (user_id) references Buyer(user_id)
+alter table Places add constraint FK_places_cart foreign key (user_id_cart,number) references Shopping_cart(user_id,number)
+alter table Places add constraint FK_places_ord foreign key (order_id) references [Order](order_id)
+
+alter table [Add] add constraint  FK_add_pid foreign key (product_id) references Product(product_id)
+alter table [Add] add constraint FK_add_uid foreign key (user_id,number) references Shopping_cart(user_id,number)
+
+alter table Shop_phone_number add constraint FK_phone_sid foreign key (shop_id) references Shop(shop_id)
+
+alter table Shop_address add constraint FK_addr_sid foreign key(shop_id) references Shop(shop_id)
+
+alter table Review add constraint FK_review_pni foreign key (productname_id) references Product_name(productname_id)
+alter table Review add constraint FK_review_uid foreign key (user_id) references Buyer(user_id)
+
+alter table Product add constraint FK_product_pni foreign key (productname_id) references Product_name(productname_id)
+
+alter table belong_to add constraint FK_belong_pid foreign key (product_id) references Product(product_id)
+alter table belong_to add constraint FK_belong_pni foreign key (productname_id,version_name) references Version(productname_id,version_name)
+
+alter table Version add constraint FK_version_pni foreign key (productname_id) references Product_name(productname_id)
+
+alter table Product_name add constraint FK_pn_cat foreign key (category_id) references Category(category_id)
+alter table Product_name add constraint FK_pn_sid foreign key (shop_id) references Shop(shop_id)
+
+alter table applies add constraint FK_applies_ord foreign key (order_id) references [Order](order_id)
+alter table applies add constraint FK_applies_vch foreign key (voucher_id) references Voucher(voucher_id)
+
+--check if voucher could be applied in Order
+alter table Can_apply add constraint FK_canapply_cat foreign key (category_id) references Category(category_id)
+alter table Can_apply add constraint FK_canapply_vch foreign key (voucher_id) references Voucher(voucher_id)
+alter table Can_apply add constraint FK_canapply_sid foreign key (shop_id) references Shop(shop_id)
+
+alter table [Order] add constraint FK_ord_pay foreign key (ID_payment) references Payment(ID_payment)
+alter table [Order] add constraint FK_ord_del foreign key (delivery_id) references Delivery_service(delivery_id)
+
+alter table Is_contained add constraint FK_contained_pid foreign key (product_id) references Product(product_id)
+alter table Is_contained add constraint FK_contained_ord foreign key (order_id) references [Order](order_id)
+
+alter table Payment add constraint FK_payment_uid foreign key (user_id) references [User](user_id)
+alter table E_wallet add constraint FK_wallet_pay foreign key (ID_payment) references Payment(ID_payment)
+alter table Internet_banking add constraint FK_bank_pay foreign key (ID_payment) references Payment(ID_payment)
+alter table Card_payment add constraint FK_card_pay foreign key (ID_payment) references Payment(ID_payment)
+alter table COD add constraint FK_COD_pay foreign key (ID_payment) references Payment(ID_payment)
+
 
