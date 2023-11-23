@@ -117,7 +117,7 @@ VALUES
 INSERT INTO Shop VALUES ('SID100052', 'Sell something to wash clothes', 0, 0, 'https://Tiemgiatui.com', 0, 'Tiem giat ui', '2023-02-15',default);
 INSERT INTO Shop VALUES ('SID100074', 'Super yummy thing called banh trang cuon bo tu Viet Nam', 0, 0, 'https://Banhtrang.com', 0, 'Banh trang', '2023-03-20',default);
 INSERT INTO Shop VALUES ('SID100083', 'Moniso official secondhand', 0, 0, 'https://secondHandShop.com', 0, 'Cua hang second hand','2023-05-05',default);
-INSERT INTO Shop VALUES ('SIDffffff', default, 0, 0, 'https://ignore.com', 0, 'ALL SHOPS',default,default);
+INSERT INTO Shop VALUES ('SIDffffff', default, 0, 0, 'https://ignore.com', 0, 'ALL SHOPS',default,default); --ignore row
 
 
 INSERT INTO Shop (shop_id, bio, no_following, no_follower, url_link, rating, name, date_joined,no_productname)
@@ -176,7 +176,7 @@ INSERT INTO Category VALUES('CAT000011', 'Market');
 INSERT INTO Category VALUES('CAT000012', 'Beauty');
 INSERT INTO Category VALUES('CAT000013', 'Women Clothes');
 INSERT INTO Category VALUES('CAT000014', 'Men Clothes');
-INSERT INTO Category VALUES('CATffffff', 'ALL CATEGORIES');
+INSERT INTO Category VALUES('CATffffff', 'ALL CATEGORIES'); --ignore row
 
 INSERT INTO Category (category_id, category_name)
 VALUES
@@ -591,3 +591,35 @@ VALUES
 ('ORD00000000003', 'UID000003', NULL, NULL),
 ('ORD00000000004', NULL, 'UID000004', 4),
 ('ORD00000000005', 'UID000005', NULL, NULL);
+
+-- add default key to delete
+insert into Product_name values (
+	'PNIffffff',
+	'This product name has been deleted !',
+	'Unknown',
+	default,
+	default,
+	0,
+	0,
+	null,
+	'SIDffffff'
+)
+
+/* testing
+declare @noti varchar(1000) = '';
+exec delete_productname
+@productname_id = 'PNI111111',
+@result = @noti output;
+select @noti as result;
+
+declare @noti varchar(1000) = '';
+exec insert_productname 
+@productname_id = 'PNI111111',
+@name = 'test1',
+@total_remaining =-3,
+@price = -5,
+@sid = 'SID100088',
+@cat = 'CAT000010',
+@result = @noti output;
+
+select @noti as result*/
