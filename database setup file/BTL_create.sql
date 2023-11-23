@@ -25,7 +25,8 @@ create table [User] (
 	constraint PK_user
 		primary key (user_id),
 	constraint Domain_phone_user 
-		check(isNumeric(linking_phone_number)=1 and len(linking_phone_number) = 10),
+		check(linking_phone_number not like '%[^0-9]%' 
+		and linking_phone_number like '0%' and len(linking_phone_number) = 10),
 	constraint Domain_email_user 
 		check(linking_email like '%@%'),
 	constraint UQ_user_name 
@@ -56,7 +57,8 @@ create table Contact_info (
 	constraint CheckNumber 
 		check(number > 0),
 	constraint Domain_phone_contact 
-		check(isnumeric(phone_number) = 1 and len(phone_number) = 10),
+		check(phone_number not like '%[^0-9]%' 
+		and phone_number like '0%' and len(phone_number) = 10),
 	constraint Domain_email_contact 
 		check(email like '%@%'),
 	constraint contact_id_format
@@ -115,10 +117,9 @@ create table Shop_phone_number (
 	constraint PK_shop_phone_number
 		primary key (shop_id, phone_number),
 	constraint Domain_shop_phone
-		check(isnumeric(phone_number) = 1 and len(phone_number) = 10)
+		check(phone_number not like '%[^0-9]%' and phone_number like '0%' and len(phone_number) = 10)
 )
 --drop table Shop_phone_number
-
 
 create table Shop_address (
 	shop_id		varchar(9),
@@ -355,9 +356,9 @@ create table Payment(
 
 create table E_wallet (
 	ID_payment	varchar(9)	primary key,
-	wallet_number char(16) not null,
+	wallet_number varchar(16) not null,
 	constraint wallet_format
-		check(isnumeric(wallet_number) = 1)
+		check(wallet_number not like '%[^0-9]%')
 
 )
 --drop table E_wallet
@@ -367,7 +368,7 @@ create table Card_payment (
 	card_number char(16) not null,
 	[type]		varchar(15) not null check([type] = 'Debit' or [type] = 'Credit' or [type] = 'Napas'),
 	constraint card_format
-		check(isnumeric(card_number) = 1 and len(card_number) = 16)
+		check(card_number not like '%[^0-9]%' and len(card_number) = 16)
 )
 --drop table Card_payment
 
@@ -375,7 +376,7 @@ create table Internet_banking (
 	ID_payment	varchar(9)	primary key,
 	account_number	varchar(16) not null,
 	constraint account_format
-		check(isnumeric(account_number) = 1)
+		check(account_number not like '%[^0-9]%')
 )
 --drop table Internet_banking
 
@@ -416,7 +417,7 @@ alter table Review add constraint FK_review_uid foreign key (user_id) references
 alter table Product add constraint FK_product_pni foreign key (productname_id) references Product_name(productname_id)
 
 alter table belong_to add constraint FK_belong_pid foreign key (product_id) references Product(product_id)
-alter table belong_to add constraint FK_belong_pni foreign key (productname_id,version_name) references Version(productname_id,version_name)
+alter table belong_to add constraint FK_belong_pni foreign key (productname_id,version_name) references Version(productname_id,version_name) on update cascade
 
 alter table Version add constraint FK_version_pni foreign key (productname_id) references Product_name(productname_id)
 
