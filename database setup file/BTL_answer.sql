@@ -176,7 +176,180 @@ begin
 	deallocate cur
 
 end
+go
 ---2 insert, delete, update
+--drop procedure insert_productname
+create procedure insert_productname 
+@productname_id varchar(9), --mendatory
+@des varchar(1000) = null, --optional
+@name varchar(50),	--mendatory
+@total_remaining int, --mendatory
+@price	decimal(10,1), --mendatory
+@cat varchar(9) = null, --optional
+@sid varchar(9), --mendatory
+@result varchar(1000) = '' Output --default = ''
+as
+begin
+	if exists (select productname_id from Product_name where productname_id = @productname_id)
+		set @result = @result + 'Product name has already existed_'
+	if not exists (select shop_id from Shop where shop_id = @sid)
+		set @result = @result + 'Invalid Shop_'
+	if @cat is not null and not exists (select category_id from Category where category_id = @cat)
+		set @result = @result + 'Invalid Catgory_'
+	if @total_remaining < 0
+		set @result = @result + 'Total remaining can not be a negative number_'
+	if @price < 0 
+		set @result = @result + 'Price can not be a negative number_'
+	if @productname_id not like 'PNI%' or LEN(@productname_id) != 9
+		set @result = @result + 'Invalid Productname id format_'
+	if @result = ''
+	begin
+		if @des is not null
+			insert into Product_name values (
+				@productname_id,
+				@des,
+				@name,
+				@total_remaining,
+				default,
+				@price,
+				@price,
+				@cat,
+				@sid)
+		else 
+			insert into Product_name values (
+				@productname_id,
+				default,
+				@name,
+				@total_remaining,
+				default,
+				@price,
+				@price,
+				@cat,
+				@sid)
+		set @result = 'Successfully adding'
+	end
+end
+go
+--drop procedure delete_productname
+create procedure delete_productname
+@productname_id varchar(9),
+@result varchar(100) = '' output
+as
+begin
+	if not exists (select * from Product_name where productname_id = @productname_id)
+		set @result = @result + 'Invalid product name_'
+	if @result = ''
+	begin
+		--delete belong and version fisrt
+		delete Belong_to where productname_id = @productname_id
+		delete Version where productname_id = @productname_id
+
+		--not exist in add or is contained => delete
+		delete Product
+		where productname_id = @productname_id and
+		not exists (select * from [Add] a where a.product_id = product_id) and
+		not exists (select * from Is_contained i where i.product_id = product_id);
+
+		--exist in add or is contained => set to null productname_id pniffffff)
+		update Product
+		set productname_id = 'PNIffffff'
+		where productname_id = @productname_id;
+
+		--update review
+		update Review
+		set productname_id = 'PNIffffff'
+		where productname_id = @productname_id;
+
+		--delete product_name
+		delete Product_name where productname_id = @productname_id
+		set @result = 'Successfully deleting'
+	end
+end
+go
+--drop procedure update_productname
+create procedure update_productname --when update, get all information from edit panel
+@pni_current varchar(9),
+@pni_new	varchar(9),
+@des varchar(1000), 
+@name varchar(50),	
+@total_remaining int,
+@no_sales	int, --ignore because mustn't modify
+@min_price	decimal(10,1),
+@max_price	decimal(10,1),
+@cat varchar(9), 
+@sid varchar(9), 
+@result varchar(1000) = '' Output --default = ''
+as
+begin
+	declare @min_price_cur decimal(10,1) = (select minimum_price from Product_name where productname_id = @pni_current)
+	declare @max_price_cur decimal(10,1) = (select maximum_price from Product_name where productname_id = @pni_current)
+	
+	if @pni_current != @pni_new and exists(select * from Product_name where productname_id=@pni_new)
+		set @result = @result + 'Product name has already existed_'
+	if @pni_current != @pni_new and (@pni_new not like 'PNI%' or len(@pni_new) != 9)
+		set @result = @result + 'Invalid Productname id format_'
+	if @total_remaining < 0
+		set @result = @result + 'Total remaining can not be a negative number_'
+	if @cat is not null and not exists (select * from Category where category_id = @cat)
+		set @result = @result + 'Invalid category_'
+	if not exists (select * from Shop where shop_id = @sid)
+		set @result = @result + 'Invalid shop_'
+	if exists (select * from Version where productname_id = @pni_current)
+	and (@max_price_cur != @max_price or @min_price_cur != @min_price)
+		set @result = @result + 'This product name has 1 or more versions,so the price can not be modified_'
+
+	if not exists (select * from Version where productname_id = @pni_current)
+	begin
+		if @min_price != @max_price
+			set @result = @result + 'There are not any versions in this product name, so the minimum price and maximum price must have the same value_'
+		if @min_price <0 or @max_price < 0
+			set @result = @result + 'The price can not be a negative number_'
+	end
+
+	if @result = ''
+	begin
+		if @pni_current != @pni_new -- new pni => need to update product, belong, version and review
+		begin
+			-- drop constraint => update => add constrain
+			alter table Product drop constraint FK_product_pni
+			update Product
+			set productname_id = @pni_new
+			where productname_id = @pni_current;
+
+			alter table Version drop constraint FK_version_pni
+			update Belong_to --update cascade, no need to update version
+			set productname_id = @pni_new
+			where productname_id = @pni_current;
+
+			alter table Reiview drop constraint FK_review_pni
+			update Review
+			set productname_id = @pni_new
+			where productname_id = @pni_current;
+
+			--update product_name
+			update Product_name
+			set productname_id = @pni_new
+			where productname_id = @pni_current;
+
+			alter table Product add constraint FK_product_pni foreign key (productname_id) references Product_name(productname_id)
+			alter table Version add constraint FK_version_pni foreign key (productname_id) references Product_name(productname_id)
+			alter table Review add constraint FK_review_pni foreign key (productname_id) references Product_name(productname_id)
+		end
+
+		update Product_name
+		set [description] = @des,
+		[name] = @name,
+		total_remaining = @total_remaining,
+		no_sales = @no_sales,
+		minimum_price = @min_price,
+		maximum_price = @max_price,
+		category_id = @cat,
+		shop_id = @sid;
+
+		set @result = 'Successfully updating'
+	end
+end
+go
 ---3 procedure 
 ---4
 /*select * from Shop
