@@ -411,15 +411,15 @@ alter table Shop_phone_number add constraint FK_phone_sid foreign key (shop_id) 
 
 alter table Shop_address add constraint FK_addr_sid foreign key(shop_id) references Shop(shop_id)
 
-alter table Review add constraint FK_review_pni foreign key (productname_id) references Product_name(productname_id)
+alter table Review add constraint FK_review_pni foreign key (productname_id) references Product_name(productname_id) on update cascade
 alter table Review add constraint FK_review_uid foreign key (user_id) references Buyer(user_id)
 
-alter table Product add constraint FK_product_pni foreign key (productname_id) references Product_name(productname_id)
+alter table Product add constraint FK_product_pni foreign key (productname_id) references Product_name(productname_id) on update cascade
 
 alter table belong_to add constraint FK_belong_pid foreign key (product_id) references Product(product_id)
 alter table belong_to add constraint FK_belong_pni foreign key (productname_id,version_name) references Version(productname_id,version_name) on update cascade
 
-alter table Version add constraint FK_version_pni foreign key (productname_id) references Product_name(productname_id)
+alter table Version add constraint FK_version_pni foreign key (productname_id) references Product_name(productname_id) on update cascade
 
 alter table Product_name add constraint FK_pn_cat foreign key (category_id) references Category(category_id)
 alter table Product_name add constraint FK_pn_sid foreign key (shop_id) references Shop(shop_id)
