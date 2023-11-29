@@ -244,7 +244,7 @@ begin
 		delete Belong_to where productname_id = @productname_id
 		delete Version where productname_id = @productname_id
 
-		--not exist in add or is contained => delete
+		--not exist in add and is contained => delete
 		delete Product
 		where productname_id = @productname_id and
 		not exists (select * from [Add] a where a.product_id = product_id) and
@@ -294,11 +294,14 @@ begin
 		set @result = @result + 'Invalid category_'
 	if not exists (select * from Shop where shop_id = @sid)
 		set @result = @result + 'Invalid shop_'
-	if exists (select * from Version where productname_id = @pni_current)
-	and (@max_price_cur != @max_price or @min_price_cur != @min_price)
-		set @result = @result + 'This product name has 1 or more versions,so the price can not be modified_'
-
-	if not exists (select * from Version where productname_id = @pni_current)
+	if exists (select * from Version where productname_id = @pni_current) -- has version => can't modify total remaining or price
+	begin
+		if @max_price_cur != @max_price or @min_price_cur != @min_price
+			set @result = @result + 'This product name has 1 or more versions,so the price cannot be modified here_'
+		if @total_remaining != (select total_remaining from Product_name where productname_id = @pni_current)
+			set @result = @result + 'This product name has 1 or more versions, so total remaining cannot be modified here_'
+	end
+	if not exists (select * from Version where productname_id = @pni_current) -- no version => max = min and >= 0
 	begin
 		if @min_price != @max_price
 			set @result = @result + 'There are not any versions in this product name, so the minimum price and maximum price must have the same value_'
@@ -308,7 +311,7 @@ begin
 
 	if @result = ''
 	begin
-		if @pni_current != @pni_new -- new pni => need to update product, belong, version and review
+		/*if @pni_current != @pni_new -- new pni => need to update product, belong, version and review
 		begin
 			-- drop constraint => update => add constrain
 			alter table Product drop constraint FK_product_pni
@@ -317,7 +320,7 @@ begin
 			where productname_id = @pni_current;
 
 			alter table Version drop constraint FK_version_pni
-			update Belong_to --update cascade, no need to update version
+			update Version --update cascade, no need to update belong
 			set productname_id = @pni_new
 			where productname_id = @pni_current;
 
@@ -334,7 +337,7 @@ begin
 			alter table Product add constraint FK_product_pni foreign key (productname_id) references Product_name(productname_id)
 			alter table Version add constraint FK_version_pni foreign key (productname_id) references Product_name(productname_id)
 			alter table Review add constraint FK_review_pni foreign key (productname_id) references Product_name(productname_id)
-		end
+		end*/
 
 		update Product_name
 		set [description] = @des,
@@ -344,13 +347,62 @@ begin
 		minimum_price = @min_price,
 		maximum_price = @max_price,
 		category_id = @cat,
-		shop_id = @sid;
+		shop_id = @sid,
+		productname_id = @pni_new --update cascade, no need to update on belong, version, product, review
+		where productname_id = @pni_current;
 
 		set @result = 'Successfully updating'
 	end
 end
 go
----3 procedure 
+---3 procedure
+-- drop procedure filter_productname
+create procedure filter_productname
+@total_remaining_min_filter int = -1,
+@total_remaining_max_filter int = -1,
+@no_sales_min_filter int = -1,
+@no_sales_max_filter int = -1,
+@min_price_filter decimal(10,1) = -1,
+@max_price_filter decimal(10,1) = -1,
+@cat_filter varchar(9) = '',
+@sid_filter varchar(9) = ''
+as
+begin
+	select 
+	s.[name],
+	c.category_name,
+	p.productname_id, 
+	p.[name], p.[description], p.no_sales,
+	p.total_remaining, 
+	p.minimum_price,
+	p.maximum_price
+	from Product_name p, Shop s, Category c
+	where
+		(@total_remaining_min_filter = -1 or p.total_remaining >= @total_remaining_min_filter) and
+		(@total_remaining_min_filter = -1 or p.total_remaining <= @total_remaining_max_filter) and
+		(@no_sales_min_filter = -1 or p.no_sales >= @no_sales_min_filter) and
+		(@no_sales_max_filter = -1 or p.no_sales <= @no_sales_max_filter) and
+		(@min_price_filter = -1 or p.minimum_price >= @min_price_filter) and
+		(@max_price_filter = -1 or p.maximum_price <= @max_price_filter) and
+		(@cat_filter = '' or p.category_id = @cat_filter) and
+		(@sid_filter = '' or p.shop_id = @sid_filter) and
+		p.shop_id = s.shop_id and p.category_id = c.category_id
+	order by p.minimum_price asc;
+end
+go
+create procedure best_selling_store
+@no_sales_min int,
+@no_productname_min int
+as
+begin
+	select s.shop_id, s.[name], count(*) as no_most_selling_pni
+	from Shop s, Product_name p
+	where s.shop_id = p.productname_id and p.no_sales >= @no_sales_min
+	group by s.shop_id, s.[name]
+	having count(*) >= @no_productname_min
+	order by no_most_selling_pni desc
+end
+go
 ---4
 /*select * from Shop
 select * from Product_name
