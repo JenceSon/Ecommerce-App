@@ -1,4 +1,4 @@
-use BTL
+use BTL_db_official
 /*all id is varchar(9) except order_id varchar(14) (ref on Shopee)*/
 --Set id: set Char + set Number(length)
 --User: 'UID(6)'d, Contact_info: 'CID(6)'d, Shop: 'SID(6)'d, Category: 'CAT(6)'d, ProductName: 'PNI(6)'d
@@ -92,12 +92,12 @@ create table Buyer (
 create table Shopping_cart (
 	user_id		varchar(9),
 	number		int,
-	no_productname	int not null default 0,
+	no_product	int not null default 0,
 	date_created	Date	not null default convert(date,getdate()),
 	constraint PK_cart
 		primary key (user_id, number),
 	constraint CheckNumber_No 
-		check(number >0 and no_productname >= 0)
+		check(number >0 and no_product >= 0)
 )
 
 create table Places (
@@ -106,11 +106,13 @@ create table Places (
 	user_id_cart	varchar(9) default null,
 	number	int	default null,
 	constraint notNull
-		check(user_id is not null or (user_id_cart is not null and number is not null)),
+		check((user_id is not null or (user_id_cart is not null and number is not null))
+		and (user_id is null or (user_id_cart is null and number is null))
+		),
 	constraint PK_places
 		primary key (order_id),
 )
-
+--drop table Places
 create table Shop_phone_number (
 	shop_id		varchar(9),
 	phone_number	char(10),
@@ -139,8 +141,11 @@ create table [Add] (
 	product_id	varchar(9),
 	user_id		varchar(9) not null,
 	number		int			not null,
+	quantity	int		not null default 1,
 	constraint PK_add
-		primary key (product_id)
+		primary key (product_id),
+	constraint Quantity_domain
+		check(quantity > 0)
 )
 
 create table Shop (
@@ -150,9 +155,9 @@ create table Shop (
 	no_follower		int		not null default 0,
 	url_link	varchar(100)	not null check(url_link like 'https://%.%'),
 	rating		decimal(2,1)	not null default 0,
-	name		varchar(30)	not null,
+	[name]		varchar(30)	not null,
 	date_joined	date	not null default convert(date,getdate()),
-	no_productname	int	not null default 0 , --trigger here
+	no_product	int	not null default 0 , --trigger here
 	constraint rating_domain
 		check(rating between 0 and 5),
 	constraint PK_shop
@@ -161,10 +166,12 @@ create table Shop (
 		check (no_following >= 0 and no_follower >= 0 and (rating between 0 and 5)),
 	constraint shop_id_format
 		check(shop_id like 'SID%' and len(shop_id) = 9),
-	constraint no_productname_domain
-		check(no_productname >= 0),
+	constraint no_product_domain
+		check(no_product >= 0),
 	constraint UQ_url
 		unique(url_link),
+	constraint UQ_name
+		unique([name]),
 )
 --drop table Shop
 go
@@ -175,7 +182,7 @@ create table Review (
 	no_stars	int		not null default 0,
 	content		varchar(1000) not null default 'No description',
 	time_created	datetime	not null default getdate(),
-	productname_id	varchar(9)	not null,
+	product_id	varchar(9)	not null,
 	user_id		varchar(9)	not null,
 	constraint stars_domain
 		check(no_stars between 0 and 5),
@@ -187,68 +194,69 @@ create table Review (
 --drop table Review
 
 
-create table Product (
-	product_id	varchar(9),
+create table Product_instance (
+	instance_id	varchar(9),
 	current_price	decimal(10,1)	not null,
-	productname_id	varchar(9)	not null
-	constraint PK_product
-		primary key (product_id),
-	constraint product_id_domain
-		check(product_id like 'PID%' and len(product_id) = 9),
+	product_id	varchar(9)	not null
+	constraint PK_product_instance
+		primary key (instance_id),
+	constraint instance_id_domain
+		check(instance_id like 'IID%' and len(instance_id) = 9),
 	constraint cur_price_domain
 		check (current_price >= 0)
 )
---drop table Product
+--drop table Product_instance
 
-
+--drop table Belong_to
 create table Belong_to (
-	product_id	varchar(9),
-	productname_id	varchar(9)	not null,
-	version_name	varchar(15)	not null,
+	instance_id	varchar(9),
+	product_id	varchar(9)	not null,
+	variant_name	varchar(120)	not null,
 	constraint PK_belongto
-		primary key (product_id)
+		primary key (instance_id)
 )
-
-create table Version (
-	productname_id	varchar(9),
-	version_name	varchar(15),
+--aaaaaaaa aaaaaa aaaaaa aaaaaa aaaaaaaa aaaaaa aaaa
+create table Variant (
+	product_id	varchar(9),
+	variant_name	varchar(120),
 	price	decimal(10,1) not null, -- trigger here
 	remaining_amount	int	not null default 0 check(remaining_amount >= 0),
 	details		varchar(1000)	not null default 'No description',
-	constraint PK_version
-		primary key (productname_id, version_name),
+	constraint PK_Variant
+		primary key (product_id, variant_name),
 	constraint price_ver_domain
 		check(price >= 0)
 )
---drop table Version
+--drop table Variant
 
-create table Product_name (
-	productname_id	varchar(9),
+create table Product (
+	product_id	varchar(9),
 	description		varchar(1000) not null default 'No description',
-	name	varchar(50) not null,
+	name	varchar(120) not null,
 	total_remaining	int not null default 0 check(total_remaining >= 0),
 	no_sales	int not null default 0 check (no_sales >= 0),
 	minimum_price	decimal(10,1) not null, --trigger here
 	maximum_price	decimal(10,1) not null,
 	category_id		varchar(9),
 	shop_id		varchar(9)	not null,
-	constraint PK_productname
-		primary key (productname_id),
+	constraint PK_product
+		primary key (product_id),
 	constraint CheckMinMax
 		check(minimum_price <= maximum_price),
-	constraint productname_id_format
-		check(productname_id like 'PNI%' and len(productname_id) = 9),
+	constraint product_id_format
+		check(product_id like 'PID%' and len(product_id) = 9),
 	constraint min_domain
 		check(minimum_price >= 0),
 )
---alter table Product_name alter column name varchar(50) not null
+--alter table Product alter column name varchar(50) not null
 
---alter table Product_name add constraint min_domain check(minimum_price >= 0)
---drop table Product_name
+--alter table Product add constraint min_domain check(minimum_price >= 0)
+--drop table Product
 
 create table Category(
 	category_id	varchar(9),
-	category_name	varchar(15),
+	category_name	varchar(50),
+	[desciption] varchar(1000) not null default 'No description',
 	constraint PK_category
 		primary key(category_id),
 	constraint cat_format
@@ -276,7 +284,7 @@ create table Can_apply (
 create table [Order] (
 	order_id	varchar(14),
 	status		varchar(15) not null,
-	no_productname	int not null check(no_productname >= 1),
+	no_product	int not null check(no_product >= 1),
 	time_order	datetime	not null default getdate(),
 	ID_payment	varchar(9)	not null,
 	delivery_id	varchar(9)	not null,
@@ -326,7 +334,7 @@ create table Voucher (
 
 create table Delivery_service(
 	delivery_id		varchar(9),
-	name		varchar(15)	not null,
+	name		varchar(50)	not null,
 	price	decimal(10,1)	not null check (price >= 0),
 	estimated_time	int not null check(estimated_time >= 0),
 	constraint PK_delivery
@@ -337,10 +345,10 @@ create table Delivery_service(
 --drop table Delivery_service
 
 create table Is_contained(
-	product_id		varchar(9),
+	instance_id		varchar(9),
 	order_id		varchar(14) not null,
 	constraint PK_contained
-		primary key (product_id)
+		primary key (instance_id)
 )
 
 create table Payment(
@@ -411,18 +419,18 @@ alter table Shop_phone_number add constraint FK_phone_sid foreign key (shop_id) 
 
 alter table Shop_address add constraint FK_addr_sid foreign key(shop_id) references Shop(shop_id)
 
-alter table Review add constraint FK_review_pni foreign key (productname_id) references Product_name(productname_id) on update cascade
+alter table Review add constraint FK_review_pni foreign key (product_id) references Product(product_id) on update cascade
 alter table Review add constraint FK_review_uid foreign key (user_id) references Buyer(user_id)
 
-alter table Product add constraint FK_product_pni foreign key (productname_id) references Product_name(productname_id) on update cascade
+alter table Product_instance add constraint FK_instance_pid foreign key (product_id) references Product(product_id) on update cascade
 
-alter table belong_to add constraint FK_belong_pid foreign key (product_id) references Product(product_id)
-alter table belong_to add constraint FK_belong_pni foreign key (productname_id,version_name) references Version(productname_id,version_name) on update cascade
+alter table belong_to add constraint FK_belong_iid foreign key (instance_id) references Product_instance(instance_id)
+alter table belong_to add constraint FK_belong_pid foreign key (product_id,variant_name) references Variant(product_id,variant_name) on update cascade
 
-alter table Version add constraint FK_version_pni foreign key (productname_id) references Product_name(productname_id) on update cascade
+alter table Variant add constraint FK_Variant_pid foreign key (product_id) references Product(product_id) on update cascade
 
-alter table Product_name add constraint FK_pn_cat foreign key (category_id) references Category(category_id)
-alter table Product_name add constraint FK_pn_sid foreign key (shop_id) references Shop(shop_id)
+alter table Product add constraint FK_pn_cat foreign key (category_id) references Category(category_id)
+alter table Product add constraint FK_pn_sid foreign key (shop_id) references Shop(shop_id)
 
 alter table applies add constraint FK_applies_ord foreign key (order_id) references [Order](order_id)
 alter table applies add constraint FK_applies_vch foreign key (voucher_id) references Voucher(voucher_id)
@@ -435,7 +443,7 @@ alter table Can_apply add constraint FK_canapply_sid foreign key (shop_id) refer
 alter table [Order] add constraint FK_ord_pay foreign key (ID_payment) references Payment(ID_payment)
 alter table [Order] add constraint FK_ord_del foreign key (delivery_id) references Delivery_service(delivery_id)
 
-alter table Is_contained add constraint FK_contained_pid foreign key (product_id) references Product(product_id)
+alter table Is_contained add constraint FK_contained_iid foreign key (instance_id) references Product_instance(instance_id)
 alter table Is_contained add constraint FK_contained_ord foreign key (order_id) references [Order](order_id)
 
 alter table Payment add constraint FK_payment_uid foreign key (user_id) references [User](user_id)
