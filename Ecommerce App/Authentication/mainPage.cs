@@ -64,9 +64,7 @@ namespace Ecommerce_App.Authentication
 
         private void guna2ImageButton2_Click(object sender, EventArgs e)
         {
-            Page.Account newWindow = new Page.Account();
-            newWindow.Show();
-            this.Close();
+
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -81,9 +79,7 @@ namespace Ecommerce_App.Authentication
 
         private void guna2ImageButton1_Click(object sender, EventArgs e)
         {
-            Page.Cart newpage = new Page.Cart();
-            newpage.Show();
-            this.Close();
+
         }
     }
 }
