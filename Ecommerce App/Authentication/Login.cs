@@ -8,7 +8,7 @@ namespace Ecommerce_App
 {
     public partial class Login : Form
     {
-        static SqlConnection conn = new SqlConnection("Data Source=HOANGPHI1003\\SQLEXPRESS;Initial Catalog=BTL;Integrated Security=True");
+        static SqlConnection conn = new SqlConnection("Data Source=MSI;Initial Catalog=BTL;Integrated Security=True");
         public Login()
         {
             InitializeComponent();
