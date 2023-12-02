@@ -33,14 +33,15 @@
             label1 = new Label();
             LogoButton = new Button();
             splitContainer2 = new SplitContainer();
+            LogoutButton = new Button();
             FinanceButton = new Button();
             AddProductButton = new Button();
             ProductsButton = new Button();
             ResetButton = new Button();
             SaveButton = new Button();
             panel2 = new Panel();
+            VariationFlowPanel = new FlowLayoutPanel();
             AddButton = new Button();
-            variant1 = new Variant();
             AmountTextBox = new TextBox();
             AmountLabel = new Label();
             PriceTextBox = new TextBox();
@@ -56,7 +57,6 @@
             CategoryLabel = new Label();
             ProductNameTextBox = new TextBox();
             NameLabel = new Label();
-            LogoutButton = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -131,6 +131,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            splitContainer2.Panel2.AutoScroll = true;
             splitContainer2.Panel2.Controls.Add(ResetButton);
             splitContainer2.Panel2.Controls.Add(SaveButton);
             splitContainer2.Panel2.Controls.Add(panel2);
@@ -138,6 +139,17 @@
             splitContainer2.Size = new Size(800, 394);
             splitContainer2.SplitterDistance = 158;
             splitContainer2.TabIndex = 0;
+            // 
+            // LogoutButton
+            // 
+            LogoutButton.Image = (Image)resources.GetObject("LogoutButton.Image");
+            LogoutButton.ImageAlign = ContentAlignment.MiddleLeft;
+            LogoutButton.Location = new Point(0, 346);
+            LogoutButton.Name = "LogoutButton";
+            LogoutButton.Size = new Size(160, 32);
+            LogoutButton.TabIndex = 7;
+            LogoutButton.Text = "Logout";
+            LogoutButton.UseVisualStyleBackColor = true;
             // 
             // FinanceButton
             // 
@@ -202,8 +214,8 @@
             // 
             panel2.AutoSize = true;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(VariationFlowPanel);
             panel2.Controls.Add(AddButton);
-            panel2.Controls.Add(variant1);
             panel2.Controls.Add(AmountTextBox);
             panel2.Controls.Add(AmountLabel);
             panel2.Controls.Add(PriceTextBox);
@@ -213,11 +225,23 @@
             panel2.Controls.Add(label7);
             panel2.Location = new Point(24, 211);
             panel2.Name = "panel2";
-            panel2.Size = new Size(588, 297);
+            panel2.Size = new Size(588, 179);
             panel2.TabIndex = 3;
+            // 
+            // VariationFlowPanel
+            // 
+            VariationFlowPanel.AutoSize = true;
+            VariationFlowPanel.Enabled = false;
+            VariationFlowPanel.FlowDirection = FlowDirection.TopDown;
+            VariationFlowPanel.Location = new Point(0, 90);
+            VariationFlowPanel.Name = "VariationFlowPanel";
+            VariationFlowPanel.Size = new Size(580, 81);
+            VariationFlowPanel.TabIndex = 14;
+            VariationFlowPanel.Visible = false;
             // 
             // AddButton
             // 
+            AddButton.Enabled = false;
             AddButton.FlatStyle = FlatStyle.Popup;
             AddButton.Location = new Point(420, 51);
             AddButton.Name = "AddButton";
@@ -226,14 +250,7 @@
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = true;
             AddButton.Visible = false;
-            // 
-            // variant1
-            // 
-            variant1.Location = new Point(3, 169);
-            variant1.Name = "variant1";
-            variant1.Size = new Size(572, 125);
-            variant1.TabIndex = 12;
-            variant1.Visible = false;
+            AddButton.Click += AddButton_Click;
             // 
             // AmountTextBox
             // 
@@ -376,25 +393,15 @@
             NameLabel.TabIndex = 0;
             NameLabel.Text = "Product Name";
             // 
-            // LogoutButton
-            // 
-            LogoutButton.Image = (Image)resources.GetObject("LogoutButton.Image");
-            LogoutButton.ImageAlign = ContentAlignment.MiddleLeft;
-            LogoutButton.Location = new Point(0, 346);
-            LogoutButton.Name = "LogoutButton";
-            LogoutButton.Size = new Size(160, 32);
-            LogoutButton.TabIndex = 7;
-            LogoutButton.Text = "Logout";
-            LogoutButton.UseVisualStyleBackColor = true;
-            // 
             // SellerAddProductPage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
+            MaximizeBox = false;
             Name = "SellerAddProductPage";
-            Text = "SellerAddProductPage";
+            ShowIcon = false;
+            Text = "Shopee";
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
@@ -440,7 +447,7 @@
         private Button SaveButton;
         private Button ResetButton;
         private Button AddButton;
-        private Variant variant1;
         private Button LogoutButton;
+        private FlowLayoutPanel VariationFlowPanel;
     }
 }

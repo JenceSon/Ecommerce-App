@@ -46,9 +46,10 @@
             RemoveButton.Image = (Image)resources.GetObject("RemoveButton.Image");
             RemoveButton.Location = new Point(525, 22);
             RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(38, 84);
+            RemoveButton.Size = new Size(38, 81);
             RemoveButton.TabIndex = 0;
             RemoveButton.UseVisualStyleBackColor = true;
+            RemoveButton.Click += RemoveButton_Click;
             // 
             // DescriptionTextBox
             // 

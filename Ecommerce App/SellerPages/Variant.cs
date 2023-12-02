@@ -21,5 +21,10 @@ namespace Ecommerce_App.SellerPages
         {
 
         }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+        }
     }
 }

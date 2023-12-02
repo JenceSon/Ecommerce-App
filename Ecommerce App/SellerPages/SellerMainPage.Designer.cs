@@ -38,13 +38,13 @@
             AddProductButton = new Button();
             ProductsButton = new Button();
             panel3 = new Panel();
+            TopSalesLabel = new Label();
             label4 = new Label();
             panel2 = new Panel();
+            PendingOrderNumberLabel = new Label();
             label3 = new Label();
             panel1 = new Panel();
             label2 = new Label();
-            PendingOrderNumberLabel = new Label();
-            TopSalesLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -184,6 +184,16 @@
             panel3.Size = new Size(296, 303);
             panel3.TabIndex = 6;
             // 
+            // TopSalesLabel
+            // 
+            TopSalesLabel.AutoSize = true;
+            TopSalesLabel.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            TopSalesLabel.Location = new Point(127, 130);
+            TopSalesLabel.Name = "TopSalesLabel";
+            TopSalesLabel.Size = new Size(48, 46);
+            TopSalesLabel.TabIndex = 2;
+            TopSalesLabel.Text = "--";
+            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -202,6 +212,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(296, 303);
             panel2.TabIndex = 5;
+            // 
+            // PendingOrderNumberLabel
+            // 
+            PendingOrderNumberLabel.AutoSize = true;
+            PendingOrderNumberLabel.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
+            PendingOrderNumberLabel.Location = new Point(124, 130);
+            PendingOrderNumberLabel.Name = "PendingOrderNumberLabel";
+            PendingOrderNumberLabel.Size = new Size(40, 46);
+            PendingOrderNumberLabel.TabIndex = 1;
+            PendingOrderNumberLabel.Text = "0";
             // 
             // label3
             // 
@@ -231,35 +251,16 @@
             label2.TabIndex = 0;
             label2.Text = "Overview";
             // 
-            // PendingOrderNumberLabel
-            // 
-            PendingOrderNumberLabel.AutoSize = true;
-            PendingOrderNumberLabel.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
-            PendingOrderNumberLabel.Location = new Point(124, 130);
-            PendingOrderNumberLabel.Name = "PendingOrderNumberLabel";
-            PendingOrderNumberLabel.Size = new Size(40, 46);
-            PendingOrderNumberLabel.TabIndex = 1;
-            PendingOrderNumberLabel.Text = "0";
-            // 
-            // TopSalesLabel
-            // 
-            TopSalesLabel.AutoSize = true;
-            TopSalesLabel.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point);
-            TopSalesLabel.Location = new Point(127, 130);
-            TopSalesLabel.Name = "TopSalesLabel";
-            TopSalesLabel.Size = new Size(48, 46);
-            TopSalesLabel.TabIndex = 2;
-            TopSalesLabel.Text = "--";
-            // 
             // SellerMainPage
             // 
             AutoScaleMode = AutoScaleMode.None;
             AutoScroll = true;
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
+            MaximizeBox = false;
             Name = "SellerMainPage";
-            Text = "SellerMainPage";
-            WindowState = FormWindowState.Maximized;
+            ShowIcon = false;
+            Text = "Shopee";
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);

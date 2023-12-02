@@ -33,6 +33,7 @@
             label1 = new Label();
             LogoButton = new Button();
             splitContainer2 = new SplitContainer();
+            LogoutButton = new Button();
             FinanceButton = new Button();
             AddProductButton = new Button();
             ProductsButton = new Button();
@@ -52,7 +53,6 @@
             SearchButton = new Button();
             EndDateLabel = new Label();
             StartDateLabel = new Label();
-            LogoutButton = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -135,6 +135,17 @@
             splitContainer2.Size = new Size(800, 394);
             splitContainer2.SplitterDistance = 159;
             splitContainer2.TabIndex = 0;
+            // 
+            // LogoutButton
+            // 
+            LogoutButton.Image = (Image)resources.GetObject("LogoutButton.Image");
+            LogoutButton.ImageAlign = ContentAlignment.MiddleLeft;
+            LogoutButton.Location = new Point(0, 346);
+            LogoutButton.Name = "LogoutButton";
+            LogoutButton.Size = new Size(160, 32);
+            LogoutButton.TabIndex = 8;
+            LogoutButton.Text = "Logout";
+            LogoutButton.UseVisualStyleBackColor = true;
             // 
             // FinanceButton
             // 
@@ -331,25 +342,15 @@
             StartDateLabel.TabIndex = 0;
             StartDateLabel.Text = "Start Date:";
             // 
-            // LogoutButton
-            // 
-            LogoutButton.Image = (Image)resources.GetObject("LogoutButton.Image");
-            LogoutButton.ImageAlign = ContentAlignment.MiddleLeft;
-            LogoutButton.Location = new Point(0, 346);
-            LogoutButton.Name = "LogoutButton";
-            LogoutButton.Size = new Size(160, 32);
-            LogoutButton.TabIndex = 8;
-            LogoutButton.Text = "Logout";
-            LogoutButton.UseVisualStyleBackColor = true;
-            // 
             // SellerFinancePage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(800, 450);
             Controls.Add(splitContainer1);
+            MaximizeBox = false;
             Name = "SellerFinancePage";
-            Text = "SellerFinancePage";
+            ShowIcon = false;
+            Text = "Shopee";
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);

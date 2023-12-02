@@ -153,13 +153,16 @@
   </data>
   <data name="LogoutButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAFNSURBVEhLxZYxTgJBFIYp6Cw5gicwsaYlIfTGK1hZeQo6ay9AR8sN6Kw9gq2VlX4/MmR287PM
-        DPD8ky9hX3bnY2Z33+xo9rz4F2wxAluMwBYjsMUIbPEYZAovDTzBpDNWfjAEGcMafuCrgu898854+cEQ
-        ROINvINmfl/AHWjGbWJys0firX678xzkAerFRP9cQt2nFvEj1ImJlkpLq/v6Cm+wgrE730HqxCSXJvFE
-        uPOPQcrFpC8VH6AZO6ZuHEHKxMRJT7Hsj5Mgp8XkFmql4iJiLakbfIjzxLvCX3OolZ8v3hW9XMdqmY7O
-        oDmkXCxIX354nUDt84C7PkHqxILkcomXoNfneg0kQSTXk65mH9MyEyQtcdwmkSD5tqgmo1evhPZtURCJ
-        9QTrfn9WoI8BXdMmFroY9IDVolm3ffpcGluMwBYjsMUIbPH6LEa/+yseJ1FLk/sAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAU1JREFUSEvF
+        ljFOAkEUhinoLDmCJzCxpiUh9MYrWFl5CjprL0BHyw3orD2CrZWVfj8yZHbzs8wM8PyTL2FfdudjZnff
+        7Gj2vPgXbDECW4zAFiOwxQhs8RhkCi8NPMGkM1Z+MAQZwxp+4KuC7z3zznj5wRBE4g28g2Z+X8AdaMZt
+        YnKzR+KtfrvzHOQB6sVE/1xC3acW8SPUiYmWSkur+/oKb7CCsTvfQerEJJcm8US4849BysWkLxUfoBk7
+        pm4cQcrExElPseyPkyCnxeQWaqXiImItqRt8iPPEu8Jfc6iVny/eFb1cx2qZjs6gOaRcLEhffnidQO3z
+        gLs+QerEguRyiZeg1+d6DSRBJNeTrmYf0zITJC1x3CaRIPm2qCajV6+E9m1REIn1BOt+f1agjwFd0yYW
+        uhj0gNWiWbd9+lwaW4zAFiOwxQhs8fosRr/7Kx4nUUuT+wAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>
