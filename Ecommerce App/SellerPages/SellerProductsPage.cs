@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ecommerce_App.Authentication
+namespace Ecommerce_App.SellerPages
 {
-    public partial class cart : Form
+    public partial class SellerProductsPage : Form
     {
-        public cart()
+        public SellerProductsPage()
         {
             InitializeComponent();
+        }
+
+        private void CategoryLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

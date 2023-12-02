@@ -8,20 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Ecommerce_App.Page
+namespace Ecommerce_App.SellerPages
 {
-    public partial class Cart : Form
+    public partial class SellerFinancePage : Form
     {
-        public Cart()
+        public SellerFinancePage()
         {
             InitializeComponent();
         }
 
-        private void guna2TileButton1_Click(object sender, EventArgs e)
+        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
         {
-            Authentication.mainPage newWindow = new Authentication.mainPage();
-            newWindow.Show();
-            this.Close();
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
 using Ecommerce_App.Authentication;
+using Ecommerce_App.SellerPages;
 using Guna.UI2.WinForms;
 using System.Data;
 using System.Data.SqlClient;
@@ -6,15 +7,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Ecommerce_App
 {
-    public partial class Login : Form
+    public partial class LoginSeller : Form
     {
-        static SqlConnection conn = new SqlConnection("Data Source=MSI;Initial Catalog=BTL;Integrated Security=True");
-        public Login()
+        static SqlConnection conn = new SqlConnection("Data Source=HOANGPHI1003\\SQLEXPRESS;Initial Catalog=BTL;Integrated Security=True");
+        public LoginSeller()
         {
             InitializeComponent();
             //conn.Open();
-            string userEmail = guna2TextBox1.Text;
-            string userPassword = guna2TextBox3.Text;
+            string userEmail = EmailTextBox.Text;
+            string userPassword = PasswordTextBox.Text;
         }
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
@@ -29,8 +30,8 @@ namespace Ecommerce_App
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Register login = new Register();
-            login.Show();
+            Register loginSeller = new Register();
+            loginSeller.Show();
             this.Hide();
         }
 
@@ -46,14 +47,14 @@ namespace Ecommerce_App
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            string userEmail = guna2TextBox1.Text;
-            string userPassword = guna2TextBox3.Text;
+            string userEmail = EmailTextBox.Text;
+            string userPassword = PasswordTextBox.Text;
 
             bool isValidLogin = checkLogin(userEmail, userPassword);
 
             if (isValidLogin)
             {
-                mainPage mainpage = new mainPage();
+                SellerPages.SellerMainPage mainpage = new SellerMainPage();
                 mainpage.Show();
                 this.Hide();
                 // Login successful
@@ -89,7 +90,12 @@ namespace Ecommerce_App
             return res;
         }
 
-        private void guna2HtmlLabel6_Click_1(object sender, EventArgs e)
+        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
