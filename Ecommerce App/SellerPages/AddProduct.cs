@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Ecommerce_App.SellerPages
 {
-    public partial class SellerProductsPage : Form
+    public partial class AddProduct : Form
     {
-        public SellerProductsPage()
+        public AddProduct()
         {
             InitializeComponent();
-        }
-
-        private void CategoryLabel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
