@@ -605,26 +605,3 @@ insert into Product values (
 	null
 )
 
-
-/*exec insert_productname
-@productname_id ='PNI123456',
-@name = ''
-
-/* testing
-declare @noti varchar(1000) = '';
-exec delete_productname
-@productname_id = 'PNI111111',
-@result = @noti output;
-select @noti as result;
-
-declare @noti varchar(1000) = '';
-exec insert_productname 
-@productname_id = 'PNI111111',
-@name = 'test1',
-@total_remaining =-3,
-@price = -5,
-@sid = 'SID100088',
-@cat = 'CAT000010',
-@result = @noti output;
-
-select @noti as result*/

@@ -371,34 +371,6 @@ begin
 
 	if @result = ''
 	begin
-		/*if @pid_current != @pid_new -- new pni => need to update product, belong, Variant and review
-		begin
-			-- drop constraint => update => add constrain
-			alter table Product drop constraint FK_product_pni
-			update Product
-			set product_id = @pid_new
-			where product_id = @pid_current;
-
-			alter table Variant drop constraint FK_Variant_pni
-			update Variant --update cascade, no need to update belong
-			set product_id = @pid_new
-			where product_id = @pid_current;
-
-			alter table Reiview drop constraint FK_review_pni
-			update Review
-			set product_id = @pid_new
-			where product_id = @pid_current;
-
-			--update Product
-			update Product
-			set product_id = @pid_new
-			where product_id = @pid_current;
-
-			alter table Product add constraint FK_product_pni foreign key (product_id) references Product(product_id)
-			alter table Variant add constraint FK_Variant_pni foreign key (product_id) references Product(product_id)
-			alter table Review add constraint FK_review_pni foreign key (product_id) references Product(product_id)
-		end*/
-
 		update Product
 		set [description] = @des,
 		[name] = @name,

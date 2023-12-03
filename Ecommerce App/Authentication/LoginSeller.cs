@@ -18,16 +18,6 @@ namespace Ecommerce_App
             string userPassword = PasswordTextBox.Text;
         }
 
-        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2PictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Register loginSeller = new Register();

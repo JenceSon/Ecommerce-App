@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginSeller));
-            guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(components);
-            guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(components);
             splitContainer1 = new SplitContainer();
             pictureBox1 = new PictureBox();
             LoginButton = new Button();
@@ -46,16 +43,6 @@
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
-            // 
-            // guna2Elipse1
-            // 
-            guna2Elipse1.TargetControl = this;
-            // 
-            // guna2DragControl1
-            // 
-            guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
-            guna2DragControl1.TargetControl = this;
-            guna2DragControl1.UseTransparentDrag = true;
             // 
             // splitContainer1
             // 
@@ -177,8 +164,6 @@
         }
 
         #endregion
-        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
-        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
         private SplitContainer splitContainer1;
         private PictureBox pictureBox1;
         private Label label1;

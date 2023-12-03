@@ -1,18 +1,9 @@
 use BTL_db_official
-/*all id is varchar(9) except order_id varchar(14) (ref on Shopee)*/
---Set id: set Char + set Number(length)
---User: 'UID(6)'d, Contact_info: 'CID(6)'d, Shop: 'SID(6)'d, Category: 'CAT(6)'d, ProductName: 'PNI(6)'d
+/*
+--User: 'UID(6)'d, Contact_info: 'CID(6)'d, Shop: 'SID(6)'d, Category: 'CAT(6)'d, Product_Instance: 'IID(6)'d
 --Product: 'PID(6)'d, Review: 'RID(6)'d, Payment: 'PAY(6)'d, Voucher: 'VCH(6)'d, Delivery: 'DEL(6)'d
 --Order: 'ORD(11)'d
-/*
-fix :
-phone -> varchar(10) d
-english language d
-can_applied them default de xac dinh cho all shop hoac all category d
-them cot no_product lam triger d
-co nen xoa cot user_contact_id ?
 */
-use BTL
 create table [User] (
 	user_id		varchar(9)		,
 	user_name	varchar(15)		not null,
@@ -65,9 +56,6 @@ create table Contact_info (
 		check(contact_id like 'CID%' and len(contact_id) = 9)
 )
 --drop table Contact_info
---alter table Contact_info add constraint Domain_phone_contact check(isnumeric(phone_number) = 1)
---alter table Contact_info add constraint Domain_email_contact check(email like '%@%')
-
 
 create table Follow (
 	follower_id	varchar(9),
@@ -174,9 +162,7 @@ create table Shop (
 		unique([name]),
 )
 --drop table Shop
-go
---drop trigger update_no_productname
-go
+
 create table Review (
 	review_id	varchar(9),
 	no_stars	int		not null default 0,
@@ -215,7 +201,7 @@ create table Belong_to (
 	constraint PK_belongto
 		primary key (instance_id)
 )
---aaaaaaaa aaaaaa aaaaaa aaaaaa aaaaaaaa aaaaaa aaaa
+
 create table Variant (
 	product_id	varchar(9),
 	variant_name	varchar(120),
@@ -250,9 +236,6 @@ create table Product (
 	constraint min_domain
 		check(minimum_price >= 0),
 )
---alter table Product alter column name varchar(50) not null
-
---alter table Product add constraint min_domain check(minimum_price >= 0)
 --drop table Product
 
 create table Category(
