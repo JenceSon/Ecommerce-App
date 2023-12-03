@@ -50,6 +50,9 @@
             panel1 = new Panel();
             PriceLabel = new Label();
             panel2 = new Panel();
+            textBox2 = new TextBox();
+            label5 = new Label();
+            label7 = new Label();
             panel3.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -206,7 +209,7 @@
             // 
             // AmountTextBox
             // 
-            AmountTextBox.Location = new Point(125, 135);
+            AmountTextBox.Location = new Point(130, 135);
             AmountTextBox.Name = "AmountTextBox";
             AmountTextBox.Size = new Size(174, 27);
             AmountTextBox.TabIndex = 11;
@@ -222,7 +225,7 @@
             // 
             // PriceTextBox
             // 
-            PriceTextBox.Location = new Point(125, 93);
+            PriceTextBox.Location = new Point(130, 93);
             PriceTextBox.Name = "PriceTextBox";
             PriceTextBox.Size = new Size(174, 27);
             PriceTextBox.TabIndex = 9;
@@ -249,14 +252,17 @@
             PriceLabel.AutoSize = true;
             PriceLabel.Location = new Point(15, 96);
             PriceLabel.Name = "PriceLabel";
-            PriceLabel.Size = new Size(41, 20);
+            PriceLabel.Size = new Size(112, 20);
             PriceLabel.TabIndex = 8;
-            PriceLabel.Text = "Price";
+            PriceLabel.Text = "Maximum price";
             // 
             // panel2
             // 
             panel2.AutoSize = true;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(textBox2);
+            panel2.Controls.Add(label5);
             panel2.Controls.Add(AmountTextBox);
             panel2.Controls.Add(AmountLabel);
             panel2.Controls.Add(PriceTextBox);
@@ -266,6 +272,31 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(487, 307);
             panel2.TabIndex = 11;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(130, 45);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(174, 27);
+            textBox2.TabIndex = 13;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(15, 48);
+            label5.Name = "label5";
+            label5.Size = new Size(109, 20);
+            label5.TabIndex = 12;
+            label5.Text = "Minimum price";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(15, 183);
+            label7.Name = "label7";
+            label7.Size = new Size(117, 20);
+            label7.TabIndex = 14;
+            label7.Text = "Number of sales";
             // 
             // ModifyProduct
             // 
@@ -315,5 +346,8 @@
         private Panel panel1;
         private Label PriceLabel;
         private Panel panel2;
+        private Label label7;
+        private TextBox textBox2;
+        private Label label5;
     }
 }

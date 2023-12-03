@@ -437,7 +437,20 @@ begin
 	order by no_most_selling_product desc
 end
 go
----4
+---4 function
+create function check_login(
+@user_name varchar(15),
+@email	varchar(100),
+@pwd	varchar(100)
+)
+returns bit
+as
+begin
+	if not exists(select * from [User] where ((@user_name is not null and @user_name = user_name)
+	or (@email is not null and @email = linking_email)) and [password] = @pwd)
+		return 'False'
+	return 'True'
+end
 /*select * from Shop
 select * from Product
 select * from Is_contained
