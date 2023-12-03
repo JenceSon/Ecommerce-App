@@ -222,6 +222,7 @@ create table Variant (
 	price	decimal(10,1) not null, -- trigger here
 	remaining_amount	int	not null default 0 check(remaining_amount >= 0),
 	details		varchar(1000)	not null default 'No description',
+	img		varchar(1000),
 	constraint PK_Variant
 		primary key (product_id, variant_name),
 	constraint price_ver_domain
@@ -239,6 +240,7 @@ create table Product (
 	maximum_price	decimal(10,1) not null,
 	category_id		varchar(9),
 	shop_id		varchar(9)	not null,
+	img			varchar(1000),
 	constraint PK_product
 		primary key (product_id),
 	constraint CheckMinMax
@@ -412,7 +414,7 @@ alter table Places add constraint FK_places_uid foreign key (user_id) references
 alter table Places add constraint FK_places_cart foreign key (user_id_cart,number) references Shopping_cart(user_id,number)
 alter table Places add constraint FK_places_ord foreign key (order_id) references [Order](order_id)
 
-alter table [Add] add constraint  FK_add_pid foreign key (product_id) references Product(product_id)
+alter table [Add] add constraint  FK_add_pid foreign key (product_id) references Product(product_id) on update cascade
 alter table [Add] add constraint FK_add_uid foreign key (user_id,number) references Shopping_cart(user_id,number)
 
 alter table Shop_phone_number add constraint FK_phone_sid foreign key (shop_id) references Shop(shop_id)
