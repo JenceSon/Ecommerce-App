@@ -196,7 +196,7 @@ begin
 end
 go
 --drop trigger check_available
-create trigger check_available
+create trigger check_available 
 on Applies
 for Insert
 as
@@ -219,7 +219,7 @@ begin
 			(shop_id = 'SIDffffff' or shop_id in (
 				select distinct p.shop_id from Is_contained i, Product_instance pin, Product p
 				where i.order_id = @ord and i.instance_id = pin.instance_id and pin.product_id = p.product_id))
-		)
+		) and (select quantity from Voucher where voucher_id = @vch) = 0
 		begin
 			rollback
 		end

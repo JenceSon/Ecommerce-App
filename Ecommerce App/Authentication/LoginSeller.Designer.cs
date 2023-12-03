@@ -91,46 +91,53 @@
             LoginButton.TabIndex = 5;
             LoginButton.Text = "Login";
             LoginButton.UseVisualStyleBackColor = false;
+            LoginButton.Click += LoginButton_Click;
             // 
             // PasswordTextBox
             // 
             PasswordTextBox.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            PasswordTextBox.ForeColor = Color.LightGray;
             PasswordTextBox.Location = new Point(16, 209);
             PasswordTextBox.Name = "PasswordTextBox";
-            PasswordTextBox.PasswordChar = '*';
             PasswordTextBox.Size = new Size(392, 38);
             PasswordTextBox.TabIndex = 4;
+            PasswordTextBox.Text = "Enter your password";
+            PasswordTextBox.Enter += PwdTextBox_Enter;
+            PasswordTextBox.Leave += PwdTextBox_Leave;
             // 
             // EmailTextBox
             // 
             EmailTextBox.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            EmailTextBox.ForeColor = Color.LightGray;
             EmailTextBox.Location = new Point(16, 119);
             EmailTextBox.Name = "EmailTextBox";
             EmailTextBox.Size = new Size(392, 38);
             EmailTextBox.TabIndex = 3;
-            EmailTextBox.TextChanged += textBox1_TextChanged;
+            EmailTextBox.Text = "Enter your email or username";
+            EmailTextBox.Enter += EmailTextBox_Enter;
+            EmailTextBox.Leave += EmailTextBox_Leave;
             // 
             // PasswordLabel
             // 
             PasswordLabel.AutoSize = true;
-            PasswordLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            PasswordLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             PasswordLabel.ForeColor = Color.White;
             PasswordLabel.Location = new Point(16, 175);
             PasswordLabel.Name = "PasswordLabel";
-            PasswordLabel.Size = new Size(120, 31);
+            PasswordLabel.Size = new Size(122, 31);
             PasswordLabel.TabIndex = 2;
             PasswordLabel.Text = "Password:";
             // 
             // email
             // 
             email.AutoSize = true;
-            email.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            email.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             email.ForeColor = Color.White;
             email.Location = new Point(16, 85);
             email.Name = "email";
-            email.Size = new Size(79, 31);
+            email.Size = new Size(224, 31);
             email.TabIndex = 1;
-            email.Text = "Email:";
+            email.Text = "Email or Username:";
             // 
             // label1
             // 

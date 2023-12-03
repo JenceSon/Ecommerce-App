@@ -9,85 +9,55 @@ namespace Ecommerce_App
 {
     public partial class LoginSeller : Form
     {
-        static SqlConnection conn = new SqlConnection("Data Source=HOANGPHI1003\\SQLEXPRESS;Initial Catalog=BTL;Integrated Security=True");
+        static string connString = "Data Source=MSI;Initial Catalog=BTL_db_official;Integrated Security=True";
+        static SqlConnection conn = new SqlConnection(connString);
         public LoginSeller()
         {
             InitializeComponent();
-            //conn.Open();
-            string userEmail = EmailTextBox.Text;
-            string userPassword = PasswordTextBox.Text;
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e)
         {
-            Register loginSeller = new Register();
-            loginSeller.Show();
-            this.Hide();
+            
         }
 
-        private void guna2TextBox1_TextChanged(object sender, EventArgs e)
+        private void EmailTextBox_Leave(object sender, EventArgs e)
         {
-
-        }
-
-        private void guna2HtmlLabel6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
-        {
-            string userEmail = EmailTextBox.Text;
-            string userPassword = PasswordTextBox.Text;
-
-            bool isValidLogin = checkLogin(userEmail, userPassword);
-
-            if (isValidLogin)
+            if (EmailTextBox.Text == "")
             {
-                SellerPages.SellerMainPage mainpage = new SellerMainPage();
-                mainpage.Show();
-                this.Hide();
-                // Login successful
-                // Add your logic here
-            }
-            else
-            {
-                // Login failed
-                // Add your logic here
+                EmailTextBox.Text = "Enter your email or username";
+                EmailTextBox.ForeColor = Color.LightGray;
             }
         }
 
-        //demo login 
-        //TODO: delete if needed
-        private bool checkLogin(string email, string password)
+        private void PwdTextBox_Leave(Object sender, EventArgs e)
         {
-            bool res = false;
-
-            string query = "SELECT COUNT(*) FROM [User] WHERE linking_email = @Email AND password = @Password";
-
-            using (SqlCommand command = new SqlCommand(query, conn))
+            if (PasswordTextBox.Text == "")
             {
-                command.Parameters.AddWithValue("@Email", email);
-                command.Parameters.AddWithValue("@Password", password);
-
-                conn.Open();
-                int count = (int)command.ExecuteScalar();
-                conn.Close();
-
-                res = count > 0;
+                PasswordTextBox.PasswordChar = '\0';
+                PasswordTextBox.Text = "Enter your password";
+                PasswordTextBox.ForeColor = Color.LightGray;
+                
             }
 
-            return res;
+        }
+        private void EmailTextBox_Enter(Object sender, EventArgs e)
+        {
+            if (EmailTextBox.Text == "Enter your email or username")
+            {
+                EmailTextBox.Text = "";
+                EmailTextBox.ForeColor = Color.Black;
+            }
         }
 
-        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
+        private void PwdTextBox_Enter(Object sender, EventArgs e)
         {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            if (PasswordTextBox.Text == "Enter your password")
+            {
+                PasswordTextBox.Text = "";
+                PasswordTextBox.ForeColor = Color.Black;
+                PasswordTextBox.PasswordChar = '*';
+            }
         }
     }
 }
