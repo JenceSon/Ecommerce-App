@@ -9,8 +9,6 @@ namespace Ecommerce_App
 {
     public partial class LoginSeller : Form
     {
-        static string connString = "Data Source=MSI;Initial Catalog=BTL_db_official;Integrated Security=True";
-        static SqlConnection conn = new SqlConnection(connString);
         public LoginSeller()
         {
             InitializeComponent();
@@ -18,7 +16,9 @@ namespace Ecommerce_App
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            
+            SellerMainPage form = new SellerMainPage();
+            form.Show();
+            this.Hide();
         }
 
         private void EmailTextBox_Leave(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace Ecommerce_App
                 PasswordTextBox.PasswordChar = '\0';
                 PasswordTextBox.Text = "Enter your password";
                 PasswordTextBox.ForeColor = Color.LightGray;
-                
+
             }
 
         }
@@ -58,6 +58,11 @@ namespace Ecommerce_App
                 PasswordTextBox.ForeColor = Color.Black;
                 PasswordTextBox.PasswordChar = '*';
             }
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

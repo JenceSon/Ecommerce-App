@@ -86,7 +86,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer2);
-            splitContainer1.Size = new Size(800, 450);
+            splitContainer1.Size = new Size(1103, 450);
             splitContainer1.SplitterDistance = 52;
             splitContainer1.TabIndex = 0;
             // 
@@ -134,8 +134,8 @@
             // 
             splitContainer2.Panel2.Controls.Add(panel2);
             splitContainer2.Panel2.Controls.Add(panel1);
-            splitContainer2.Size = new Size(800, 394);
-            splitContainer2.SplitterDistance = 161;
+            splitContainer2.Size = new Size(1103, 394);
+            splitContainer2.SplitterDistance = 166;
             splitContainer2.TabIndex = 0;
             // 
             // LogoutButton

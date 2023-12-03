@@ -18,7 +18,7 @@
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
     <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing"">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
@@ -160,6 +160,54 @@
         pm4cQcrExElPseyPkyCnxeQWaqXiImItqRt8iPPEu8Jfc6iVny/eFb1cx2qZjs6gOaRcLEhffnidQO3z
         gLs+QerEguRyiZeg1+d6DSRBJNeTrmYf0zITJC1x3CaRIPm2qCajV6+E9m1REIn1BOt+f1agjwFd0yYW
         uhj0gNWiWbd9+lwaW4zAFiOwxQhs8fosRr/7Kx4nUUuT+wAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="id.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="total.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="name.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="variation.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="price.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="amount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="edit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="edit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABGdBTUEAALGPC/xhBQAAAY1JREFUSEu9
+        lsFRwzAQRZMccuOWBnLJKQ2kAg7kRhUcMkMPNEED9EAH3DnQAA3QAfxneWVHWse2bLMzb0b+lvRnV7Lk
+        1f3z+V9xxSVxxVIUW7EXR7ET66xPKpSiwOxBfIgf8SoOWb9UKEGB2aP4FL8t3sRBxEyzwSUoKOO7aJsZ
+        ZLqLfdsDS1HciYv4Fqkh5T3Gvu2BY1BQxpNNpugyZU33cZw1xqDYCFszSnmqdUyfhJnyno20jWOtMRTF
+        WmD2JSyL1JRM0egXzar37Yc+FJ5Zlykb6cqsepcKXShumRnRtAtXTFEMMQPWbJqhwjZInxnv6bfx5jFc
+        0WBwPcksZuCKwOB6kqFm2UHt4YvdZ2PKKDPIhZAZH+vsZpAL+WnhUWQGuRA+AS5PrpZbZr0bxMMXQ5Zc
+        K6kZZS42g6YRNkr1e1A/s46YkinlnWwGTSOU8UVUt3StkSk6h/HVqV9K0wi/AqwPpcO0uTSD8aTMjKYR
+        /rQwBDKNl+acNI2whpiSKWWcXD4PV1wSV1yO8+oPZvqylbBrykIAAAAASUVORK5CYII=
+</value>
+  </data>
+  <metadata name="delete.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="delete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAYtJREFUSEvt
+        lrFtAkEURJGcOCEkR3IFcLoGnDiBAq4LZ26CEiiA3CWQuAA6sJxTgAPPO/0vrfAshyU4S5aDJ+3Ozv7h
+        dm/3mDw9r34FK46BFcfAimNgxSGaprlbLpf3QNt5hrBiDUJEJ3biNaCN9qMfYMUaEXAUnyegdW5ODSs6
+        Yln3EfSi/iPQDm2Px811WBFUiH2cJurPxUEc1V8QEizQYmyON1G/uvxWBE3iSd5OyGUmJDXaueSlF6hh
+        w78JgFlsRLmftC+h9FPj8mCI5Wo1sV9e0anPElfBE96D+q2YutpgxYSJKsIL1e+r85REOMG8aNVQsGJy
+        EtymVhYt+3huEiw4UluxYyzGuUC2jOHBK64azDLOBHv+IR4C2miz8Nw0+F1kMO3/4L+xx7yxeaNtGIvx
+        vs9YeK4f7Dwl1wzm3HJOuXt5yv5TWANPeDnnZz+RVixRkbXgKfLyHwLv2tUqsWKJirCvhHNj5d+dGnjw
+        Dv4NsqKDYizfOS4JTKw4BlYcAyuOgRVvz2ryBZvFpFGbIJHwAAAAAElFTkSuQmCC
 </value>
   </data>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

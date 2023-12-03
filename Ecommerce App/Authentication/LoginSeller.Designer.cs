@@ -37,6 +37,7 @@
             PasswordLabel = new Label();
             email = new Label();
             label1 = new Label();
+            CloseButton = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -58,6 +59,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = Color.OrangeRed;
+            splitContainer1.Panel2.Controls.Add(CloseButton);
             splitContainer1.Panel2.Controls.Add(LoginButton);
             splitContainer1.Panel2.Controls.Add(PasswordTextBox);
             splitContainer1.Panel2.Controls.Add(EmailTextBox);
@@ -85,7 +87,7 @@
             LoginButton.FlatStyle = FlatStyle.Popup;
             LoginButton.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             LoginButton.ForeColor = Color.OrangeRed;
-            LoginButton.Location = new Point(155, 286);
+            LoginButton.Location = new Point(140, 280);
             LoginButton.Name = "LoginButton";
             LoginButton.Size = new Size(144, 44);
             LoginButton.TabIndex = 5;
@@ -150,6 +152,21 @@
             label1.TabIndex = 0;
             label1.Text = "Shopee Seller Centre";
             // 
+            // CloseButton
+            // 
+            CloseButton.BackColor = Color.Snow;
+            CloseButton.Cursor = Cursors.Hand;
+            CloseButton.FlatStyle = FlatStyle.Popup;
+            CloseButton.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
+            CloseButton.ForeColor = Color.OrangeRed;
+            CloseButton.Location = new Point(140, 353);
+            CloseButton.Name = "CloseButton";
+            CloseButton.Size = new Size(144, 44);
+            CloseButton.TabIndex = 6;
+            CloseButton.Text = "Exist";
+            CloseButton.UseVisualStyleBackColor = false;
+            CloseButton.Click += CloseButton_Click;
+            // 
             // LoginSeller
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -179,5 +196,6 @@
         private Label email;
         private TextBox PasswordTextBox;
         private Button LoginButton;
+        private Button CloseButton;
     }
 }

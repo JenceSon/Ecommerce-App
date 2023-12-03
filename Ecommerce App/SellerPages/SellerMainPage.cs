@@ -22,5 +22,34 @@ namespace Ecommerce_App.SellerPages
 
         }
 
+        private void LogoutButton_Click(object sender, EventArgs e)
+        {
+            LoginSeller form = new LoginSeller();
+            form.Show();
+            this.Hide();
+        }
+
+        private void ProductsButton_Click(object sender, EventArgs e)
+        {
+            ListProducts.Visible = true;
+            ShopInformation.Visible = false;
+            Finance.Visible = false;
+            ListProducts.BringToFront();
+        }
+
+        private void OverviewButton_Click(object sender, EventArgs e)
+        {
+            ShopInformation.Visible = true;
+            ListProducts.Visible = false;
+            Finance.Visible = false;
+            ShopInformation.BringToFront();
+        }
+
+        private void FinanceButton_Click(object sender, EventArgs e)
+        {
+            Finance.Visible = true;
+            ShopInformation.Visible = false;
+            ListProducts.Visible = false;
+        }
     }
 }

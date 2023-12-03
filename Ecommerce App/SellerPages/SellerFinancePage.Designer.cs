@@ -44,8 +44,6 @@
             ToAfterButton = new Button();
             ToBeforeButton = new Button();
             dataGridView1 = new DataGridView();
-            id = new DataGridViewTextBoxColumn();
-            total = new DataGridViewTextBoxColumn();
             label2 = new Label();
             panel1 = new Panel();
             dateTimePicker2 = new DateTimePicker();
@@ -53,6 +51,8 @@
             SearchButton = new Button();
             EndDateLabel = new Label();
             StartDateLabel = new Label();
+            id = new DataGridViewTextBoxColumn();
+            total = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -83,7 +83,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer2);
-            splitContainer1.Size = new Size(800, 450);
+            splitContainer1.Size = new Size(1096, 450);
             splitContainer1.SplitterDistance = 52;
             splitContainer1.TabIndex = 0;
             // 
@@ -132,8 +132,8 @@
             // 
             splitContainer2.Panel2.Controls.Add(panel2);
             splitContainer2.Panel2.Controls.Add(panel1);
-            splitContainer2.Size = new Size(800, 394);
-            splitContainer2.SplitterDistance = 159;
+            splitContainer2.Size = new Size(1096, 394);
+            splitContainer2.SplitterDistance = 180;
             splitContainer2.TabIndex = 0;
             // 
             // LogoutButton
@@ -259,22 +259,6 @@
             dataGridView1.Size = new Size(560, 189);
             dataGridView1.TabIndex = 2;
             // 
-            // id
-            // 
-            id.HeaderText = "Order ID";
-            id.MinimumWidth = 6;
-            id.Name = "id";
-            id.ReadOnly = true;
-            id.Width = 200;
-            // 
-            // total
-            // 
-            total.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            total.HeaderText = "Total";
-            total.MinimumWidth = 6;
-            total.Name = "total";
-            total.ReadOnly = true;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -342,6 +326,22 @@
             StartDateLabel.TabIndex = 0;
             StartDateLabel.Text = "Start Date:";
             // 
+            // id
+            // 
+            id.HeaderText = "Product";
+            id.MinimumWidth = 6;
+            id.Name = "id";
+            id.ReadOnly = true;
+            id.Width = 200;
+            // 
+            // total
+            // 
+            total.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            total.HeaderText = "Total";
+            total.MinimumWidth = 6;
+            total.Name = "total";
+            total.ReadOnly = true;
+            // 
             // SellerFinancePage
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -395,8 +395,8 @@
         private DataGridView dataGridView1;
         private Label label2;
         private Label TotalRevenue;
+        private Button LogoutButton;
         private DataGridViewTextBoxColumn id;
         private DataGridViewTextBoxColumn total;
-        private Button LogoutButton;
     }
 }
