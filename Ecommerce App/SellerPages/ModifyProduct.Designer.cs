@@ -28,12 +28,292 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ModifyProduct";
+            label6 = new Label();
+            button1 = new Button();
+            textBox1 = new TextBox();
+            label1 = new Label();
+            label3 = new Label();
+            DescriptionTextBox = new TextBox();
+            label2 = new Label();
+            CategoryComboBox = new ComboBox();
+            CategoryLabel = new Label();
+            ProductNameTextBox = new TextBox();
+            panel3 = new Panel();
+            panel4 = new Panel();
+            ResetButton = new Button();
+            SaveButton = new Button();
+            label4 = new Label();
+            NameLabel = new Label();
+            AmountTextBox = new TextBox();
+            AmountLabel = new Label();
+            PriceTextBox = new TextBox();
+            panel1 = new Panel();
+            PriceLabel = new Label();
+            panel2 = new Panel();
+            panel3.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            SuspendLayout();
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Italic | FontStyle.Underline, GraphicsUnit.Point);
+            label6.Location = new Point(123, 15);
+            label6.Name = "label6";
+            label6.Size = new Size(89, 20);
+            label6.TabIndex = 13;
+            label6.Text = "image name";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.White;
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.ForeColor = Color.Black;
+            button1.Location = new Point(12, 11);
+            button1.Name = "button1";
+            button1.Size = new Size(93, 29);
+            button1.TabIndex = 10;
+            button1.Text = "Add Image";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(716, 53);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(202, 27);
+            textBox1.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(631, 55);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 20);
+            label1.TabIndex = 7;
+            label1.Text = "Product ID";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(15, 12);
+            label3.Name = "label3";
+            label3.Size = new Size(172, 28);
+            label3.TabIndex = 6;
+            label3.Text = "Basic Infomation";
+            // 
+            // DescriptionTextBox
+            // 
+            DescriptionTextBox.Location = new Point(125, 94);
+            DescriptionTextBox.Multiline = true;
+            DescriptionTextBox.Name = "DescriptionTextBox";
+            DescriptionTextBox.Size = new Size(851, 149);
+            DescriptionTextBox.TabIndex = 5;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(15, 97);
+            label2.Name = "label2";
+            label2.Size = new Size(85, 20);
+            label2.TabIndex = 4;
+            label2.Text = "Description";
+            // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(408, 52);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(217, 28);
+            CategoryComboBox.TabIndex = 3;
+            // 
+            // CategoryLabel
+            // 
+            CategoryLabel.AutoSize = true;
+            CategoryLabel.Location = new Point(333, 55);
+            CategoryLabel.Name = "CategoryLabel";
+            CategoryLabel.Size = new Size(69, 20);
+            CategoryLabel.TabIndex = 2;
+            CategoryLabel.Text = "Category";
+            // 
+            // ProductNameTextBox
+            // 
+            ProductNameTextBox.Location = new Point(125, 52);
+            ProductNameTextBox.Name = "ProductNameTextBox";
+            ProductNameTextBox.Size = new Size(202, 27);
+            ProductNameTextBox.TabIndex = 1;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(label6);
+            panel3.Controls.Add(panel4);
+            panel3.Controls.Add(button1);
+            panel3.Location = new Point(505, 311);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(498, 302);
+            panel3.TabIndex = 14;
+            // 
+            // panel4
+            // 
+            panel4.Location = new Point(12, 48);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(471, 244);
+            panel4.TabIndex = 11;
+            // 
+            // ResetButton
+            // 
+            ResetButton.BackColor = Color.White;
+            ResetButton.FlatStyle = FlatStyle.Popup;
+            ResetButton.ForeColor = Color.Black;
+            ResetButton.Location = new Point(834, 11);
+            ResetButton.Name = "ResetButton";
+            ResetButton.Size = new Size(81, 29);
+            ResetButton.TabIndex = 13;
+            ResetButton.Text = "Reset";
+            ResetButton.UseVisualStyleBackColor = false;
+            // 
+            // SaveButton
+            // 
+            SaveButton.BackColor = Color.OrangeRed;
+            SaveButton.FlatStyle = FlatStyle.Popup;
+            SaveButton.ForeColor = Color.White;
+            SaveButton.Location = new Point(921, 11);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(81, 29);
+            SaveButton.TabIndex = 12;
+            SaveButton.Text = "Save";
+            SaveButton.UseVisualStyleBackColor = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(15, 12);
+            label4.Name = "label4";
+            label4.Size = new Size(171, 28);
+            label4.TabIndex = 6;
+            label4.Text = "Sales Infomation";
+            // 
+            // NameLabel
+            // 
+            NameLabel.AutoSize = true;
+            NameLabel.Location = new Point(15, 55);
+            NameLabel.Name = "NameLabel";
+            NameLabel.Size = new Size(104, 20);
+            NameLabel.TabIndex = 0;
+            NameLabel.Text = "Product Name";
+            // 
+            // AmountTextBox
+            // 
+            AmountTextBox.Location = new Point(125, 135);
+            AmountTextBox.Name = "AmountTextBox";
+            AmountTextBox.Size = new Size(174, 27);
+            AmountTextBox.TabIndex = 11;
+            // 
+            // AmountLabel
+            // 
+            AmountLabel.AutoSize = true;
+            AmountLabel.Location = new Point(15, 138);
+            AmountLabel.Name = "AmountLabel";
+            AmountLabel.Size = new Size(62, 20);
+            AmountLabel.TabIndex = 10;
+            AmountLabel.Text = "Amount";
+            // 
+            // PriceTextBox
+            // 
+            PriceTextBox.Location = new Point(125, 93);
+            PriceTextBox.Name = "PriceTextBox";
+            PriceTextBox.Size = new Size(174, 27);
+            PriceTextBox.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(DescriptionTextBox);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(CategoryComboBox);
+            panel1.Controls.Add(CategoryLabel);
+            panel1.Controls.Add(ProductNameTextBox);
+            panel1.Controls.Add(NameLabel);
+            panel1.Location = new Point(12, 46);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(992, 259);
+            panel1.TabIndex = 10;
+            // 
+            // PriceLabel
+            // 
+            PriceLabel.AutoSize = true;
+            PriceLabel.Location = new Point(15, 96);
+            PriceLabel.Name = "PriceLabel";
+            PriceLabel.Size = new Size(41, 20);
+            PriceLabel.TabIndex = 8;
+            PriceLabel.Text = "Price";
+            // 
+            // panel2
+            // 
+            panel2.AutoSize = true;
+            panel2.BackColor = Color.White;
+            panel2.Controls.Add(AmountTextBox);
+            panel2.Controls.Add(AmountLabel);
+            panel2.Controls.Add(PriceTextBox);
+            panel2.Controls.Add(PriceLabel);
+            panel2.Controls.Add(label4);
+            panel2.Location = new Point(12, 311);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(487, 307);
+            panel2.TabIndex = 11;
+            // 
+            // ModifyProduct
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1022, 633);
+            Controls.Add(panel3);
+            Controls.Add(ResetButton);
+            Controls.Add(SaveButton);
+            Controls.Add(panel1);
+            Controls.Add(panel2);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "ModifyProduct";
+            Text = "ModifyProduct";
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label6;
+        private Button button1;
+        private TextBox textBox1;
+        private Label label1;
+        private Label label3;
+        private TextBox DescriptionTextBox;
+        private Label label2;
+        private ComboBox CategoryComboBox;
+        private Label CategoryLabel;
+        private TextBox ProductNameTextBox;
+        private Panel panel3;
+        private Panel panel4;
+        private Button ResetButton;
+        private Button SaveButton;
+        private Label label4;
+        private Label NameLabel;
+        private TextBox AmountTextBox;
+        private Label AmountLabel;
+        private TextBox PriceTextBox;
+        private Panel panel1;
+        private Label PriceLabel;
+        private Panel panel2;
     }
 }
