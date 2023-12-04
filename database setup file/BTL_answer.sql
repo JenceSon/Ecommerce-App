@@ -62,7 +62,7 @@ begin
 	declare @max decimal(10,1) = 0;
 	declare @totalremain int = 0;
 	open cur
-	fetch from cur into @product_id
+	fetch next from cur into @product_id
 	--------------------
 	while @@FETCH_STATUS = 0
 	begin
@@ -90,7 +90,7 @@ begin
 			maximum_price = @max,
 			total_remaining = @totalremain
 		where product_id = @product_id
-		fetch from cur into @product_id
+		fetch next from cur into @product_id
 	end
 	close cur
 	deallocate cur
@@ -118,7 +118,7 @@ begin
 	declare @no_product int;
 	declare @list_product table(product_id varchar(9));
 	open cur
-	fetch from cur into @order_id
+	fetch next from cur into @order_id
 	--------------------
 	while @@FETCH_STATUS = 0
 	begin
@@ -131,7 +131,7 @@ begin
 		update [Order]
 		set no_product = @no_product
 		where order_id = @order_id
-		fetch from cur into @order_id
+		fetch next from cur into @order_id
 		delete @list_product
 	end
 	close cur
@@ -157,7 +157,7 @@ begin
 	declare @user_id varchar(9);
 	declare @number		int;
 	open cur;
-	fetch from cur into @user_id, @number;
+	fetch next from cur into @user_id, @number;
 	---------------------
 	while @@FETCH_STATUS = 0
 	begin
@@ -165,7 +165,7 @@ begin
 		set no_product = (select count(*) from [Add] where user_id = @user_id and number = @number )
 		where user_id = @user_id and number = @number;
 
-		fetch from cur into @user_id, @number;
+		fetch next from cur into @user_id, @number;
 	end
 	close cur
 	deallocate cur
@@ -181,7 +181,7 @@ begin
 	declare cur Cursor for (select voucher_id from inserted);
 	declare @vch varchar(9)
 	open cur
-	fetch from cur into @vch;
+	fetch next from cur into @vch;
 
 	while @@FETCH_STATUS = 0
 	begin
@@ -189,7 +189,7 @@ begin
 		set quantity = quantity - 1
 		where voucher_id = @vch
 
-		fetch from cur into @vch
+		fetch next from cur into @vch
 	end
 	close cur
 	deallocate cur
@@ -206,7 +206,7 @@ begin
 	declare @vch varchar(9)
 
 	open cur
-	fetch from cur into @ord, @vch
+	fetch next from cur into @ord, @vch
 
 	while @@FETCH_STATUS = 0
 	begin
@@ -223,7 +223,7 @@ begin
 		begin
 			rollback
 		end
-		fetch from cur into @ord, @vch
+		fetch next from cur into @ord, @vch
 	end
 	close cur
 	deallocate cur
@@ -467,3 +467,28 @@ where Sh.shop_id = Prod_name.shop_id
 	and Prod_name.product_id = Prod.product_id
 	and Prod.product_id = Cont.product_id
 	and Ord.order_id = Cont.order_id*/
+
+go
+create function sum_revenue(@shopID varchar(9),@startDate date,@endDate date)
+returns table as
+return(
+	select p.product_id,p.name,sum(pin.current_price) as total_revenue
+	from Product_instance pin join Is_contained i on pin.instance_id=i.instance_id
+		join [Order] o on o.order_id = i.order_id and o.status = 'Done'
+		join Product p on pin.product_id = p.product_id and p.shop_id = @shopID
+	where cast(o.time_order as date) between @startDate and @endDate
+	group by p.product_id,p.name
+)
+go
+
+go
+create function list_order(@buyerID varchar(9),@startDate date,@endDate date)
+returns table as
+return(
+	select o.order_id,o.status
+	from [Order] o join Places p on o.order_id = p.order_id
+		join Buyer b on p.[user_id] = b.[user_id]
+	where cast(o.time_order as date) between @startDate and @endDate
+	group by o.order_id,o.status
+	)
+go
