@@ -230,6 +230,7 @@ begin
 end
 go
 -- trigger to calculate the avg rating of a shop base on review
+-- 
 go
 ---2 insert, delete, update
 --drop procedure insert_product
@@ -391,6 +392,7 @@ begin
 end
 go
 ---3 procedure
+-- procedure to update shop bio
 -- drop procedure filter_product
 create procedure filter_product
 @total_remaining_min_filter int = -1,
