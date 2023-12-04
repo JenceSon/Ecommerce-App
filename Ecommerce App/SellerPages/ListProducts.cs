@@ -10,22 +10,16 @@ using System.Windows.Forms;
 
 namespace Ecommerce_App.SellerPages
 {
-    public partial class Product_Information : Form
+    public partial class ListProducts : UserControl
     {
-        public Product_Information()
+        public ListProducts()
         {
             InitializeComponent();
         }
 
-        private void AddProductBtn_Click(object sender, EventArgs e)
+        private void SeeMoreBtn_Click(object sender, EventArgs e)
         {
-            AddProduct form = new AddProduct();
-            form.Show();
-        }
-
-        private void ModifyBtn_Click(object sender, EventArgs e)
-        {
-            ModifyProduct form = new ModifyProduct();
+            Product_Information form = new Product_Information();
             form.Show();
         }
     }

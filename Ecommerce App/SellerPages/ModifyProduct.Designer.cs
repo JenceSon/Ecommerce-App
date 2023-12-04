@@ -39,7 +39,6 @@
             CategoryLabel = new Label();
             ProductNameTextBox = new TextBox();
             panel3 = new Panel();
-            panel4 = new Panel();
             ResetButton = new Button();
             SaveButton = new Button();
             label4 = new Label();
@@ -50,12 +49,14 @@
             panel1 = new Panel();
             PriceLabel = new Label();
             panel2 = new Panel();
+            label7 = new Label();
             textBox2 = new TextBox();
             label5 = new Label();
-            label7 = new Label();
+            pictureBox1 = new PictureBox();
             panel3.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label6
@@ -149,20 +150,13 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(pictureBox1);
             panel3.Controls.Add(label6);
-            panel3.Controls.Add(panel4);
             panel3.Controls.Add(button1);
             panel3.Location = new Point(505, 311);
             panel3.Name = "panel3";
             panel3.Size = new Size(498, 302);
             panel3.TabIndex = 14;
-            // 
-            // panel4
-            // 
-            panel4.Location = new Point(12, 48);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(471, 244);
-            panel4.TabIndex = 11;
             // 
             // ResetButton
             // 
@@ -273,6 +267,15 @@
             panel2.Size = new Size(487, 307);
             panel2.TabIndex = 11;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(15, 183);
+            label7.Name = "label7";
+            label7.Size = new Size(117, 20);
+            label7.TabIndex = 14;
+            label7.Text = "Number of sales";
+            // 
             // textBox2
             // 
             textBox2.Location = new Point(130, 45);
@@ -289,14 +292,14 @@
             label5.TabIndex = 12;
             label5.Text = "Minimum price";
             // 
-            // label7
+            // pictureBox1
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(15, 183);
-            label7.Name = "label7";
-            label7.Size = new Size(117, 20);
-            label7.TabIndex = 14;
-            label7.Text = "Number of sales";
+            pictureBox1.Location = new Point(15, 48);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(468, 237);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
             // 
             // ModifyProduct
             // 
@@ -318,6 +321,7 @@
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -335,7 +339,6 @@
         private Label CategoryLabel;
         private TextBox ProductNameTextBox;
         private Panel panel3;
-        private Panel panel4;
         private Button ResetButton;
         private Button SaveButton;
         private Label label4;
@@ -349,5 +352,6 @@
         private Label label7;
         private TextBox textBox2;
         private Label label5;
+        private PictureBox pictureBox1;
     }
 }

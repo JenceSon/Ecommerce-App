@@ -29,21 +29,20 @@
         private void InitializeComponent()
         {
             ListProducts = new Panel();
-            button5 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            dataGridView1 = new DataGridView();
-            SeeMore = new Button();
             panel1 = new Panel();
-            ResetButton = new Button();
+            DelBtn = new Button();
             SearchButton = new Button();
+            ModifyBtn = new Button();
             textBox1 = new TextBox();
+            FilterBtn = new Button();
             CategoryLabel = new Label();
             NameTextBox = new TextBox();
+            AddProductBtn = new Button();
             NameLabel = new Label();
+            dataGridView1 = new DataGridView();
             ListProducts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // ListProducts
@@ -56,93 +55,34 @@
             ListProducts.Size = new Size(1634, 951);
             ListProducts.TabIndex = 4;
             // 
-            // button5
-            // 
-            button5.BackColor = Color.OrangeRed;
-            button5.FlatStyle = FlatStyle.Popup;
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(1156, 11);
-            button5.Name = "button5";
-            button5.Size = new Size(113, 29);
-            button5.TabIndex = 12;
-            button5.Text = "Delete";
-            button5.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            button3.BackColor = Color.OrangeRed;
-            button3.FlatStyle = FlatStyle.Popup;
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(1318, 11);
-            button3.Name = "button3";
-            button3.Size = new Size(113, 29);
-            button3.TabIndex = 10;
-            button3.Text = "Modify";
-            button3.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.OrangeRed;
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(1488, 11);
-            button2.Name = "button2";
-            button2.Size = new Size(113, 29);
-            button2.TabIndex = 9;
-            button2.Text = "See variant";
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(11, 122);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1611, 813);
-            dataGridView1.TabIndex = 7;
-            // 
-            // SeeMore
-            // 
-            SeeMore.BackColor = Color.OrangeRed;
-            SeeMore.FlatStyle = FlatStyle.Popup;
-            SeeMore.ForeColor = Color.White;
-            SeeMore.Location = new Point(999, 11);
-            SeeMore.Name = "SeeMore";
-            SeeMore.Size = new Size(113, 29);
-            SeeMore.TabIndex = 6;
-            SeeMore.Text = "Add Product";
-            SeeMore.UseVisualStyleBackColor = false;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(ResetButton);
-            panel1.Controls.Add(button5);
+            panel1.Controls.Add(DelBtn);
             panel1.Controls.Add(SearchButton);
-            panel1.Controls.Add(button3);
+            panel1.Controls.Add(ModifyBtn);
             panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(FilterBtn);
             panel1.Controls.Add(CategoryLabel);
             panel1.Controls.Add(NameTextBox);
-            panel1.Controls.Add(SeeMore);
+            panel1.Controls.Add(AddProductBtn);
             panel1.Controls.Add(NameLabel);
             panel1.Location = new Point(11, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(1611, 104);
             panel1.TabIndex = 14;
             // 
-            // ResetButton
+            // DelBtn
             // 
-            ResetButton.BackColor = SystemColors.ControlLight;
-            ResetButton.FlatStyle = FlatStyle.Popup;
-            ResetButton.ForeColor = Color.Black;
-            ResetButton.Location = new Point(124, 60);
-            ResetButton.Name = "ResetButton";
-            ResetButton.Size = new Size(81, 29);
-            ResetButton.TabIndex = 5;
-            ResetButton.Text = "Reset";
-            ResetButton.UseVisualStyleBackColor = false;
+            DelBtn.BackColor = Color.OrangeRed;
+            DelBtn.FlatStyle = FlatStyle.Popup;
+            DelBtn.ForeColor = Color.White;
+            DelBtn.Location = new Point(1319, 11);
+            DelBtn.Name = "DelBtn";
+            DelBtn.Size = new Size(113, 29);
+            DelBtn.TabIndex = 12;
+            DelBtn.Text = "Delete";
+            DelBtn.UseVisualStyleBackColor = false;
             // 
             // SearchButton
             // 
@@ -156,12 +96,37 @@
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = false;
             // 
+            // ModifyBtn
+            // 
+            ModifyBtn.BackColor = Color.OrangeRed;
+            ModifyBtn.FlatStyle = FlatStyle.Popup;
+            ModifyBtn.ForeColor = Color.White;
+            ModifyBtn.Location = new Point(1481, 11);
+            ModifyBtn.Name = "ModifyBtn";
+            ModifyBtn.Size = new Size(113, 29);
+            ModifyBtn.TabIndex = 10;
+            ModifyBtn.Text = "Modify";
+            ModifyBtn.UseVisualStyleBackColor = false;
+            ModifyBtn.Click += ModifyBtn_Click;
+            // 
             // textBox1
             // 
             textBox1.Location = new Point(397, 17);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(174, 27);
             textBox1.TabIndex = 3;
+            // 
+            // FilterBtn
+            // 
+            FilterBtn.BackColor = Color.OrangeRed;
+            FilterBtn.FlatStyle = FlatStyle.Popup;
+            FilterBtn.ForeColor = Color.White;
+            FilterBtn.Location = new Point(128, 60);
+            FilterBtn.Name = "FilterBtn";
+            FilterBtn.Size = new Size(81, 29);
+            FilterBtn.TabIndex = 9;
+            FilterBtn.Text = "Filter";
+            FilterBtn.UseVisualStyleBackColor = false;
             // 
             // CategoryLabel
             // 
@@ -179,6 +144,19 @@
             NameTextBox.Size = new Size(174, 27);
             NameTextBox.TabIndex = 1;
             // 
+            // AddProductBtn
+            // 
+            AddProductBtn.BackColor = Color.OrangeRed;
+            AddProductBtn.FlatStyle = FlatStyle.Popup;
+            AddProductBtn.ForeColor = Color.White;
+            AddProductBtn.Location = new Point(1162, 11);
+            AddProductBtn.Name = "AddProductBtn";
+            AddProductBtn.Size = new Size(113, 29);
+            AddProductBtn.TabIndex = 6;
+            AddProductBtn.Text = "Add Product";
+            AddProductBtn.UseVisualStyleBackColor = false;
+            AddProductBtn.Click += AddProductBtn_Click;
+            // 
             // NameLabel
             // 
             NameLabel.AutoSize = true;
@@ -187,6 +165,16 @@
             NameLabel.Size = new Size(104, 20);
             NameLabel.TabIndex = 0;
             NameLabel.Text = "Product Name";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(11, 122);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(1611, 813);
+            dataGridView1.TabIndex = 7;
             // 
             // Product_Information
             // 
@@ -199,22 +187,21 @@
             Name = "Product_Information";
             Text = "Product_Information";
             ListProducts.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel ListProducts;
-        private Button SeeMore;
-        private Button button5;
-        private Button button3;
-        private Button button2;
+        private Button AddProductBtn;
+        private Button DelBtn;
+        private Button ModifyBtn;
+        private Button FilterBtn;
         private DataGridView dataGridView1;
         private Panel panel1;
-        private Button ResetButton;
         private Button SearchButton;
         private TextBox textBox1;
         private Label CategoryLabel;

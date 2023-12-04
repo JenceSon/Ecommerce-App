@@ -229,6 +229,8 @@ begin
 	deallocate cur
 end
 go
+-- trigger to calculate the avg rating of a shop base on review
+go
 ---2 insert, delete, update
 --drop procedure insert_product
 create procedure insert_product 

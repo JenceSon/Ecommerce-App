@@ -31,25 +31,26 @@ namespace Ecommerce_App.SellerPages
 
         private void ProductsButton_Click(object sender, EventArgs e)
         {
-            ListProducts.Visible = true;
-            ShopInformation.Visible = false;
-            Finance.Visible = false;
-            ListProducts.BringToFront();
-        }
-
-        private void OverviewButton_Click(object sender, EventArgs e)
-        {
-            ShopInformation.Visible = true;
-            ListProducts.Visible = false;
-            Finance.Visible = false;
-            ShopInformation.BringToFront();
+            listProducts.Visible = true;
+            finance.Visible = false;
+            shopInformation.Visible = false;
+            listProducts.BringToFront();
         }
 
         private void FinanceButton_Click(object sender, EventArgs e)
         {
-            Finance.Visible = true;
-            ShopInformation.Visible = false;
-            ListProducts.Visible = false;
+            listProducts.Visible = false;
+            finance.Visible = true;
+            shopInformation.Visible = false;
+            finance.BringToFront();
+        }
+
+        private void OverviewButton_Click(object sender, EventArgs e)
+        {
+            listProducts.Visible = false;
+            finance.Visible = false;
+            shopInformation.Visible = true;
+            shopInformation.BringToFront();
         }
     }
 }
