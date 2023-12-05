@@ -473,22 +473,25 @@ create function sum_revenue(@shopID varchar(9),@startDate date,@endDate date)
 returns table as
 return(
 	select p.product_id,p.name,sum(pin.current_price) as total_revenue
-	from Product_instance pin join Is_contained i on pin.instance_id=i.instance_id
-		join [Order] o on o.order_id = i.order_id and o.status = 'Done'
-		join Product p on pin.product_id = p.product_id and p.shop_id = @shopID
+	from ((Product_instance pin join Is_contained i on pin.instance_id=i.instance_id)
+		join [Order] o on (o.order_id = i.order_id and o.status = 'Done'))
+		join Product p on (pin.product_id = p.product_id and p.shop_id = @shopID)
 	where cast(o.time_order as date) between @startDate and @endDate
 	group by p.product_id,p.name
 )
 go
-
-go
 create function list_order(@buyerID varchar(9),@startDate date,@endDate date)
 returns table as
 return(
-	select o.order_id,o.status
-	from [Order] o join Places p on o.order_id = p.order_id
-		join Buyer b on p.[user_id] = b.[user_id]
-	where cast(o.time_order as date) between @startDate and @endDate
-	group by o.order_id,o.status
+	select o.status, count(*) as num
+	from Places p, [Order] o
+	where
+		(@buyerID = p.user_id or @buyerID = p.user_id_cart) and
+		p.order_id = o.order_id and
+		((cast(o.time_order as date) between @startDate and @endDate) or
+		(@startDate is null and @endDate is null) or
+		(@startDate is null and cast(o.time_order as date) <= @endDate) or
+		(@endDate is null and cast(o.time_order as date) >= @startDate)) 
+	group by o.status
 	)
 go
