@@ -230,7 +230,39 @@ begin
 end
 go
 -- trigger to calculate the avg rating of a shop base on review
--- 
+create trigger cal_avg_rating
+on Review
+after insert, update
+as
+begin
+	declare cur Cursor for (
+	select distinct s.shop_id from inserted i,Shop s, Product p
+	where i.product_id = p.product_id and p.shop_id = s.shop_id)
+
+	declare @shop_id varchar(9)
+	open cur
+	fetch next from cur into @shop_id
+	while @@FETCH_STATUS = 0
+	begin
+		declare @avgRating decimal(2,1)
+		set @avgRating = (
+			select AVG(cast(r.no_stars as decimal(2,1))) as avgRate
+			from Review r, Product p
+			where r.product_id = p.product_id and p.shop_id = @shop_id)
+		if @avgRating is null 
+			set @avgRating = 0
+		
+		update Shop
+		set rating = @avgRating
+		where shop_id = @shop_id;
+
+		fetch next from cur into @shop_id
+
+	end
+	close cur
+	deallocate cur
+end
+-- trigger for current price
 go
 ---2 insert, delete, update
 --drop procedure insert_product
@@ -495,3 +527,10 @@ return(
 	group by o.status
 	)
 go
+
+/*
+Must do
+add trigger current
+generate ID function
+insert place (maybe no need)
+*/

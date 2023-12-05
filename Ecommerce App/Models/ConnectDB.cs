@@ -9,7 +9,7 @@ namespace Ecommerce_App.Models
 {
     internal class ConnectDB
     {
-        static string connString = "Data Source=MSI;Initial Catalog=BTL_db_official;Integrated Security=True";
-        static SqlConnection conn = new SqlConnection(connString);
+        public static string connString = "Data Source=MSI;Initial Catalog=BTL_db_official;Integrated Security=True";
+        //public static SqlConnection conn = new SqlConnection(connString);
     }
 }

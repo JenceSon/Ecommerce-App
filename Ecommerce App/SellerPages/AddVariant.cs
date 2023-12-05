@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Ecommerce_App.SellerPages
 {
-    public partial class ModifyProduct : Form
+    public partial class AddVariant : Form
     {
-        public ModifyProduct()
+        public AddVariant()
         {
             InitializeComponent();
-        }
-
-        private void generateID_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -2,12 +2,12 @@
 {
     partial class Variant
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,141 +20,116 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Windows Form Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Variant));
-            RemoveButton = new Button();
-            DescriptionTextBox = new TextBox();
-            label2 = new Label();
-            CategoryLabel = new Label();
-            ProductNameTextBox = new TextBox();
-            VariantLabel = new Label();
-            textBox1 = new TextBox();
-            label1 = new Label();
-            textBox2 = new TextBox();
-            label3 = new Label();
+            panel1 = new Panel();
+            DelBtn = new Button();
+            ModifyBtn = new Button();
+            AddVariantBtn = new Button();
+            ListProducts = new Panel();
+            dataGridView1 = new DataGridView();
+            panel1.SuspendLayout();
+            ListProducts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // RemoveButton
+            // panel1
             // 
-            RemoveButton.Image = (Image)resources.GetObject("RemoveButton.Image");
-            RemoveButton.Location = new Point(525, 22);
-            RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(38, 81);
-            RemoveButton.TabIndex = 0;
-            RemoveButton.UseVisualStyleBackColor = true;
-            RemoveButton.Click += RemoveButton_Click;
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(DelBtn);
+            panel1.Controls.Add(ModifyBtn);
+            panel1.Controls.Add(AddVariantBtn);
+            panel1.Location = new Point(16, 12);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(978, 56);
+            panel1.TabIndex = 14;
             // 
-            // DescriptionTextBox
+            // DelBtn
             // 
-            DescriptionTextBox.Location = new Point(122, 74);
-            DescriptionTextBox.Multiline = true;
-            DescriptionTextBox.Name = "DescriptionTextBox";
-            DescriptionTextBox.Size = new Size(393, 43);
-            DescriptionTextBox.TabIndex = 10;
+            DelBtn.BackColor = Color.OrangeRed;
+            DelBtn.FlatStyle = FlatStyle.Popup;
+            DelBtn.ForeColor = Color.White;
+            DelBtn.Location = new Point(712, 11);
+            DelBtn.Name = "DelBtn";
+            DelBtn.Size = new Size(113, 29);
+            DelBtn.TabIndex = 12;
+            DelBtn.Text = "Delete";
+            DelBtn.UseVisualStyleBackColor = false;
             // 
-            // label2
+            // ModifyBtn
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 77);
-            label2.Name = "label2";
-            label2.Size = new Size(85, 20);
-            label2.TabIndex = 9;
-            label2.Text = "Description";
+            ModifyBtn.BackColor = Color.OrangeRed;
+            ModifyBtn.FlatStyle = FlatStyle.Popup;
+            ModifyBtn.ForeColor = Color.White;
+            ModifyBtn.Location = new Point(844, 11);
+            ModifyBtn.Name = "ModifyBtn";
+            ModifyBtn.Size = new Size(113, 29);
+            ModifyBtn.TabIndex = 10;
+            ModifyBtn.Text = "Modify";
+            ModifyBtn.UseVisualStyleBackColor = false;
             // 
-            // CategoryLabel
+            // AddVariantBtn
             // 
-            CategoryLabel.AutoSize = true;
-            CategoryLabel.Location = new Point(340, 5);
-            CategoryLabel.Name = "CategoryLabel";
-            CategoryLabel.Size = new Size(0, 20);
-            CategoryLabel.TabIndex = 8;
+            AddVariantBtn.BackColor = Color.OrangeRed;
+            AddVariantBtn.FlatStyle = FlatStyle.Popup;
+            AddVariantBtn.ForeColor = Color.White;
+            AddVariantBtn.Location = new Point(576, 11);
+            AddVariantBtn.Name = "AddVariantBtn";
+            AddVariantBtn.Size = new Size(113, 29);
+            AddVariantBtn.TabIndex = 6;
+            AddVariantBtn.Text = "Add Variant";
+            AddVariantBtn.UseVisualStyleBackColor = false;
+            AddVariantBtn.Click += AddVariantBtn_Click;
             // 
-            // ProductNameTextBox
+            // ListProducts
             // 
-            ProductNameTextBox.Location = new Point(122, 3);
-            ProductNameTextBox.Name = "ProductNameTextBox";
-            ProductNameTextBox.Size = new Size(393, 27);
-            ProductNameTextBox.TabIndex = 7;
+            ListProducts.BackColor = Color.White;
+            ListProducts.Controls.Add(panel1);
+            ListProducts.Controls.Add(dataGridView1);
+            ListProducts.Location = new Point(0, 0);
+            ListProducts.Name = "ListProducts";
+            ListProducts.Size = new Size(1006, 649);
+            ListProducts.TabIndex = 5;
             // 
-            // VariantLabel
+            // dataGridView1
             // 
-            VariantLabel.AutoSize = true;
-            VariantLabel.Location = new Point(12, 6);
-            VariantLabel.Name = "VariantLabel";
-            VariantLabel.Size = new Size(55, 20);
-            VariantLabel.TabIndex = 6;
-            VariantLabel.Text = "Option";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(122, 38);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(149, 27);
-            textBox1.TabIndex = 12;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 41);
-            label1.Name = "label1";
-            label1.Size = new Size(41, 20);
-            label1.TabIndex = 11;
-            label1.Text = "Price";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(399, 38);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(116, 27);
-            textBox2.TabIndex = 14;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(330, 41);
-            label3.Name = "label3";
-            label3.Size = new Size(62, 20);
-            label3.TabIndex = 13;
-            label3.Text = "Amount";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(16, 74);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(978, 558);
+            dataGridView1.TabIndex = 7;
             // 
             // Variant
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(textBox2);
-            Controls.Add(label3);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Controls.Add(DescriptionTextBox);
-            Controls.Add(label2);
-            Controls.Add(CategoryLabel);
-            Controls.Add(ProductNameTextBox);
-            Controls.Add(VariantLabel);
-            Controls.Add(RemoveButton);
+            ClientSize = new Size(1006, 644);
+            Controls.Add(ListProducts);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Variant";
-            Size = new Size(568, 120);
+            Text = "Variant";
+            panel1.ResumeLayout(false);
+            ListProducts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button RemoveButton;
-        private TextBox DescriptionTextBox;
-        private Label label2;
-        private Label CategoryLabel;
-        private TextBox ProductNameTextBox;
-        private Label VariantLabel;
-        private TextBox textBox1;
-        private Label label1;
-        private TextBox textBox2;
-        private Label label3;
+        private Panel panel1;
+        private Button DelBtn;
+        private Button ModifyBtn;
+        private Button AddVariantBtn;
+        private Panel ListProducts;
+        private DataGridView dataGridView1;
     }
 }

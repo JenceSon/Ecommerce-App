@@ -10,21 +10,17 @@ using System.Windows.Forms;
 
 namespace Ecommerce_App.SellerPages
 {
-    public partial class Variant : UserControl
+    public partial class Variant : Form
     {
         public Variant()
         {
             InitializeComponent();
         }
 
-        private void ProductNameTextBox_TextChanged(object sender, EventArgs e)
+        private void AddVariantBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void RemoveButton_Click(object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
+            AddVariant form = new AddVariant();
+            form.Show();
         }
     }
 }

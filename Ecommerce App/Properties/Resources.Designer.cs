@@ -63,6 +63,16 @@ namespace Ecommerce_App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap automatic {
+            get {
+                object obj = ResourceManager.GetObject("automatic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap date_icon {
             get {
                 object obj = ResourceManager.GetObject("date-icon", resourceCulture);

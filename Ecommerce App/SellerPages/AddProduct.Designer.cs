@@ -50,14 +50,17 @@
             label6 = new Label();
             panel4 = new Panel();
             button1 = new Button();
+            generateID = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)generateID).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(generateID);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label3);
@@ -267,6 +270,17 @@
             button1.Text = "Add Image";
             button1.UseVisualStyleBackColor = false;
             // 
+            // generateID
+            // 
+            generateID.Image = Properties.Resources.automatic;
+            generateID.Location = new Point(945, 53);
+            generateID.Name = "generateID";
+            generateID.Size = new Size(31, 28);
+            generateID.SizeMode = PictureBoxSizeMode.StretchImage;
+            generateID.TabIndex = 9;
+            generateID.TabStop = false;
+            generateID.Click += generateID_Click;
+            // 
             // AddProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -287,6 +301,7 @@
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)generateID).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -316,5 +331,6 @@
         private Panel panel4;
         private Button button1;
         private Label label6;
+        private PictureBox generateID;
     }
 }

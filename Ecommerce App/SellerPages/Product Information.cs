@@ -28,5 +28,11 @@ namespace Ecommerce_App.SellerPages
             ModifyProduct form = new ModifyProduct();
             form.Show();
         }
+
+        private void SeeVariantBtn_Click(object sender, EventArgs e)
+        {
+            Variant form = new Variant();
+            form.Show();
+        }
     }
 }

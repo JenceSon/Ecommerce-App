@@ -39,6 +39,7 @@
             CategoryLabel = new Label();
             ProductNameTextBox = new TextBox();
             panel3 = new Panel();
+            pictureBox1 = new PictureBox();
             ResetButton = new Button();
             SaveButton = new Button();
             label4 = new Label();
@@ -52,11 +53,12 @@
             label7 = new Label();
             textBox2 = new TextBox();
             label5 = new Label();
-            pictureBox1 = new PictureBox();
+            generateID = new PictureBox();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)generateID).BeginInit();
             SuspendLayout();
             // 
             // label6
@@ -153,10 +155,19 @@
             panel3.Controls.Add(pictureBox1);
             panel3.Controls.Add(label6);
             panel3.Controls.Add(button1);
-            panel3.Location = new Point(505, 311);
+            panel3.Location = new Point(506, 311);
             panel3.Name = "panel3";
             panel3.Size = new Size(498, 302);
             panel3.TabIndex = 14;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(15, 48);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(468, 237);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 14;
+            pictureBox1.TabStop = false;
             // 
             // ResetButton
             // 
@@ -227,6 +238,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(generateID);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(label3);
@@ -292,14 +304,16 @@
             label5.TabIndex = 12;
             label5.Text = "Minimum price";
             // 
-            // pictureBox1
+            // generateID
             // 
-            pictureBox1.Location = new Point(15, 48);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(468, 237);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 14;
-            pictureBox1.TabStop = false;
+            generateID.Image = Properties.Resources.automatic;
+            generateID.Location = new Point(945, 53);
+            generateID.Name = "generateID";
+            generateID.Size = new Size(31, 28);
+            generateID.SizeMode = PictureBoxSizeMode.StretchImage;
+            generateID.TabIndex = 10;
+            generateID.TabStop = false;
+            generateID.Click += generateID_Click;
             // 
             // ModifyProduct
             // 
@@ -317,11 +331,12 @@
             Text = "ModifyProduct";
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)generateID).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -353,5 +368,6 @@
         private TextBox textBox2;
         private Label label5;
         private PictureBox pictureBox1;
+        private PictureBox generateID;
     }
 }

@@ -16,5 +16,10 @@ namespace Ecommerce_App.SellerPages
         {
             InitializeComponent();
         }
+
+        private void generateID_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
