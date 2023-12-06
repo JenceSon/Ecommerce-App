@@ -229,44 +229,6 @@ begin
 	deallocate cur
 end
 go
---drop trigger check_available
-/*create trigger check_available 
-on Applies
-for Insert
-as
-begin
-	declare cur Cursor for (select * from inserted)
-	declare @ord varchar(14)
-	declare @vch varchar(9)
-
-	open cur
-	fetch next from cur into @ord, @vch
-
-	while @@FETCH_STATUS = 0
-	begin
-		if not exists (
-			select * from Can_apply
-			where voucher_id = @vch and
-			(category_id = 'CATffffff' or category_id in (
-				select distinct p.category_id from Is_contained i, Product_instance pin, Product p
-				where i.order_id = @ord and i.instance_id = pin.instance_id and pin.product_id = p.product_id)) and
-			(shop_id = 'SIDffffff' or shop_id in (
-				select distinct p.shop_id from Is_contained i, Product_instance pin, Product p
-				where i.order_id = @ord and i.instance_id = pin.instance_id and pin.product_id = p.product_id))
-		) and (select quantity from Voucher where voucher_id = @vch) <= 0
-		begin
-			print 'Can not apply voucher due to its conditions'
-			close cur
-			deallocate cur
-			rollback transaction
-			return
-		end
-		fetch next from cur into @ord, @vch
-	end
-	close cur
-	deallocate cur
-end*/
-go
 -- trigger to calculate the avg rating of a shop base on review
 create trigger cal_avg_rating
 on Review
@@ -319,6 +281,7 @@ begin
 	begin
 		if exists (select * from Is_contained where instance_id = @instance_id) -- exists in order
 		begin
+			print 'Error in product instance ' + @instance_id
 			print 'Can not change current price of a instance that is in order'
 			close cur
 			deallocate cur
@@ -331,6 +294,8 @@ begin
 	close cur
 	deallocate cur
 end
+go
+
 go
 ---2 insert, delete, update
 --drop procedure insert_product
@@ -598,7 +563,53 @@ go
 
 /*
 Must do
-add trigger current
-generate ID function
+add trigger current X
+generate ID function X
 insert place (maybe no need)
 */
+--drop function generate_PID
+create function generate_PID() -- use in application
+returns varchar(9)
+as
+begin
+	if not exists (select * from Product)
+		return 'PID000000'
+
+	declare @newPID varchar(9)
+	declare @listPID table (postfix int)
+
+	insert into @listPID 
+	select Convert(int,REPLACE(p.product_id,'PID','1')) as pid_trans 
+	from Product p 
+	where p.product_id != 'PIDffffff' 
+	order by pid_trans asc
+	
+	declare cur Cursor for (select * from @listPID)
+	declare @pre int
+	declare @current int
+
+	open cur
+	fetch next from cur into @pre
+
+	if @pre > 1000000 return 'PID000000'
+
+	fetch next from cur into @current
+	
+	while @@FETCH_STATUS = 0
+	begin
+		if @current != (@pre + 1)
+			break
+
+		set @pre = @current
+		fetch next from cur into @current
+	end
+	
+	if @pre = 1999999 
+	begin
+		return null
+	end
+	set @newPID = 'PID' + substring(convert(varchar(7),@pre + 1),2,6)
+	return @newPID
+end
+go
+
