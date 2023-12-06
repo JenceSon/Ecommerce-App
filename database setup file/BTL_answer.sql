@@ -612,4 +612,48 @@ begin
 	return @newPID
 end
 go
+create function generate_IID() -- ignore, just use to insert data more easily
+returns varchar(9)
+as
+begin
+	if not exists (select * from Product_instance)
+		return 'IID000000'
+
+	declare @newIID varchar(9)
+	declare @listIID table (postfix int)
+
+	insert into @listIID 
+	select Convert(int,REPLACE(p.instance_id,'PID','1')) as iid_trans 
+	from Product_instance p  
+	order by iid_trans asc
+	
+	declare cur Cursor for (select * from @listIID)
+	declare @pre int
+	declare @current int
+
+	open cur
+	fetch next from cur into @pre
+
+	if @pre > 1000000 return 'IID000000'
+
+	fetch next from cur into @current
+	
+	while @@FETCH_STATUS = 0
+	begin
+		if @current != (@pre + 1)
+			break
+
+		set @pre = @current
+		fetch next from cur into @current
+	end
+	
+	if @pre = 1999999 
+	begin
+		return null
+	end
+	set @newIID = 'IID' + substring(convert(varchar(7),@pre + 1),2,6)
+	return @newIID
+end
+
+go
 
