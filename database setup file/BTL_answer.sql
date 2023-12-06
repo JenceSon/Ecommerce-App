@@ -507,18 +507,21 @@ begin
 end
 go
 ---4 function
-create function check_login(
+--drop function check_login_seller
+create function check_login_seller(
 @user_name varchar(15),
 @email	varchar(100),
 @pwd	varchar(100)
 )
-returns bit
+returns varchar(9)
 as
 begin
+	declare @sid varchar(9) = 'Deny'
 	if not exists(select * from [User] where ((@user_name is not null and @user_name = user_name)
 	or (@email is not null and @email = linking_email)) and [password] = @pwd)
-		return 'False'
-	return 'True'
+		return @sid
+	set @sid = (select shop_id from Seller s, [User] u where s.user_id = u.user_id and u.user_name = @user_name)
+	return @sid
 end
 /*select * from Shop
 select * from Product

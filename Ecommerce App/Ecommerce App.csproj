@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="IMG\" />
+    <Folder Include="IMG\Product_n_variant\" />
   </ItemGroup>
 
 </Project>

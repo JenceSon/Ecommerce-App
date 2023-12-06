@@ -26,3 +26,5 @@ insert into Shop values
 )
 
 insert into Seller values ('UID123456','SID123456')
+
+select dbo.check_login_seller('Jence',null,'123')
