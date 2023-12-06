@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            generateID = new PictureBox();
             textBox1 = new TextBox();
             label1 = new Label();
             label3 = new Label();
@@ -50,11 +51,10 @@
             label6 = new Label();
             panel4 = new Panel();
             button1 = new Button();
-            generateID = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)generateID).BeginInit();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)generateID).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -74,6 +74,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(992, 259);
             panel1.TabIndex = 3;
+            // 
+            // generateID
+            // 
+            generateID.Image = Properties.Resources.automatic;
+            generateID.Location = new Point(945, 53);
+            generateID.Name = "generateID";
+            generateID.Size = new Size(31, 28);
+            generateID.SizeMode = PictureBoxSizeMode.StretchImage;
+            generateID.TabIndex = 9;
+            generateID.TabStop = false;
+            generateID.Click += generateID_Click;
             // 
             // textBox1
             // 
@@ -270,22 +281,11 @@
             button1.Text = "Add Image";
             button1.UseVisualStyleBackColor = false;
             // 
-            // generateID
-            // 
-            generateID.Image = Properties.Resources.automatic;
-            generateID.Location = new Point(945, 53);
-            generateID.Name = "generateID";
-            generateID.Size = new Size(31, 28);
-            generateID.SizeMode = PictureBoxSizeMode.StretchImage;
-            generateID.TabIndex = 9;
-            generateID.TabStop = false;
-            generateID.Click += generateID_Click;
-            // 
             // AddProduct
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1021, 631);
+            ClientSize = new Size(1022, 633);
             Controls.Add(panel3);
             Controls.Add(ResetButton);
             Controls.Add(SaveButton);
@@ -297,11 +297,11 @@
             Text = "Add Product";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)generateID).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)generateID).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

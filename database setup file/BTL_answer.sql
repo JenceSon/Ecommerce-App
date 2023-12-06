@@ -178,8 +178,42 @@ on Applies
 after Insert
 as
 begin
-	declare cur Cursor for (select voucher_id from inserted);
+	--check available
+	declare cur Cursor for (select * from inserted)
+	declare @ord varchar(14)
 	declare @vch varchar(9)
+
+	open cur
+	fetch next from cur into @ord, @vch
+
+	while @@FETCH_STATUS = 0
+	begin
+		if not exists (
+			select * from Can_apply
+			where voucher_id = @vch and
+			(category_id = 'CATffffff' or category_id in (
+				select distinct p.category_id from Is_contained i, Product_instance pin, Product p
+				where i.order_id = @ord and i.instance_id = pin.instance_id and pin.product_id = p.product_id)) and
+			(shop_id = 'SIDffffff' or shop_id in (
+				select distinct p.shop_id from Is_contained i, Product_instance pin, Product p
+				where i.order_id = @ord and i.instance_id = pin.instance_id and pin.product_id = p.product_id))
+		) and (select quantity from Voucher where voucher_id = @vch) <= 0
+		begin
+			print 'Can not apply voucher due to its conditions'
+			close cur
+			deallocate cur
+			rollback transaction
+			return
+		end
+
+		fetch next from cur into @ord, @vch
+	end
+	close cur
+	deallocate cur
+
+	-- update quantity
+	declare cur Cursor for (select voucher_id from inserted);
+
 	open cur
 	fetch next from cur into @vch;
 
@@ -196,7 +230,7 @@ begin
 end
 go
 --drop trigger check_available
-create trigger check_available 
+/*create trigger check_available 
 on Applies
 for Insert
 as
@@ -219,15 +253,19 @@ begin
 			(shop_id = 'SIDffffff' or shop_id in (
 				select distinct p.shop_id from Is_contained i, Product_instance pin, Product p
 				where i.order_id = @ord and i.instance_id = pin.instance_id and pin.product_id = p.product_id))
-		) and (select quantity from Voucher where voucher_id = @vch) = 0
+		) and (select quantity from Voucher where voucher_id = @vch) <= 0
 		begin
-			rollback
+			print 'Can not apply voucher due to its conditions'
+			close cur
+			deallocate cur
+			rollback transaction
+			return
 		end
 		fetch next from cur into @ord, @vch
 	end
 	close cur
 	deallocate cur
-end
+end*/
 go
 -- trigger to calculate the avg rating of a shop base on review
 create trigger cal_avg_rating
@@ -263,6 +301,36 @@ begin
 	deallocate cur
 end
 -- trigger for current price
+go
+--drop trigger check_before_update
+create trigger check_before_update 
+on Product_instance
+for update
+as
+begin
+	declare cur Cursor for (select instance_id from inserted)
+
+	declare @instance_id varchar(9)
+
+	open cur
+	fetch next from cur into @instance_id
+
+	while @@FETCH_STATUS = 0
+	begin
+		if exists (select * from Is_contained where instance_id = @instance_id) -- exists in order
+		begin
+			print 'Can not change current price of a instance that is in order'
+			close cur
+			deallocate cur
+			rollback transaction
+			return
+		end
+
+		fetch next from cur into @instance_id
+	end
+	close cur
+	deallocate cur
+end
 go
 ---2 insert, delete, update
 --drop procedure insert_product
