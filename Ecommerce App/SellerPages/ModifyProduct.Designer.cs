@@ -48,17 +48,21 @@
             AmountLabel = new Label();
             PriceTextBox = new TextBox();
             panel1 = new Panel();
+            generateID = new PictureBox();
             PriceLabel = new Label();
             panel2 = new Panel();
+            noIns = new Label();
+            noSales = new Label();
+            label8 = new Label();
             label7 = new Label();
             textBox2 = new TextBox();
             label5 = new Label();
-            generateID = new PictureBox();
+            addInstanceBtn = new Button();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)generateID).BeginInit();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // label6
@@ -253,6 +257,17 @@
             panel1.Size = new Size(992, 259);
             panel1.TabIndex = 10;
             // 
+            // generateID
+            // 
+            generateID.Image = Properties.Resources.automatic;
+            generateID.Location = new Point(945, 53);
+            generateID.Name = "generateID";
+            generateID.Size = new Size(31, 28);
+            generateID.SizeMode = PictureBoxSizeMode.StretchImage;
+            generateID.TabIndex = 10;
+            generateID.TabStop = false;
+            generateID.Click += generateID_Click;
+            // 
             // PriceLabel
             // 
             PriceLabel.AutoSize = true;
@@ -266,6 +281,10 @@
             // 
             panel2.AutoSize = true;
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(addInstanceBtn);
+            panel2.Controls.Add(noIns);
+            panel2.Controls.Add(noSales);
+            panel2.Controls.Add(label8);
             panel2.Controls.Add(label7);
             panel2.Controls.Add(textBox2);
             panel2.Controls.Add(label5);
@@ -278,6 +297,33 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(487, 307);
             panel2.TabIndex = 11;
+            // 
+            // noIns
+            // 
+            noIns.AutoSize = true;
+            noIns.Location = new Point(189, 221);
+            noIns.Name = "noIns";
+            noIns.Size = new Size(17, 20);
+            noIns.TabIndex = 17;
+            noIns.Text = "0";
+            // 
+            // noSales
+            // 
+            noSales.AutoSize = true;
+            noSales.Location = new Point(189, 183);
+            noSales.Name = "noSales";
+            noSales.Size = new Size(17, 20);
+            noSales.TabIndex = 16;
+            noSales.Text = "0";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(15, 221);
+            label8.Name = "label8";
+            label8.Size = new Size(145, 20);
+            label8.TabIndex = 15;
+            label8.Text = "Number of instances";
             // 
             // label7
             // 
@@ -304,16 +350,17 @@
             label5.TabIndex = 12;
             label5.Text = "Minimum price";
             // 
-            // generateID
+            // addInstanceBtn
             // 
-            generateID.Image = Properties.Resources.automatic;
-            generateID.Location = new Point(945, 53);
-            generateID.Name = "generateID";
-            generateID.Size = new Size(31, 28);
-            generateID.SizeMode = PictureBoxSizeMode.StretchImage;
-            generateID.TabIndex = 10;
-            generateID.TabStop = false;
-            generateID.Click += generateID_Click;
+            addInstanceBtn.BackColor = Color.White;
+            addInstanceBtn.FlatStyle = FlatStyle.Popup;
+            addInstanceBtn.ForeColor = Color.Black;
+            addInstanceBtn.Location = new Point(255, 217);
+            addInstanceBtn.Name = "addInstanceBtn";
+            addInstanceBtn.Size = new Size(114, 29);
+            addInstanceBtn.TabIndex = 15;
+            addInstanceBtn.Text = "Add Instance";
+            addInstanceBtn.UseVisualStyleBackColor = false;
             // 
             // ModifyProduct
             // 
@@ -334,9 +381,9 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)generateID).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)generateID).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -369,5 +416,9 @@
         private Label label5;
         private PictureBox pictureBox1;
         private PictureBox generateID;
+        private Label noIns;
+        private Label noSales;
+        private Label label8;
+        private Button addInstanceBtn;
     }
 }

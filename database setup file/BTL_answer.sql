@@ -295,7 +295,51 @@ begin
 	deallocate cur
 end
 go
+create trigger update_remain_after_add_instance
+on Product_instance
+after insert
+as
+begin
+	declare cur Cursor for (select product_id, count(*) as numAdd from inserted group by product_id)
+	declare @product_id varchar(9)
+	declare @numAdd int
 
+	open cur
+	fetch next from cur into @product_id, @numAdd
+
+	while @@FETCH_STATUS = 0
+	begin
+		if @numAdd > (select total_remaining from Product where product_id = @product_id)
+		begin
+			print 'Exceed total remaining of product'
+			close cur
+			deallocate cur
+			rollback transaction
+			return
+		end
+		fetch next from cur into @product_id, @numAdd
+	end
+
+	close cur
+	deallocate cur
+
+	-------------------------------
+	declare cur Cursor for (select product_id, count(*) as numAdd from inserted group by product_id)
+	open cur
+	fetch next from cur into @product_id, @numAdd
+
+	while @@FETCH_STATUS = 0
+	begin
+		update Product
+		set total_remaining = total_remaining - @numAdd
+		where product_id = @product_id;
+
+		fetch next from cur into @product_id, @numAdd
+	end
+
+	close cur
+	deallocate cur
+end
 go
 ---2 insert, delete, update
 --drop procedure insert_product
@@ -571,6 +615,8 @@ generate ID function X
 insert place (maybe no need)
 */
 --drop function generate_PID
+
+-- use these function/procedure for demo only
 create function generate_PID() -- use in application
 returns varchar(9)
 as
@@ -660,3 +706,29 @@ end
 
 go
 
+create function no_instance
+(
+@product_id varchar(7)
+)
+returns int
+as
+begin
+	declare @rs int
+	set @rs = (select count(*) from Product_instance where product_id = @product_id)
+	return @rs
+end
+
+go
+create procedure add_instance
+@no_add int,
+@product_id varchar(9),
+@price decimal(10,1)
+as
+begin
+	while @no_add > 0
+	begin
+		declare @instance_id varchar(9) = (select dbo.generate_IID() as newIID)
+		insert into Product_instance values(@instance_id,@price,@product_id)
+		set @no_add = @no_add -1
+	end
+end
