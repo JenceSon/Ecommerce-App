@@ -54,6 +54,8 @@ namespace Ecommerce_App.SellerPages
             }
             else
             {
+                SellerMainPage.shop.Bio = "No description";
+                BioTxtBox.Text = SellerMainPage.shop.Bio;
                 cmd = new SqlCommand(@"update Shop set [bio] = default where shop_id = @sid", conn);
             }
             cmd.Parameters.Add(sid);
