@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Ecommerce_App.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,46 @@ namespace Ecommerce_App.SellerPages
 {
     public partial class SellerMainPage : Form
     {
-        public SellerMainPage()
+        public static Shop shop;
+        public SellerMainPage(string shop_id)
         {
             InitializeComponent();
+
+            SqlConnection conn = new SqlConnection(ConnectDB.connString);
+            SqlCommand cmd = new SqlCommand(@"select * from Shop where shop_id = @shop_id",conn);
+
+            SqlParameter sid = new SqlParameter();
+            sid.ParameterName = "@shop_id";
+            sid.SqlDbType = SqlDbType.VarChar;
+            sid.Value = shop_id;
+
+            cmd.Parameters.Add(sid);
+
+            conn.Open();
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+            
+
+            conn.Close();
+
+            foreach(DataRow dr in dt.Rows)
+            {
+                shop = new Shop(
+                    Convert.ToString(dr["shop_id"]),
+                    Convert.ToString(dr["bio"]),
+                    Convert.ToString(dr["url_link"]),
+                    Convert.ToString(dr["name"]),
+                    (Convert.ToDateTime(dr["date_joined"]).Date).ToString("yyyy/MM/dd"),
+                    Convert.ToInt32(dr["no_following"]),
+                    Convert.ToInt32(dr["no_follower"]),
+                    Convert.ToInt32(dr["no_product"]),
+                    Convert.ToDouble(dr["rating"])
+                    );
+            }    
+            this.Text = "Hello " + shop.Shop_id;
+            this.shopInformation.Load_shop_info();
         }
 
         private void LogoButton_MouseEnter(object sender, EventArgs e)

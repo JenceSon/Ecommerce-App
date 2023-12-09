@@ -113,6 +113,7 @@
             ResetButton.TabIndex = 28;
             ResetButton.Text = "Reset";
             ResetButton.UseVisualStyleBackColor = false;
+            ResetButton.Click += ResetButton_Click;
             // 
             // SaveButton
             // 
@@ -125,6 +126,7 @@
             SaveButton.TabIndex = 27;
             SaveButton.Text = "Save";
             SaveButton.UseVisualStyleBackColor = false;
+            SaveButton.Click += SaveButton_Click;
             // 
             // Url
             // 
@@ -368,11 +370,12 @@
             // 
             ShopName.AutoSize = true;
             ShopName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            ShopName.Location = new Point(250, 11);
+            ShopName.Location = new Point(236, 11);
             ShopName.Name = "ShopName";
             ShopName.Size = new Size(97, 28);
             ShopName.TabIndex = 1;
             ShopName.Text = "Overview";
+            ShopName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ShopInformation
             // 
