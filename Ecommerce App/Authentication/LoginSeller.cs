@@ -21,35 +21,18 @@ namespace Ecommerce_App
             string query = @"select dbo.check_login_seller(@user_name,@email,@pwd)";
             SqlCommand cmd = new SqlCommand(query, conn);
 
-            //para
-            SqlParameter user_name = new SqlParameter();
-            user_name.ParameterName = "@user_name";
-            user_name.SqlDbType = SqlDbType.VarChar;
-            
-            SqlParameter email = new SqlParameter();
-            email.ParameterName = "@email";
-            email.SqlDbType = SqlDbType.VarChar;
-            
-            SqlParameter password = new SqlParameter();
-            password.ParameterName = "@pwd";
-            password.SqlDbType = SqlDbType.VarChar;
-
             //pass para
             if (EmailTextBox.Text.Contains('@'))
             {
-                email.Value = EmailTextBox.Text;
-                user_name.Value = DBNull.Value;
+                cmd.Parameters.AddWithValue("@email",EmailTextBox.Text);
+                cmd.Parameters.AddWithValue("@user_name",DBNull.Value);
             }
             else
             {
-                user_name.Value= EmailTextBox.Text;
-                email.Value = DBNull.Value;
+                cmd.Parameters.AddWithValue("@email", DBNull.Value);
+                cmd.Parameters.AddWithValue("@user_name", EmailTextBox.Text);
             }    
-            password.Value = PasswordTextBox.Text;
-
-            cmd.Parameters.Add(user_name);
-            cmd.Parameters.Add(email);
-            cmd.Parameters.Add(password);
+            cmd.Parameters.AddWithValue ("@pwd", PasswordTextBox.Text);
 
             //open and exec
             conn.Open();

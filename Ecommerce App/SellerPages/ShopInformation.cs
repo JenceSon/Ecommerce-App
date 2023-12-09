@@ -35,22 +35,12 @@ namespace Ecommerce_App.SellerPages
         {
             SqlConnection conn = new SqlConnection(ConnectDB.connString);
             SqlCommand cmd;
-            SqlParameter sid = new SqlParameter();
-            sid.ParameterName = "@sid";
-            sid.SqlDbType = SqlDbType.VarChar;
-            sid.Value = SellerMainPage.shop.Shop_id;
 
             if (BioTxtBox.Text.Length > 0)
             {
                 SellerMainPage.shop.Bio = BioTxtBox.Text;
                 cmd = new SqlCommand(@"update Shop set [bio] = @bio where shop_id = @sid", conn);
-
-                SqlParameter newbio = new SqlParameter();
-                newbio.ParameterName = "@bio";
-                newbio.SqlDbType = SqlDbType.VarChar;
-                newbio.Value = SellerMainPage.shop.Bio;
-
-                cmd.Parameters.Add(newbio);
+                cmd.Parameters.AddWithValue("@bio",SellerMainPage.shop.Bio);
             }
             else
             {
@@ -58,7 +48,7 @@ namespace Ecommerce_App.SellerPages
                 BioTxtBox.Text = SellerMainPage.shop.Bio;
                 cmd = new SqlCommand(@"update Shop set [bio] = default where shop_id = @sid", conn);
             }
-            cmd.Parameters.Add(sid);
+            cmd.Parameters.AddWithValue("@sid",SellerMainPage.shop.Shop_id);
 
             conn.Open();
             cmd.ExecuteNonQuery();

@@ -22,12 +22,7 @@ namespace Ecommerce_App.SellerPages
             SqlConnection conn = new SqlConnection(ConnectDB.connString);
             SqlCommand cmd = new SqlCommand(@"select * from Shop where shop_id = @shop_id",conn);
 
-            SqlParameter sid = new SqlParameter();
-            sid.ParameterName = "@shop_id";
-            sid.SqlDbType = SqlDbType.VarChar;
-            sid.Value = shop_id;
-
-            cmd.Parameters.Add(sid);
+            cmd.Parameters.AddWithValue("@shop_id",shop_id);
 
             conn.Open();
 
