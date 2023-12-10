@@ -9,6 +9,15 @@ namespace Ecommerce_App
 {
     public partial class LoginSeller : Form
     {
+        private static LoginSeller instance = null;
+        public static LoginSeller Instance
+        {
+            get
+            {
+                if(instance == null) instance = new LoginSeller();
+                return instance;
+            }
+        }
         public LoginSeller()
         {
             InitializeComponent();
@@ -37,6 +46,7 @@ namespace Ecommerce_App
             //open and exec
             conn.Open();
             string shop_id = (string)cmd.ExecuteScalar();
+            conn.Close();
 
             if (shop_id == "Deny")
             {
@@ -49,7 +59,6 @@ namespace Ecommerce_App
                 this.Hide();
 
             }
-            conn.Close();
         }
 
         private void EmailTextBox_Leave(object sender, EventArgs e)

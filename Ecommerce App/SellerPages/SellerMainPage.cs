@@ -38,16 +38,7 @@ namespace Ecommerce_App.SellerPages
             foreach(DataRow dr in dt.Rows)
             {
                 shop = new Shop(
-                    Convert.ToString(dr["shop_id"]),
-                    Convert.ToString(dr["bio"]),
-                    Convert.ToString(dr["url_link"]),
-                    Convert.ToString(dr["name"]),
-                    (Convert.ToDateTime(dr["date_joined"]).Date).ToString("yyyy/MM/dd"),
-                    Convert.ToInt32(dr["no_following"]),
-                    Convert.ToInt32(dr["no_follower"]),
-                    Convert.ToInt32(dr["no_product"]),
-                    Convert.ToDouble(dr["rating"])
-                    );
+                    Convert.ToString(dr["shop_id"]));
             }    
             this.Text = "Hello " + shop.Name;
             this.shopInformation.LoadShopInfo();
@@ -74,9 +65,8 @@ namespace Ecommerce_App.SellerPages
 
         private void LogoutButton_Click(object sender, EventArgs e)
         {
-            LoginSeller form = new LoginSeller();
-            form.Show();
-            this.Hide();
+            LoginSeller.Instance.Show();
+            this.Close();
         }
 
         private void ProductsButton_Click(object sender, EventArgs e)
@@ -107,35 +97,8 @@ namespace Ecommerce_App.SellerPages
         #region method
         public void RefreshShopInfo()
         {
-            SqlConnection conn = new SqlConnection(ConnectDB.connString);
-            SqlCommand cmd = new SqlCommand(@"select * from Shop where shop_id = @shop_id", conn);
-
-            cmd.Parameters.AddWithValue("@shop_id", shop.Shop_id);
-
-            conn.Open();
-
-            DataTable dt = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            adapter.Fill(dt);
-
-
-            conn.Close();
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                shop.Shop_id = Convert.ToString(dr["shop_id"]);
-                shop.Bio = Convert.ToString(dr["bio"]);
-                shop.UrlLink = Convert.ToString(dr["url_link"]);
-                shop.Name = Convert.ToString(dr["name"]);
-                shop.DateJoined = (Convert.ToDateTime(dr["date_joined"]).Date).ToString("yyyy/MM/dd");
-                shop.No_following = Convert.ToInt32(dr["no_following"]);
-                shop.No_folower = Convert.ToInt32(dr["no_follower"]);
-                shop.No_product = Convert.ToInt32(dr["no_product"]);
-                shop.Rating = Convert.ToDouble(dr["rating"]);
-            }
             this.Text = "Hello " + shop.Name;
             this.shopInformation.LoadShopInfo();
-
         }
         #endregion
     }

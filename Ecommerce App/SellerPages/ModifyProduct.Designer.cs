@@ -51,13 +51,11 @@
             generateID = new PictureBox();
             PriceLabel = new Label();
             panel2 = new Panel();
+            addInstanceBtn = new Button();
             noIns = new Label();
-            noSales = new Label();
             label8 = new Label();
-            label7 = new Label();
             textBox2 = new TextBox();
             label5 = new Label();
-            addInstanceBtn = new Button();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -218,7 +216,7 @@
             // 
             // AmountTextBox
             // 
-            AmountTextBox.Location = new Point(130, 135);
+            AmountTextBox.Location = new Point(162, 135);
             AmountTextBox.Name = "AmountTextBox";
             AmountTextBox.Size = new Size(174, 27);
             AmountTextBox.TabIndex = 11;
@@ -228,13 +226,13 @@
             AmountLabel.AutoSize = true;
             AmountLabel.Location = new Point(15, 138);
             AmountLabel.Name = "AmountLabel";
-            AmountLabel.Size = new Size(62, 20);
+            AmountLabel.Size = new Size(61, 20);
             AmountLabel.TabIndex = 10;
-            AmountLabel.Text = "Amount";
+            AmountLabel.Text = "In Stock";
             // 
             // PriceTextBox
             // 
-            PriceTextBox.Location = new Point(130, 93);
+            PriceTextBox.Location = new Point(162, 93);
             PriceTextBox.Name = "PriceTextBox";
             PriceTextBox.Size = new Size(174, 27);
             PriceTextBox.TabIndex = 9;
@@ -283,9 +281,7 @@
             panel2.BackColor = Color.White;
             panel2.Controls.Add(addInstanceBtn);
             panel2.Controls.Add(noIns);
-            panel2.Controls.Add(noSales);
             panel2.Controls.Add(label8);
-            panel2.Controls.Add(label7);
             panel2.Controls.Add(textBox2);
             panel2.Controls.Add(label5);
             panel2.Controls.Add(AmountTextBox);
@@ -298,45 +294,39 @@
             panel2.Size = new Size(487, 307);
             panel2.TabIndex = 11;
             // 
+            // addInstanceBtn
+            // 
+            addInstanceBtn.BackColor = Color.White;
+            addInstanceBtn.FlatStyle = FlatStyle.Popup;
+            addInstanceBtn.ForeColor = Color.Black;
+            addInstanceBtn.Location = new Point(222, 178);
+            addInstanceBtn.Name = "addInstanceBtn";
+            addInstanceBtn.Size = new Size(114, 29);
+            addInstanceBtn.TabIndex = 15;
+            addInstanceBtn.Text = "Add Instance";
+            addInstanceBtn.UseVisualStyleBackColor = false;
+            // 
             // noIns
             // 
             noIns.AutoSize = true;
-            noIns.Location = new Point(189, 221);
+            noIns.Location = new Point(162, 182);
             noIns.Name = "noIns";
             noIns.Size = new Size(17, 20);
             noIns.TabIndex = 17;
             noIns.Text = "0";
             // 
-            // noSales
-            // 
-            noSales.AutoSize = true;
-            noSales.Location = new Point(189, 183);
-            noSales.Name = "noSales";
-            noSales.Size = new Size(17, 20);
-            noSales.TabIndex = 16;
-            noSales.Text = "0";
-            // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(15, 221);
+            label8.Location = new Point(15, 182);
             label8.Name = "label8";
-            label8.Size = new Size(145, 20);
+            label8.Size = new Size(60, 20);
             label8.TabIndex = 15;
-            label8.Text = "Number of instances";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(15, 183);
-            label7.Name = "label7";
-            label7.Size = new Size(117, 20);
-            label7.TabIndex = 14;
-            label7.Text = "Number of sales";
+            label8.Text = "On Sale";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(130, 45);
+            textBox2.Location = new Point(162, 45);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(174, 27);
             textBox2.TabIndex = 13;
@@ -349,18 +339,6 @@
             label5.Size = new Size(109, 20);
             label5.TabIndex = 12;
             label5.Text = "Minimum price";
-            // 
-            // addInstanceBtn
-            // 
-            addInstanceBtn.BackColor = Color.White;
-            addInstanceBtn.FlatStyle = FlatStyle.Popup;
-            addInstanceBtn.ForeColor = Color.Black;
-            addInstanceBtn.Location = new Point(255, 217);
-            addInstanceBtn.Name = "addInstanceBtn";
-            addInstanceBtn.Size = new Size(114, 29);
-            addInstanceBtn.TabIndex = 15;
-            addInstanceBtn.Text = "Add Instance";
-            addInstanceBtn.UseVisualStyleBackColor = false;
             // 
             // ModifyProduct
             // 
@@ -411,13 +389,11 @@
         private Panel panel1;
         private Label PriceLabel;
         private Panel panel2;
-        private Label label7;
         private TextBox textBox2;
         private Label label5;
         private PictureBox pictureBox1;
         private PictureBox generateID;
         private Label noIns;
-        private Label noSales;
         private Label label8;
         private Button addInstanceBtn;
     }

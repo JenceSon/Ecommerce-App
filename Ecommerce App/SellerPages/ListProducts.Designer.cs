@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label1 = new Label();
             SeeMoreBtn = new Button();
             ProductTable = new DataGridView();
             ID = new DataGridViewTextBoxColumn();
             NameProduct = new DataGridViewTextBoxColumn();
             TotalRemaining = new DataGridViewTextBoxColumn();
+            OnSale = new DataGridViewTextBoxColumn();
             MinPrice = new DataGridViewTextBoxColumn();
             MaxPrice = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)ProductTable).BeginInit();
@@ -65,7 +67,15 @@
             // ProductTable
             // 
             ProductTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ProductTable.Columns.AddRange(new DataGridViewColumn[] { ID, NameProduct, TotalRemaining, MinPrice, MaxPrice });
+            ProductTable.Columns.AddRange(new DataGridViewColumn[] { ID, NameProduct, TotalRemaining, OnSale, MinPrice, MaxPrice });
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ProductTable.DefaultCellStyle = dataGridViewCellStyle1;
             ProductTable.Location = new Point(8, 53);
             ProductTable.Name = "ProductTable";
             ProductTable.RowHeadersWidth = 51;
@@ -85,21 +95,28 @@
             NameProduct.HeaderText = "Name";
             NameProduct.MinimumWidth = 6;
             NameProduct.Name = "NameProduct";
-            NameProduct.Width = 140;
+            NameProduct.Width = 120;
             // 
             // TotalRemaining
             // 
-            TotalRemaining.HeaderText = "Total remaining";
+            TotalRemaining.HeaderText = "In stock";
             TotalRemaining.MinimumWidth = 6;
             TotalRemaining.Name = "TotalRemaining";
-            TotalRemaining.Width = 80;
+            TotalRemaining.Width = 60;
+            // 
+            // OnSale
+            // 
+            OnSale.HeaderText = "On Sale";
+            OnSale.MinimumWidth = 6;
+            OnSale.Name = "OnSale";
+            OnSale.Width = 60;
             // 
             // MinPrice
             // 
             MinPrice.HeaderText = "Minimum price";
             MinPrice.MinimumWidth = 6;
             MinPrice.Name = "MinPrice";
-            MinPrice.Width = 110;
+            MinPrice.Width = 101;
             // 
             // MaxPrice
             // 
@@ -130,6 +147,7 @@
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn NameProduct;
         private DataGridViewTextBoxColumn TotalRemaining;
+        private DataGridViewTextBoxColumn OnSale;
         private DataGridViewTextBoxColumn MinPrice;
         private DataGridViewTextBoxColumn MaxPrice;
     }

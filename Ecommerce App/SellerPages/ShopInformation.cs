@@ -38,14 +38,11 @@ namespace Ecommerce_App.SellerPages
 
             if (BioTxtBox.Text.Length > 0)
             {
-                SellerMainPage.shop.Bio = BioTxtBox.Text;
                 cmd = new SqlCommand(@"update Shop set [bio] = @bio where shop_id = @sid", conn);
-                cmd.Parameters.AddWithValue("@bio",SellerMainPage.shop.Bio);
+                cmd.Parameters.AddWithValue("@bio",BioTxtBox.Text.ToString());
             }
             else
             {
-                SellerMainPage.shop.Bio = "No description";
-                BioTxtBox.Text = SellerMainPage.shop.Bio;
                 cmd = new SqlCommand(@"update Shop set [bio] = default where shop_id = @sid", conn);
             }
             cmd.Parameters.AddWithValue("@sid",SellerMainPage.shop.Shop_id);
@@ -55,6 +52,7 @@ namespace Ecommerce_App.SellerPages
 
             conn.Close();
 
+            BioTxtBox.Text = SellerMainPage.shop.Bio;
             MessageBox.Show("Successfully change", "Notification",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
         }

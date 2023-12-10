@@ -1,6 +1,6 @@
 use BTL_db_official
 go
---1/ create trigger
+--1/ create trigger NOTE : do trigger update n.o sale (if have time)
 --drop trigger update_no_product
 create trigger update_no_product 
 on Product

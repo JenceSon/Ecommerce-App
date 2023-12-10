@@ -20,19 +20,19 @@ namespace Ecommerce_App.SellerPages
         private void AddProductBtn_Click(object sender, EventArgs e)
         {
             AddProduct form = new AddProduct();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void ModifyBtn_Click(object sender, EventArgs e)
         {
             ModifyProduct form = new ModifyProduct();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void SeeVariantBtn_Click(object sender, EventArgs e)
         {
             Variant form = new Variant();
-            form.Show();
+            form.ShowDialog();
         }
     }
 }
