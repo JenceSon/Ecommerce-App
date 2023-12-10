@@ -18,7 +18,7 @@ namespace Ecommerce_App.SellerPages
         {
             InitializeComponent();
         }
-        public void Load_shop_info()
+        public void LoadShopInfo()
         {
             ShopID.Text = SellerMainPage.shop.Shop_id.ToString();
             ShopName.Text = SellerMainPage.shop.Name.ToString();

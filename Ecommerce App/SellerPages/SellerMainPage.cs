@@ -15,10 +15,12 @@ namespace Ecommerce_App.SellerPages
     public partial class SellerMainPage : Form
     {
         public static Shop shop;
+        public static List<Product> Products;
         public SellerMainPage(string shop_id)
         {
             InitializeComponent();
-
+           
+            #region create shop
             SqlConnection conn = new SqlConnection(ConnectDB.connString);
             SqlCommand cmd = new SqlCommand(@"select * from Shop where shop_id = @shop_id",conn);
 
@@ -47,10 +49,24 @@ namespace Ecommerce_App.SellerPages
                     Convert.ToDouble(dr["rating"])
                     );
             }    
-            this.Text = "Hello " + shop.Shop_id;
-            this.shopInformation.Load_shop_info();
-        }
+            this.Text = "Hello " + shop.Name;
+            this.shopInformation.LoadShopInfo();
+            #endregion
 
+
+            #region load products of shop
+            Products = new List<Product>();
+            this.listProducts.CreateProducts();
+            this.listProducts.LoadProducts();
+            #endregion
+
+
+            #region load finance
+            this.finance.LoadFinance();
+            #endregion
+
+        }
+        #region event
         private void LogoButton_MouseEnter(object sender, EventArgs e)
         {
 
@@ -86,5 +102,41 @@ namespace Ecommerce_App.SellerPages
             shopInformation.Visible = true;
             shopInformation.BringToFront();
         }
+        #endregion
+
+        #region method
+        public void RefreshShopInfo()
+        {
+            SqlConnection conn = new SqlConnection(ConnectDB.connString);
+            SqlCommand cmd = new SqlCommand(@"select * from Shop where shop_id = @shop_id", conn);
+
+            cmd.Parameters.AddWithValue("@shop_id", shop.Shop_id);
+
+            conn.Open();
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(dt);
+
+
+            conn.Close();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                shop.Shop_id = Convert.ToString(dr["shop_id"]);
+                shop.Bio = Convert.ToString(dr["bio"]);
+                shop.UrlLink = Convert.ToString(dr["url_link"]);
+                shop.Name = Convert.ToString(dr["name"]);
+                shop.DateJoined = (Convert.ToDateTime(dr["date_joined"]).Date).ToString("yyyy/MM/dd");
+                shop.No_following = Convert.ToInt32(dr["no_following"]);
+                shop.No_folower = Convert.ToInt32(dr["no_follower"]);
+                shop.No_product = Convert.ToInt32(dr["no_product"]);
+                shop.Rating = Convert.ToDouble(dr["rating"]);
+            }
+            this.Text = "Hello " + shop.Name;
+            this.shopInformation.LoadShopInfo();
+
+        }
+        #endregion
     }
 }

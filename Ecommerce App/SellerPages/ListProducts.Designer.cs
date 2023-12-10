@@ -31,6 +31,11 @@
             label1 = new Label();
             SeeMoreBtn = new Button();
             ProductTable = new DataGridView();
+            ID = new DataGridViewTextBoxColumn();
+            NameProduct = new DataGridViewTextBoxColumn();
+            TotalRemaining = new DataGridViewTextBoxColumn();
+            MinPrice = new DataGridViewTextBoxColumn();
+            MaxPrice = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)ProductTable).BeginInit();
             SuspendLayout();
             // 
@@ -60,12 +65,48 @@
             // ProductTable
             // 
             ProductTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ProductTable.Columns.AddRange(new DataGridViewColumn[] { ID, NameProduct, TotalRemaining, MinPrice, MaxPrice });
             ProductTable.Location = new Point(8, 53);
             ProductTable.Name = "ProductTable";
             ProductTable.RowHeadersWidth = 51;
             ProductTable.RowTemplate.Height = 29;
             ProductTable.Size = new Size(584, 328);
             ProductTable.TabIndex = 6;
+            // 
+            // ID
+            // 
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.Width = 90;
+            // 
+            // NameProduct
+            // 
+            NameProduct.HeaderText = "Name";
+            NameProduct.MinimumWidth = 6;
+            NameProduct.Name = "NameProduct";
+            NameProduct.Width = 140;
+            // 
+            // TotalRemaining
+            // 
+            TotalRemaining.HeaderText = "Total remaining";
+            TotalRemaining.MinimumWidth = 6;
+            TotalRemaining.Name = "TotalRemaining";
+            TotalRemaining.Width = 80;
+            // 
+            // MinPrice
+            // 
+            MinPrice.HeaderText = "Minimum price";
+            MinPrice.MinimumWidth = 6;
+            MinPrice.Name = "MinPrice";
+            MinPrice.Width = 110;
+            // 
+            // MaxPrice
+            // 
+            MaxPrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            MaxPrice.HeaderText = "Maximum Price";
+            MaxPrice.MinimumWidth = 6;
+            MaxPrice.Name = "MaxPrice";
             // 
             // ListProducts
             // 
@@ -86,5 +127,10 @@
         private Label label1;
         private Button SeeMoreBtn;
         private DataGridView ProductTable;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn NameProduct;
+        private DataGridViewTextBoxColumn TotalRemaining;
+        private DataGridViewTextBoxColumn MinPrice;
+        private DataGridViewTextBoxColumn MaxPrice;
     }
 }

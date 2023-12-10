@@ -38,8 +38,9 @@
             TotalRevenue = new Label();
             label3 = new Label();
             ListProductRevenue = new DataGridView();
-            id = new DataGridViewTextBoxColumn();
-            total = new DataGridViewTextBoxColumn();
+            ID = new DataGridViewTextBoxColumn();
+            NameProduct = new DataGridViewTextBoxColumn();
+            Revenue = new DataGridViewTextBoxColumn();
             label4 = new Label();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -61,16 +62,18 @@
             // 
             // EnddatePicker
             // 
+            EnddatePicker.Format = DateTimePickerFormat.Short;
             EnddatePicker.Location = new Point(125, 57);
             EnddatePicker.Name = "EnddatePicker";
-            EnddatePicker.Size = new Size(250, 27);
+            EnddatePicker.Size = new Size(125, 27);
             EnddatePicker.TabIndex = 6;
             // 
             // StartdatePicker
             // 
+            StartdatePicker.Format = DateTimePickerFormat.Short;
             StartdatePicker.Location = new Point(125, 15);
             StartdatePicker.Name = "StartdatePicker";
-            StartdatePicker.Size = new Size(250, 27);
+            StartdatePicker.Size = new Size(125, 27);
             StartdatePicker.TabIndex = 5;
             // 
             // SearchButton
@@ -84,6 +87,7 @@
             SearchButton.TabIndex = 4;
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = false;
+            SearchButton.Click += SearchButton_Click;
             // 
             // EndDateLabel
             // 
@@ -140,7 +144,7 @@
             ListProductRevenue.AllowUserToDeleteRows = false;
             ListProductRevenue.AllowUserToOrderColumns = true;
             ListProductRevenue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ListProductRevenue.Columns.AddRange(new DataGridViewColumn[] { id, total });
+            ListProductRevenue.Columns.AddRange(new DataGridViewColumn[] { ID, NameProduct, Revenue });
             ListProductRevenue.Location = new Point(5, 46);
             ListProductRevenue.Name = "ListProductRevenue";
             ListProductRevenue.ReadOnly = true;
@@ -149,21 +153,29 @@
             ListProductRevenue.Size = new Size(560, 218);
             ListProductRevenue.TabIndex = 2;
             // 
-            // id
+            // ID
             // 
-            id.HeaderText = "Product";
-            id.MinimumWidth = 6;
-            id.Name = "id";
-            id.ReadOnly = true;
-            id.Width = 250;
+            ID.HeaderText = "ID";
+            ID.MinimumWidth = 6;
+            ID.Name = "ID";
+            ID.ReadOnly = true;
+            ID.Width = 125;
             // 
-            // total
+            // NameProduct
             // 
-            total.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            total.HeaderText = "Total";
-            total.MinimumWidth = 6;
-            total.Name = "total";
-            total.ReadOnly = true;
+            NameProduct.HeaderText = "Name";
+            NameProduct.MinimumWidth = 6;
+            NameProduct.Name = "NameProduct";
+            NameProduct.ReadOnly = true;
+            NameProduct.Width = 200;
+            // 
+            // Revenue
+            // 
+            Revenue.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Revenue.HeaderText = "Revenue";
+            Revenue.MinimumWidth = 6;
+            Revenue.Name = "Revenue";
+            Revenue.ReadOnly = true;
             // 
             // label4
             // 
@@ -203,8 +215,9 @@
         private Label TotalRevenue;
         private Label label3;
         private DataGridView ListProductRevenue;
-        private DataGridViewTextBoxColumn id;
-        private DataGridViewTextBoxColumn total;
         private Label label4;
+        private DataGridViewTextBoxColumn ID;
+        private DataGridViewTextBoxColumn NameProduct;
+        private DataGridViewTextBoxColumn Revenue;
     }
 }
