@@ -77,6 +77,20 @@ namespace Ecommerce_App.Models
                 return catid;
             }
         }
+        public string CatName
+        {
+            get
+            {
+                SqlConnection conn = new SqlConnection(ConnectDB.connString);
+                SqlCommand cmd = new SqlCommand(@"Select category_name from Category where catgory_id = @category_id", conn);
+                cmd.Parameters.AddWithValue("@category_id", this.catid);
+
+                conn.Open();
+                string catname = (string)cmd.ExecuteScalar();
+                conn.Close();
+                return catname;
+            }
+        }
         public int TotalRemaining
         {
             get
