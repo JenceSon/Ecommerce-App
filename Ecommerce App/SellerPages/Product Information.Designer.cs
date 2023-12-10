@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             ListProducts = new Panel();
             panel1 = new Panel();
             SeeVariantBtn = new Button();
@@ -35,17 +36,27 @@
             ModifyBtn = new Button();
             FilterBtn = new Button();
             AddProductBtn = new Button();
-            dataGridView1 = new DataGridView();
+            ProductsTable = new DataGridView();
+            ImageCol = new DataGridViewTextBoxColumn();
+            IDCol = new DataGridViewTextBoxColumn();
+            NameCol = new DataGridViewTextBoxColumn();
+            MinPriceCol = new DataGridViewTextBoxColumn();
+            MaxPriceCol = new DataGridViewTextBoxColumn();
+            DesCol = new DataGridViewTextBoxColumn();
+            NoSaleCol = new DataGridViewTextBoxColumn();
+            TotalRemainingCol = new DataGridViewTextBoxColumn();
+            OnSaleCol = new DataGridViewTextBoxColumn();
+            CatCol = new DataGridViewTextBoxColumn();
             ListProducts.SuspendLayout();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ProductsTable).BeginInit();
             SuspendLayout();
             // 
             // ListProducts
             // 
             ListProducts.BackColor = Color.White;
             ListProducts.Controls.Add(panel1);
-            ListProducts.Controls.Add(dataGridView1);
+            ListProducts.Controls.Add(ProductsTable);
             ListProducts.Location = new Point(12, 12);
             ListProducts.Name = "ListProducts";
             ListProducts.Size = new Size(1634, 951);
@@ -127,15 +138,94 @@
             AddProductBtn.UseVisualStyleBackColor = false;
             AddProductBtn.Click += AddProductBtn_Click;
             // 
-            // dataGridView1
+            // ProductsTable
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(11, 74);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1611, 861);
-            dataGridView1.TabIndex = 7;
+            ProductsTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            ProductsTable.Columns.AddRange(new DataGridViewColumn[] { ImageCol, IDCol, NameCol, MinPriceCol, MaxPriceCol, DesCol, NoSaleCol, TotalRemainingCol, OnSaleCol, CatCol });
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            ProductsTable.DefaultCellStyle = dataGridViewCellStyle1;
+            ProductsTable.Location = new Point(11, 74);
+            ProductsTable.Name = "ProductsTable";
+            ProductsTable.RowHeadersWidth = 51;
+            ProductsTable.RowTemplate.Height = 29;
+            ProductsTable.Size = new Size(1611, 861);
+            ProductsTable.TabIndex = 7;
+            // 
+            // ImageCol
+            // 
+            ImageCol.HeaderText = "Image";
+            ImageCol.MinimumWidth = 6;
+            ImageCol.Name = "ImageCol";
+            ImageCol.Width = 300;
+            // 
+            // IDCol
+            // 
+            IDCol.HeaderText = "ID";
+            IDCol.MinimumWidth = 6;
+            IDCol.Name = "IDCol";
+            IDCol.Width = 90;
+            // 
+            // NameCol
+            // 
+            NameCol.HeaderText = "Name";
+            NameCol.MinimumWidth = 6;
+            NameCol.Name = "NameCol";
+            NameCol.Width = 150;
+            // 
+            // MinPriceCol
+            // 
+            MinPriceCol.HeaderText = "Minimum price";
+            MinPriceCol.MinimumWidth = 6;
+            MinPriceCol.Name = "MinPriceCol";
+            MinPriceCol.Width = 140;
+            // 
+            // MaxPriceCol
+            // 
+            MaxPriceCol.HeaderText = "Maximum price";
+            MaxPriceCol.MinimumWidth = 6;
+            MaxPriceCol.Name = "MaxPriceCol";
+            MaxPriceCol.Width = 140;
+            // 
+            // DesCol
+            // 
+            DesCol.HeaderText = "Description";
+            DesCol.MinimumWidth = 6;
+            DesCol.Name = "DesCol";
+            DesCol.Width = 290;
+            // 
+            // NoSaleCol
+            // 
+            NoSaleCol.HeaderText = "Number of Sales";
+            NoSaleCol.MinimumWidth = 6;
+            NoSaleCol.Name = "NoSaleCol";
+            NoSaleCol.Width = 101;
+            // 
+            // TotalRemainingCol
+            // 
+            TotalRemainingCol.HeaderText = "In Stock";
+            TotalRemainingCol.MinimumWidth = 6;
+            TotalRemainingCol.Name = "TotalRemainingCol";
+            TotalRemainingCol.Width = 101;
+            // 
+            // OnSaleCol
+            // 
+            OnSaleCol.HeaderText = "On sale";
+            OnSaleCol.MinimumWidth = 6;
+            OnSaleCol.Name = "OnSaleCol";
+            OnSaleCol.Width = 101;
+            // 
+            // CatCol
+            // 
+            CatCol.HeaderText = "Category";
+            CatCol.MinimumWidth = 6;
+            CatCol.Name = "CatCol";
+            CatCol.Width = 145;
             // 
             // Product_Information
             // 
@@ -149,7 +239,7 @@
             Text = "Product_Information";
             ListProducts.ResumeLayout(false);
             panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ProductsTable).EndInit();
             ResumeLayout(false);
         }
 
@@ -160,8 +250,18 @@
         private Button DelBtn;
         private Button ModifyBtn;
         private Button FilterBtn;
-        private DataGridView dataGridView1;
+        private DataGridView ProductsTable;
         private Panel panel1;
         private Button SeeVariantBtn;
+        private DataGridViewTextBoxColumn ImageCol;
+        private DataGridViewTextBoxColumn IDCol;
+        private DataGridViewTextBoxColumn NameCol;
+        private DataGridViewTextBoxColumn MinPriceCol;
+        private DataGridViewTextBoxColumn MaxPriceCol;
+        private DataGridViewTextBoxColumn DesCol;
+        private DataGridViewTextBoxColumn NoSaleCol;
+        private DataGridViewTextBoxColumn TotalRemainingCol;
+        private DataGridViewTextBoxColumn OnSaleCol;
+        private DataGridViewTextBoxColumn CatCol;
     }
 }
